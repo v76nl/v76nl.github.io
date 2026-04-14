@@ -3,7 +3,7 @@
   "profile": {
     "name": "v76nl",
     "tagline": "student developer",
-    "bio": "hi",
+    "bio": "",
     "github": "https://github.com/v76nl",
     "x": "https://x.com/ln67v"
   },
@@ -34,7 +34,7 @@
   "works": [
     {
       "title": "2D to 3D Extruder",
-      "description": "Three.jsを使用した3Dキーチェーン生成ツール。テキストや任意の形状を入力してSTLファイルをエクスポートできる。Clipper2によるブール演算で非マニフォールドジオメトリを解消。",
+      "description": "Three.jsを使用した3Dキーチェーン生成ツール。テキストや任意の形状を入力してSTLファイルをエクスポートできる。",
       "tags": [
         "Web",
         "Three.js",
@@ -48,7 +48,7 @@
     },
     {
       "title": "Chuinfo (Android)",
-      "description": "中央大学の学生のための、統合アプリ",
+      "description": "中央大学の学生のための統合アプリ。時間割や課題を確認可能。",
       "tags": [
         "Android",
         "Java",
@@ -63,12 +63,11 @@
       "date": "2026"
     },
     {
-      "title": "このサイト",
-      "description": "制作物をJSONCファイルで外部管理し、タグフィルタリングを実装したポートフォリオサイト。HSLベースの動的カラーテーマシステムを採用。",
+      "title": "ポートフォリオサイト",
+      "description": "制作物をJSONCファイルで管理。HSLベースの動的カラーテーマシステムを採用。",
       "tags": [
         "Web",
-        "JavaScript",
-        "CSS"
+        "JavaScript"
       ],
       "url": "",
       "github": "",
@@ -90,7 +89,7 @@
     },
     {
       "title": "iTL 1F Map",
-      "description": "iTL (中央大学国際情報学部) の1階の地図を表示しシェアするWebアプリ。",
+      "description": "iTL (中央大学 国際情報学部 / 市ヶ谷田町キャンパス) の1階の地図を表示しシェアするWebアプリ。",
       "tags": [
         "iTL",
         "Web",

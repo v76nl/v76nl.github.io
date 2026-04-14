@@ -270,8 +270,8 @@ function buildWorkLinks(work) {
 }
 
 function renderFooter(profile) {
-  const copyEl = document.getElementById('footer-name');
-  if (copyEl) copyEl.textContent = `© ${new Date().getFullYear()} ${profile.name}`;
+  // const copyEl = document.getElementById('footer-name');
+  // if (copyEl) copyEl.textContent = `© ${new Date().getFullYear()} ${profile.name}`;
 
   const linksEl = document.getElementById('footer-links');
   if (!linksEl) return;
