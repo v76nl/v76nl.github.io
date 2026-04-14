@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <meta name="description" content="portfolio">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <!-- Hero -->
+  <section id="hero" class="section hero" aria-label="プロフィール">
+    <div class="hero-orb hero-orb--primary" aria-hidden="true"></div>
+    <div class="hero-orb hero-orb--secondary" aria-hidden="true"></div>
+    <div class="container hero-content">
+      <p class="hero-label" id="hero-label">Portfolio</p>
+      <h1 class="hero-name" id="hero-name">Loading…</h1>
+      <p class="hero-tagline" id="hero-tagline"></p>
+      <div class="hero-links" id="hero-links" role="list"></div>
+    </div>
+    <div class="hero-scroll-hint" aria-hidden="true">
+      <span class="scroll-line"></span>
+      <span class="scroll-text">scroll</span>
+    </div>
+  </section>
+
+  <!-- 所属 -->
+  <section id="about" class="section" aria-label="所属組織">
+    <div class="container">
+      <div class="section-header fade-up">
+        <h2 class="section-title">所属</h2>
+        <p class="section-subtitle" id="bio-text"></p>
+      </div>
+      <div class="org-grid" id="org-grid"></div>
+    </div>
+  </section>
+
+  <!-- 制作物 -->
+  <section id="works" class="section" aria-label="制作物">
+    <div class="container">
+      <div class="section-header fade-up">
+        <h2 class="section-title">制作物</h2>
+      </div>
+      <div class="filter-bar" id="filter-bar" role="toolbar" aria-label="タグフィルター"></div>
+      <div class="works-grid" id="works-grid"></div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p id="footer-name" class="footer-copy"></p>
+      <div class="footer-links" id="footer-links"></div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

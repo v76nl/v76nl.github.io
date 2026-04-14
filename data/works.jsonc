@@ -1,0 +1,106 @@
+{
+  // profile
+  "profile": {
+    "name": "v76nl",
+    "tagline": "student developer",
+    "bio": "hi",
+    "github": "https://github.com/v76nl",
+    "x": "https://x.com/ln67v"
+  },
+  // organizations
+  "organizations": [
+    {
+      "name": "GDGoC Chuo",
+      "role": "Core Member",
+      "url": "https://gdgoc-chuo.com/",
+      "period": "2025 - 現在"
+    },
+    {
+      "name": "中央大学 電気工学研究部",
+      "role": "ソフトウェア班 副班長",
+      "url": "https://den-ken.org/",
+      "period": "2025 - 現在"
+    }
+  ],
+  // works
+  // fields:
+  //   title       : 作品名
+  //   description : 説明文
+  //   tags        : タグ配列 (フィルタリングに使用)
+  //   url         : デモURL (省略可)
+  //   github      : GitHubリポジトリURL (省略可)
+  //   thumbnail   : サムネイル画像URL (省略可、SHOW_THUMBNAILSフラグで制御)
+  //   date        : 制作年月
+  "works": [
+    {
+      "title": "2D to 3D Extruder",
+      "description": "Three.jsを使用した3Dキーチェーン生成ツール。テキストや任意の形状を入力してSTLファイルをエクスポートできる。Clipper2によるブール演算で非マニフォールドジオメトリを解消。",
+      "tags": [
+        "Web",
+        "Three.js",
+        "3D",
+        "3D Printing"
+      ],
+      "url": "https://v76nl.github.io/2d-to-3d-extruder/",
+      "github": "https://github.com/v76nl/2d-to-3d-extruder",
+      "thumbnail": "",
+      "date": "2026"
+    },
+    {
+      "title": "Chuinfo (Android)",
+      "description": "中央大学の学生のための、統合アプリ",
+      "tags": [
+        "Android",
+        "Java",
+        "Kotlin",
+        "GDGoC Chuo",
+        "チーム開発",
+        "大学"
+      ],
+      "url": "",
+      "github": "",
+      "thumbnail": "",
+      "date": "2026"
+    },
+    {
+      "title": "このサイト",
+      "description": "制作物をJSONCファイルで外部管理し、タグフィルタリングを実装したポートフォリオサイト。HSLベースの動的カラーテーマシステムを採用。",
+      "tags": [
+        "Web",
+        "JavaScript",
+        "CSS"
+      ],
+      "url": "",
+      "github": "",
+      "thumbnail": "",
+      "date": "2026"
+    },
+    {
+      "title": "manaba Custom Chrome Extensions",
+      "description": "中央大学内で使用されているポータルサイトのmanabaをカスタマイズするChrome拡張機能を数多く制作。",
+      "tags": [
+        "Web",
+        "JavaScript",
+        "Chrome拡張機能"
+      ],
+      "url": "",
+      "github": "",
+      "thumbnail": "",
+      "date": "2025-"
+    },
+    {
+      "title": "iTL 1F Map",
+      "description": "iTL (中央大学国際情報学部) の1階の地図を表示しシェアするWebアプリ。",
+      "tags": [
+        "iTL",
+        "Web",
+        "JavaScript",
+        "Figma"
+      ],
+      "url": "https://itl-1f-map.vercel.app/",
+      "github": "https://github.com/v76nl/itl-1f-map",
+      "thumbnail": "",
+      "date": "2026-3"
+    }
+  ]
+}
