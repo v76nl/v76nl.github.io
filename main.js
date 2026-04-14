@@ -258,7 +258,7 @@ function buildWorkLinks(work) {
     links.push(`
       <a href="${work.url}" target="_blank" rel="noopener noreferrer"
          class="work-link" aria-label="${work.title} を開く">
-        ${ICONS.external} 開く</a>`);
+        ${ICONS.external} Webページ</a>`);
   }
   if (work.github) {
     links.push(`

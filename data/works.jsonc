@@ -53,12 +53,13 @@
         "Android",
         "GDGoC Chuo",
         "チーム開発",
-        "大学"
+        "大学",
+        "オススメ！"
       ],
       "url": "",
       "github": "",
       "thumbnail": "",
-      "date": "2026"
+      "date": "2025-"
     },
     {
       "title": "ポートフォリオサイト",
@@ -73,14 +74,16 @@
     },
     {
       "title": "manaba Custom Chrome Extensions",
-      "description": "中央大学内で使用されているポータルサイトのmanabaをカスタマイズするChrome拡張機能を数多く制作。",
+      "description": "中央大学内で使用されているポータルサイト「manaba」をカスタマイズするChrome拡張機能を数多く制作。",
       "tags": [
         "Web",
+        "大学", 
         "JavaScript",
-        "Chrome拡張機能"
+        "Chrome拡張機能",
+        "オススメ！"
       ],
       "url": "",
-      "github": "",
+      "github": "https://github.com/v76nl?tab=repositories&q=crx",
       "thumbnail": "",
       "date": "2025-"
     },
@@ -88,15 +91,14 @@
       "title": "iTL 1F Map",
       "description": "iTL (中央大学 国際情報学部 / 市ヶ谷田町キャンパス) の1階の地図を表示しシェアするWebアプリ。",
       "tags": [
-        "iTL",
-        "大学",
         "Web",
+        "大学",
         "Figma"
       ],
       "url": "https://itl-1f-map.vercel.app/",
       "github": "https://github.com/v76nl/itl-1f-map",
       "thumbnail": "",
-      "date": "2026-3"
+      "date": "2026 3"
     }
   ]
 }
