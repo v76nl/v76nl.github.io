@@ -51,8 +51,6 @@
       "description": "中央大学の学生のための統合アプリ。時間割や課題を確認可能。",
       "tags": [
         "Android",
-        "Java",
-        "Kotlin",
         "GDGoC Chuo",
         "チーム開発",
         "大学"
@@ -66,11 +64,10 @@
       "title": "ポートフォリオサイト",
       "description": "制作物をJSONCファイルで管理。HSLベースの動的カラーテーマシステムを採用。",
       "tags": [
-        "Web",
-        "JavaScript"
+        "Web"
       ],
-      "url": "",
-      "github": "",
+      "url": "https://v76nl.github.io",
+      "github": "https://github.com/v76nl/v76nl.github.io",
       "thumbnail": "",
       "date": "2026"
     },
@@ -92,8 +89,8 @@
       "description": "iTL (中央大学 国際情報学部 / 市ヶ谷田町キャンパス) の1階の地図を表示しシェアするWebアプリ。",
       "tags": [
         "iTL",
+        "大学",
         "Web",
-        "JavaScript",
         "Figma"
       ],
       "url": "https://itl-1f-map.vercel.app/",
