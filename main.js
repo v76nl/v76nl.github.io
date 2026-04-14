@@ -264,7 +264,7 @@ function buildWorkLinks(work) {
     links.push(`
       <a href="${work.github}" target="_blank" rel="noopener noreferrer"
          class="work-link" aria-label="${work.title} のコード">
-        ${ICONS.github} コード</a>`);
+        ${ICONS.github} GitHub</a>`);
   }
   return links.join('');
 }
@@ -281,13 +281,13 @@ function renderFooter(profile) {
     footerLinks.push(`
       <a href="${profile.github}" target="_blank" rel="noopener noreferrer"
          class="footer-link" aria-label="GitHub">
-        ${ICONS.github} GitHub</a>`);
+        ${ICONS.github}</a>`);
   }
   if (profile.x) {
     footerLinks.push(`
       <a href="${profile.x}" target="_blank" rel="noopener noreferrer"
          class="footer-link" aria-label="X (Twitter)">
-        ${ICONS.x} X</a>`);
+        ${ICONS.x}</a>`);
   }
   linksEl.innerHTML = footerLinks.join('');
 }
