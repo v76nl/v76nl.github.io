@@ -45,7 +45,7 @@ const THEMES = {
   },
 };
 
-const ACTIVE_THEME = 'pastel';
+const ACTIVE_THEME = 'sunset';
 
 function applyTheme(name) {
   const theme = THEMES[name];
@@ -152,8 +152,8 @@ function renderHero(profile) {
   if (profile.x) {
     buttons.push(`
       <a id="btn-x" href="${profile.x}" target="_blank" rel="noopener noreferrer"
-         class="btn-social btn-x" role="listitem" aria-label="X (Twitter)">
-        ${ICONS.x} X (Twitter)
+         class="btn-social btn-x" role="listitem" aria-label="X">
+        ${ICONS.x} X
       </a>`);
   }
   linksEl.innerHTML = buttons.join('');
@@ -286,7 +286,7 @@ function renderFooter(profile) {
   if (profile.x) {
     footerLinks.push(`
       <a href="${profile.x}" target="_blank" rel="noopener noreferrer"
-         class="footer-link" aria-label="X (Twitter)">
+         class="footer-link" aria-label="X">
         ${ICONS.x}</a>`);
   }
   linksEl.innerHTML = footerLinks.join('');

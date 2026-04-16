@@ -34,7 +34,7 @@
   "works": [
     {
       "title": "2D to 3D Extruder",
-      "description": "Three.jsを使用した3Dキーチェーン生成ツール。テキストや任意の形状を入力してSTLファイルをエクスポートできる。",
+      "description": "テキストやSVGファイルをモチーフにしてキーチェーンの3Dモデルを作成するツール。",
       "tags": [
         "Web",
         "Three.js",
@@ -63,7 +63,7 @@
     },
     {
       "title": "ポートフォリオサイト",
-      "description": "制作物をJSONCファイルで管理。HSLベースの動的カラーテーマシステムを採用。",
+      "description": "制作物をJSONファイルで管理。HSLベースの動的カラーテーマシステムを採用。",
       "tags": [
         "Web"
       ],
@@ -83,7 +83,7 @@
         "オススメ！"
       ],
       "url": "",
-      "github": "https://github.com/v76nl?tab=repositories&q=crx",
+      "github": "https://github.com/v76nl?tab=repositories&q=manaba",
       "thumbnail": "",
       "date": "2025-"
     },
