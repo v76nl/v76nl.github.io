@@ -1,3 +1,8 @@
+// デバッグ出力フラグ
+// true  → console.log / warn / error をすべて出力
+// false → コンソール出力を抑制
+const DEBUG = false;
+
 // サムネイル表示フラグ
 // true  → work.thumbnail があれば画像表示、なければプレースホルダー表示
 // false → サムネイル領域を非表示
@@ -50,7 +55,7 @@ const ACTIVE_THEME = 'sunset';
 function applyTheme(name) {
   const theme = THEMES[name];
   if (!theme) {
-    console.warn(`Theme "${name}" not found.`);
+    if (DEBUG) console.warn(`Theme "${name}" not found.`);
     return;
   }
   const root = document.documentElement;
@@ -312,16 +317,16 @@ async function main() {
   applyTheme(ACTIVE_THEME);
 
   try {
-    console.log('[1] fetch:', './data/works.jsonc');
+    if (DEBUG) console.log('[1] fetch:', './data/works.jsonc');
     const res = await fetch('./data/works.jsonc');
-    console.log('[2] status:', res.status, res.ok);
+    if (DEBUG) console.log('[2] status:', res.status, res.ok);
     if (!res.ok) throw new Error(`HTTP ${res.status} - file not found`);
 
     const text = await res.text();
-    console.log('[3] text (first 100):', text.slice(0, 100));
+    if (DEBUG) console.log('[3] text (first 100):', text.slice(0, 100));
 
     const data = parseJsonc(text);
-    console.log('[4] parsed:', Object.keys(data));
+    if (DEBUG) console.log('[4] parsed:', Object.keys(data));
 
     renderHero(data.profile ?? {});
     renderOrgs(data.organizations ?? [], data.profile?.bio ?? '');
@@ -329,10 +334,10 @@ async function main() {
     renderFooter(data.profile ?? {});
 
     setTimeout(observeElements, 120);
-    console.log('[5] done');
+    if (DEBUG) console.log('[5] done');
 
   } catch (err) {
-    console.error('load error:', err);
+    if (DEBUG) console.error('load error:', err);
 
     const nameEl = document.getElementById('hero-name');
     if (nameEl) {
