@@ -1,7 +1,7 @@
 // デバッグ出力フラグ
 // true  → console.log / warn / error をすべて出力
 // false → コンソール出力を抑制
-const DEBUG = false;
+const DEBUG = true;
 
 // サムネイル表示フラグ
 // true  → work.thumbnail があれば画像表示、なければプレースホルダー表示
@@ -62,6 +62,13 @@ function applyTheme(name) {
   for (const [prop, value] of Object.entries(theme)) {
     root.style.setProperty(prop, String(value));
   }
+}
+
+// HTML エスケープ (外部データを innerHTML に埋め込む前に使用)
+function escHtml(str) {
+  if (str == null) return '';
+  return String(str).replace(/[&<>"']/g, c =>
+    ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 }
 
 // JSONC パーサー
@@ -259,20 +266,29 @@ function buildThumbnail(work) {
 
 function buildWorkLinks(work) {
   const links = [];
+
+  // 詳細ページへのリンク (最優先で先頭に表示)
+  if (work.detailUrl) {
+    links.push(`
+      <a href="${escHtml(work.detailUrl)}"
+         class="work-link work-link--detail" aria-label="${escHtml(work.title)} の詳細を見る">
+        ${ICONS.external} 詳しく見る</a>`);
+  }
   if (work.url) {
     links.push(`
-      <a href="${work.url}" target="_blank" rel="noopener noreferrer"
-         class="work-link" aria-label="${work.title} を開く">
+      <a href="${escHtml(work.url)}" target="_blank" rel="noopener noreferrer"
+         class="work-link" aria-label="${escHtml(work.title)} を開く">
         ${ICONS.external} Webページ</a>`);
   }
   if (work.github) {
     links.push(`
-      <a href="${work.github}" target="_blank" rel="noopener noreferrer"
-         class="work-link" aria-label="${work.title} のコード">
+      <a href="${escHtml(work.github)}" target="_blank" rel="noopener noreferrer"
+         class="work-link" aria-label="${escHtml(work.title)} のコード">
         ${ICONS.github} GitHub</a>`);
   }
   return links.join('');
 }
+
 
 function renderFooter(profile) {
   // const copyEl = document.getElementById('footer-name');

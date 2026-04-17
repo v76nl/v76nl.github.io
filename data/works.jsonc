@@ -29,6 +29,7 @@
   //   tags        : タグ配列 (フィルタリングに使用)
   //   url         : デモURL (省略可)
   //   github      : GitHubリポジトリURL (省略可)
+  //   detailUrl   : 詳細ページURL (省略可、指定すると「詳しく見る」ボタンが表示される)
   //   thumbnail   : サムネイル画像URL (省略可、SHOW_THUMBNAILSフラグで制御)
   //   date        : 制作年月
   "works": [
@@ -84,6 +85,7 @@
       ],
       "url": "",
       "github": "https://github.com/v76nl?tab=repositories&q=manaba",
+      "detailUrl": "./manaba-extensions.html",
       "thumbnail": "",
       "date": "2025-"
     },

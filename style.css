@@ -516,6 +516,19 @@ a { color: inherit; }
   flex-shrink: 0;
 }
 
+/* 「詳しく見る」ボタン: アクセントカラーで強調 */
+.work-link--detail {
+  background: var(--primary-glass);
+  border-color: var(--primary);
+  color: var(--primary);
+  font-weight: 500;
+}
+.work-link--detail:hover {
+  background: var(--primary-glow);
+  box-shadow: 0 4px 16px var(--primary-glow);
+}
+
+
 .work-card.hidden {
   display: none;
 }
