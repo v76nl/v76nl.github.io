@@ -3,10 +3,10 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>manaba Custom Chrome Extensions | v76nl</title>
+        <title>University Custom Chrome Extensions | v76nl</title>
         <meta
             name="description"
-            content="中央大学のポータルサイト manaba をカスタマイズする Chrome 拡張機能の一覧"
+            content="大学にまつわるさまざまなWebサイトをカスタマイズするChrome拡張機能の一覧"
         />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -330,7 +330,7 @@
                 </a>
                 <span class="page-header-sep" aria-hidden="true">/</span>
                 <span class="page-header-title"
-                    >manaba Custom Chrome Extensions</span
+                    >University Custom Chrome Extensions</span
                 >
             </div>
         </header>
@@ -347,9 +347,9 @@
             ></div>
             <div class="container">
                 <p class="page-eyebrow">Chrome Extension</p>
-                <h1 class="page-title">manaba Custom<br />Chrome Extensions</h1>
+                <h1 class="page-title">University Custom<br />Chrome Extensions</h1>
                 <p class="page-desc">
-                    中央大学内で使用されているポータルサイト「manaba」をカスタマイズする
+                    中央大学内で使用されているポータルサイト「manaba」をはじめとする、大学に関係するさまざまな Web サイトをカスタマイズする
                     Chrome
                     拡張機能のコレクション。学生生活をより快適にするため、
                     UX改善・UI変更・機能追加など様々な観点から開発しています。
@@ -376,7 +376,7 @@
                 <p class="footer-copy"></p>
                 <div class="footer-links">
                     <a
-                        href="https://github.com/v76nl?tab=repositories&q=manaba"
+                        href="https://github.com/v76nl?tab=repositories&q=crx"
                         target="_blank"
                         rel="noopener noreferrer"
                         class="footer-link"
@@ -580,8 +580,8 @@
                 applyTheme(ACTIVE_THEME);
 
                 try {
-                    if (DEBUG) console.log('[1] fetch manaba-extensions.jsonc');
-                    const res = await fetch('./data/manaba-extensions.jsonc');
+                    if (DEBUG) console.log('[1] fetch univ-crx.jsonc');
+                    const res = await fetch('./data/univ-crx.jsonc');
                     if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
                     const data = parseJsonc(await res.text());
