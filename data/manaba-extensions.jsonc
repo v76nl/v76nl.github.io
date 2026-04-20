@@ -8,31 +8,31 @@
   //   status      : "active" | "archived" | "wip"
   "extensions": [
     {
-      "title": "manaba Edit Subject Title",
-      "description": "manaba のコース名（科目名）をブラウザ上で自由に編集・保存できる拡張機能。授業のコード名しか表示されない科目を分かりやすい名前に変更できる。",
-      "github": "https://github.com/v76nl/manaba_edit_subject_title",
-      "tags": ["UX改善", "localStorage"],
+      "title": "Subject Title Editor",
+      "description": "manaba のコース名（科目名）をブラウザ上で自由に編集・保存できる。",
+      "github": "https://github.com/v76nl/crx-manaba-subject-title-editor",
+      "tags": ["UX改善", "UI"],
       "status": "active"
     },
     {
-      "title": "manaba Dark Mode",
-      "description": "manaba に対してダークモードを適用する拡張機能。目に優しい配色で長時間の利用をサポートする。",
-      "github": "https://github.com/v76nl?tab=repositories&q=manaba",
-      "tags": ["UI", "テーマ"],
+      "title": "Tab Renamer",
+      "description": "タブのタイトルをコース名に自動変更。特に垂直タブバーユーザーにオススメ。",
+      "github": "https://github.com/v76nl/crx-manaba-tab-renamer",
+      "tags": ["UI"],
       "status": "active"
     },
     {
-      "title": "manaba Deadline Highlighter",
-      "description": "課題の締め切り日を色分けしてハイライト表示する拡張機能。直近の締め切りを一目で把握できる。",
-      "github": "https://github.com/v76nl?tab=repositories&q=manaba",
-      "tags": ["UX改善", "課題管理"],
+      "title": "Form Refiner",
+      "description": "デフォルトでは見にくい回答フォームを見やすくする。",
+      "github": "https://github.com/v76nl/crx-manaba-form-refiner",
+      "tags": ["UX改善", "UI"],
       "status": "active"
     },
     {
-      "title": "manaba Quick Navigation",
-      "description": "コース一覧や課題ページへのクイックアクセスボタンを追加する拡張機能。毎回の長いナビゲーションを省略できる。",
-      "github": "https://github.com/v76nl?tab=repositories&q=manaba",
-      "tags": ["UX改善", "ナビゲーション"],
+      "title": "Word Replacer",
+      "description": "特定の文字列を置換できる。本名など機密情報を表示したくない場合に便利。",
+      "github": "https://github.com/v76nl/crx-manaba-replace",
+      "tags": ["UX改善", "プライバシー"],
       "status": "active"
     }
   ]
