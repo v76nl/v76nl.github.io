@@ -44,8 +44,21 @@
       ],
       "url": "https://v76nl.github.io/2d-to-3d-extruder/",
       "github": "https://github.com/v76nl/2d-to-3d-extruder",
-      "thumbnail": "",
+      "thumbnail": "assets/3d_extruder.png",
       "date": "2026"
+    },
+    {
+      "title": "iTL 1F Map",
+      "description": "iTL (中央大学 国際情報学部 / 市ヶ谷田町キャンパス) の1階の地図を表示しシェアするWebアプリ。",
+      "tags": [
+        "Web",
+        "大学",
+        "Figma"
+      ],
+      "url": "https://itl-1f-map.vercel.app/",
+      "github": "https://github.com/v76nl/itl-1f-map",
+      "thumbnail": "assets/itl_1F_map.png",
+      "date": "2026 3"
     },
     {
       "title": "Chuinfo (Android)",
@@ -88,19 +101,6 @@
       "detailUrl": "./univ-crx.html",
       "thumbnail": "",
       "date": "2025-"
-    },
-    {
-      "title": "iTL 1F Map",
-      "description": "iTL (中央大学 国際情報学部 / 市ヶ谷田町キャンパス) の1階の地図を表示しシェアするWebアプリ。",
-      "tags": [
-        "Web",
-        "大学",
-        "Figma"
-      ],
-      "url": "https://itl-1f-map.vercel.app/",
-      "github": "https://github.com/v76nl/itl-1f-map",
-      "thumbnail": "",
-      "date": "2026 3"
     }
   ]
 }
