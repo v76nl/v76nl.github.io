@@ -25,7 +25,7 @@ works:
       - "3D Printing"
     url: "https://v76nl.github.io/2d-to-3d-extruder/"
     github: "https://github.com/v76nl/2d-to-3d-extruder"
-    thumbnail: "assets/3d_extruder.png"
+    thumbnail: "assets/3d_Extruder.png"
     date: "2026"
 
   - title: "iTL 1F Map"
@@ -36,7 +36,7 @@ works:
       - "Figma"
     url: "https://itl-1f-map.vercel.app/"
     github: "https://github.com/v76nl/itl-1f-map"
-    thumbnail: "assets/itl_1F_map.png"
+    thumbnail: "assets/iTL_1F_Map.png"
     date: "2026 3"
 
   - title: "Chuinfo (Android)"
