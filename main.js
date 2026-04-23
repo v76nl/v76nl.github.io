@@ -80,58 +80,7 @@ function escHtml(str) {
     );
 }
 
-// JSONC パーサー
-// 文字列内外を判定するステートマシンでコメントを除去してからJSON.parse
-// URL中の https:// が誤って削除されない
-function parseJsonc(text) {
-    let out = '';
-    let i = 0;
-    const len = text.length;
 
-    while (i < len) {
-        const ch = text[i];
-
-        // 文字列内
-        if (ch === '"') {
-            out += ch;
-            i++;
-            while (i < len) {
-                const sc = text[i];
-                out += sc;
-                i++;
-                if (sc === '\\') {
-                    // エスケープ: 次の1文字もそのまま出力
-                    if (i < len) {
-                        out += text[i];
-                        i++;
-                    }
-                } else if (sc === '"') {
-                    break; // 文字列終端
-                }
-            }
-            continue;
-        }
-
-        // 行コメント: //
-        if (ch === '/' && text[i + 1] === '/') {
-            while (i < len && text[i] !== '\n' && text[i] !== '\r') i++;
-            continue;
-        }
-
-        // ブロックコメント: /* ... */
-        if (ch === '/' && text[i + 1] === '*') {
-            i += 2;
-            while (i < len && !(text[i] === '*' && text[i + 1] === '/')) i++;
-            i += 2;
-            continue;
-        }
-
-        out += ch;
-        i++;
-    }
-
-    return JSON.parse(out);
-}
 
 // タグごとに 0〜4 の色インデックスを固定で割り当て
 const tagColorMap = {};
@@ -363,15 +312,15 @@ async function main() {
     applyTheme(ACTIVE_THEME);
 
     try {
-        if (DEBUG) console.log('[1] fetch:', './data/works.jsonc');
-        const res = await fetch('./data/works.jsonc');
+        if (DEBUG) console.log('[1] fetch:', './data/works.yaml');
+        const res = await fetch('./data/works.yaml');
         if (DEBUG) console.log('[2] status:', res.status, res.ok);
         if (!res.ok) throw new Error(`HTTP ${res.status} - file not found`);
 
         const text = await res.text();
         if (DEBUG) console.log('[3] text (first 100):', text.slice(0, 100));
 
-        const data = parseJsonc(text);
+        const data = jsyaml.load(text);
         if (DEBUG) console.log('[4] parsed:', Object.keys(data));
 
         renderHero(data.profile ?? {});

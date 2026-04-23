@@ -1,0 +1,31 @@
+extensions:
+  - title: "Subject Title Editor"
+    description: "manaba のコース名（科目名）をブラウザ上で自由に編集・保存できる。"
+    github: "https://github.com/v76nl/crx-manaba-subject-title-editor"
+    tags: 
+      - "UX改善"
+      - "UI"
+    status: "active"
+
+  - title: "Tab Renamer"
+    description: "タブのタイトルをコース名に自動変更。特に垂直タブバーユーザーにオススメ。"
+    github: "https://github.com/v76nl/crx-manaba-tab-renamer"
+    tags: 
+      - "UI"
+    status: "active"
+
+  - title: "Form Refiner"
+    description: "デフォルトでは見にくい回答フォームを見やすくする。"
+    github: "https://github.com/v76nl/crx-manaba-form-refiner"
+    tags: 
+      - "UX改善"
+      - "UI"
+    status: "active"
+
+  - title: "Word Replacer"
+    description: "特定の文字列を置換できる。本名など機密情報を表示したくない場合に便利。"
+    github: "https://github.com/v76nl/crx-manaba-replace"
+    tags: 
+      - "UX改善"
+      - "プライバシー"
+    status: "active"
