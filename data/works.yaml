@@ -16,15 +16,15 @@ organizations:
     period: "2025 - 現在"
 
 works:
-  - title: "2D to 3D Extruder"
+  - title: "Xtrudy"
     description: "テキストやSVGファイルをモチーフにしてキーチェーンの3Dモデルを作成するツール。"
     tags:
       - "Web"
       - "Three.js"
       - "3D"
       - "3D Printing"
-    url: "https://v76nl.github.io/2d-to-3d-extruder/"
-    github: "https://github.com/v76nl/2d-to-3d-extruder"
+    url: "https://v76nl.github.io/Xtrudy/"
+    github: "https://github.com/v76nl/Xtrudy"
     thumbnail: "assets/3d_Extruder.png"
     date: "2026"
 
