@@ -208,7 +208,7 @@ function renderWorks(works) {
             const thumbnailHtml = buildThumbnail(work);
             const linksHtml = buildWorkLinks(work);
             const tagList = (work.tags ?? []).join(',');
-            const delay = (i % 3) * 80;
+            const delay = Math.min(i * 80, 400);
 
             return `
       <article class="work-card fade-up"
