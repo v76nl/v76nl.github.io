@@ -53,7 +53,7 @@ works:
     date: "2025-"
 
   - title: "ポートフォリオサイト"
-    description: "制作物をJSONファイルで管理。HSLベースの動的カラーテーマシステムを採用。"
+    description: "制作物をYAMLファイルで管理。"
     tags:
       - "Web"
     url: "https://v76nl.github.io"
