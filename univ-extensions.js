@@ -22,7 +22,7 @@ function renderExtensions(extensions) {
                         `<span class="tag" data-color="${getTagColor(t)}">${escHtml(t)}</span>`
                 )
                 .join('');
-            const delay = (i % 3) * 80;
+            const delay = Math.min(i * 80, 400);
             const githubHtml = ext.github
                 ? `<a href="${escHtml(ext.github)}" target="_blank" rel="noopener noreferrer"
       class="work-link" aria-label="${escHtml(ext.title)} のリポジトリ">

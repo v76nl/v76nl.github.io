@@ -1,8 +1,36 @@
 const THEMES = {
-    pastel: { '--hue-bg': 222, '--hue-primary': 194, '--hue-pink': 338, '--hue-yellow': 50, '--hue-lavender': 268, '--hue-mint': 162 },
-    ocean: { '--hue-bg': 215, '--hue-primary': 200, '--hue-pink': 20, '--hue-yellow': 45, '--hue-lavender': 240, '--hue-mint': 175 },
-    sunset: { '--hue-bg': 240, '--hue-primary': 30, '--hue-pink': 350, '--hue-yellow': 55, '--hue-lavender': 280, '--hue-mint': 140 },
-    forest: { '--hue-bg': 160, '--hue-primary': 145, '--hue-pink': 20, '--hue-yellow': 62, '--hue-lavender': 290, '--hue-mint': 175 },
+    pastel: {
+        '--hue-bg': 222,
+        '--hue-primary': 194,
+        '--hue-pink': 338,
+        '--hue-yellow': 50,
+        '--hue-lavender': 268,
+        '--hue-mint': 162,
+    },
+    ocean: {
+        '--hue-bg': 215,
+        '--hue-primary': 200,
+        '--hue-pink': 20,
+        '--hue-yellow': 45,
+        '--hue-lavender': 240,
+        '--hue-mint': 175,
+    },
+    sunset: {
+        '--hue-bg': 240,
+        '--hue-primary': 30,
+        '--hue-pink': 350,
+        '--hue-yellow': 55,
+        '--hue-lavender': 280,
+        '--hue-mint': 140,
+    },
+    forest: {
+        '--hue-bg': 160,
+        '--hue-primary': 145,
+        '--hue-pink': 20,
+        '--hue-yellow': 62,
+        '--hue-lavender': 290,
+        '--hue-mint': 175,
+    },
 };
 
 const ACTIVE_THEME = 'sunset';
@@ -18,7 +46,17 @@ function applyTheme(name) {
 
 function escHtml(str) {
     if (str == null) return '';
-    return String(str).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+    return String(str).replace(
+        /[&<>"']/g,
+        (c) =>
+            ({
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#39;',
+            })[c]
+    );
 }
 
 const tagColorMap = {};
