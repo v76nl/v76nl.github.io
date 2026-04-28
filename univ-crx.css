@@ -1,0 +1,294 @@
+/* ── ページ固有スタイル ─────────────────────────── */
+
+/* ヘッダーナビ */
+.page-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--glass-border);
+    background: hsla(var(--hue-bg), 25%, 97%, 0.8);
+}
+.page-header-inner {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 28px;
+    max-width: 920px;
+    margin: 0 auto;
+}
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.back-link:hover {
+    color: var(--primary);
+}
+.back-link svg {
+    width: 14px;
+    height: 14px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+.page-header-sep {
+    color: var(--text-faint);
+    font-size: 0.78rem;
+}
+.page-header-title {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* ページヒーロー */
+.page-hero {
+    padding: 72px 0 56px;
+    position: relative;
+    overflow: hidden;
+}
+.page-hero-orb {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+}
+.page-hero-orb--a {
+    width: 380px;
+    height: 380px;
+    top: -60px;
+    right: -60px;
+    background: radial-gradient(
+        circle,
+        var(--primary-glow) 0%,
+        transparent 68%
+    );
+    animation: orb-float 10s ease-in-out infinite;
+}
+.page-hero-orb--b {
+    width: 260px;
+    height: 260px;
+    bottom: -40px;
+    left: 10%;
+    background: radial-gradient(
+        circle,
+        var(--pink-glow) 0%,
+        transparent 68%
+    );
+    animation: orb-float 14s ease-in-out infinite reverse;
+}
+
+.page-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--primary);
+    font-weight: 500;
+    margin-bottom: 14px;
+    opacity: 0;
+    animation: fade-up 0.7s 0.1s forwards;
+}
+.page-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    font-weight: 900;
+    line-height: 1.2;
+    background: linear-gradient(
+        145deg,
+        hsl(var(--hue-bg), 25%, 10%) 0%,
+        var(--primary) 60%,
+        var(--pink) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 16px;
+    opacity: 0;
+    animation: fade-up 0.7s 0.25s forwards;
+}
+.page-desc {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    max-width: 520px;
+    line-height: 1.8;
+    opacity: 0;
+    animation: fade-up 0.7s 0.4s forwards;
+}
+.page-meta {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 28px;
+    opacity: 0;
+    animation: fade-up 0.7s 0.55s forwards;
+}
+.page-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    color: var(--text-faint);
+}
+.page-meta-item svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+    flex-shrink: 0;
+}
+
+/* 拡張機能カード */
+.ext-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding-bottom: 80px;
+}
+
+.ext-card {
+    position: relative;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    padding: 28px 24px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: var(--transition);
+    overflow: hidden;
+}
+.ext-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary), var(--pink));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+.ext-card:hover {
+    border-color: var(--glass-border-h);
+    transform: translateY(-6px);
+    box-shadow:
+        var(--shadow),
+        0 0 32px var(--primary-glow);
+}
+.ext-card:hover::before {
+    transform: scaleX(1);
+}
+
+.ext-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: var(--radius-pill);
+    align-self: flex-start;
+}
+.ext-status-badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.7;
+}
+.ext-status-badge.active {
+    background: hsla(var(--hue-mint), 55%, 50%, 0.15);
+    color: hsl(var(--hue-mint), 55%, 36%);
+    border: 1px solid hsla(var(--hue-mint), 55%, 45%, 0.35);
+}
+.ext-status-badge.archived {
+    background: hsla(var(--hue-bg), 15%, 50%, 0.1);
+    color: var(--text-faint);
+    border: 1px solid var(--glass-border);
+}
+.ext-status-badge.wip {
+    background: hsla(var(--hue-yellow), 80%, 55%, 0.14);
+    color: hsl(var(--hue-yellow), 75%, 36%);
+    border: 1px solid hsla(var(--hue-yellow), 80%, 50%, 0.35);
+}
+
+.ext-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.45;
+    margin: 0;
+}
+.ext-description {
+    font-size: 0.84rem;
+    color: var(--text-muted);
+    line-height: 1.75;
+    flex: 1;
+}
+.ext-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+.ext-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 8px;
+    border-top: 1px solid var(--glass-border);
+    margin-top: auto;
+}
+.ext-github-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 6px 14px;
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-pill);
+    transition: var(--transition);
+    font-family: 'Noto Sans JP', sans-serif;
+}
+.ext-github-link:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+.ext-github-link svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+    flex-shrink: 0;
+}
+
+/* ローディング / エラー */
+#loading-message {
+    text-align: center;
+    color: var(--text-faint);
+    padding: 60px 0;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 640px) {
+    .ext-grid {
+        grid-template-columns: 1fr;
+    }
+    .page-hero {
+        padding: 48px 0 40px;
+    }
+    .page-header-title {
+        display: none;
+    }
+}
