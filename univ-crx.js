@@ -106,12 +106,13 @@ function renderExtensions(extensions) {
    </a>`
                 : '';
 
+            const statusBadgeHtml = status !== 'active'
+                ? `\n  <span class="ext-status-badge ${escHtml(status)}" aria-label="ステータス: ${escHtml(STATUS_LABEL[status] ?? status)}">\n    ${escHtml(STATUS_LABEL[status] ?? status)}\n  </span>`
+                : '';
+
             return `
 <article class="ext-card fade-up" style="transition-delay:${delay}ms"
-         aria-label="${escHtml(ext.title)}">
-  <span class="ext-status-badge ${escHtml(status)}" aria-label="ステータス: ${escHtml(STATUS_LABEL[status] ?? status)}">
-    ${escHtml(STATUS_LABEL[status] ?? status)}
-  </span>
+         aria-label="${escHtml(ext.title)}">${statusBadgeHtml}
   <h2 class="ext-title">${escHtml(ext.title)}</h2>
   <p class="ext-description">${escHtml(ext.description ?? '')}</p>
   <div class="ext-tags" aria-label="タグ">${tagsHtml}</div>
