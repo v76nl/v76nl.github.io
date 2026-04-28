@@ -56,8 +56,8 @@ async function main() {
     applyTheme(ACTIVE_THEME);
 
     try {
-        if (DEBUG) console.log('[1] fetch univ-crx.yaml');
-        const res = await fetch('./data/univ-crx.yaml');
+        if (DEBUG) console.log('[1] fetch univ-extensions.yaml');
+        const res = await fetch('./data/univ-extensions.yaml');
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
         const data = jsyaml.load(await res.text());
