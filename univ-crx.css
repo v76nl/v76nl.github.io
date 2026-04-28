@@ -143,50 +143,7 @@
     flex-shrink: 0;
 }
 
-/* 拡張機能カード */
-.ext-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-    padding-bottom: 80px;
-}
 
-.ext-card {
-    position: relative;
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    border-radius: var(--radius);
-    padding: 28px 24px;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    transition: var(--transition);
-    overflow: hidden;
-}
-.ext-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--primary), var(--pink));
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.4s ease;
-}
-.ext-card:hover {
-    border-color: var(--glass-border-h);
-    transform: translateY(-6px);
-    box-shadow:
-        var(--shadow),
-        0 0 32px var(--primary-glow);
-}
-.ext-card:hover::before {
-    transform: scaleX(1);
-}
 
 .ext-status-badge {
     display: inline-flex;
@@ -222,55 +179,6 @@
     background: hsla(var(--hue-yellow), 80%, 55%, 0.14);
     color: hsl(var(--hue-yellow), 75%, 36%);
     border: 1px solid hsla(var(--hue-yellow), 80%, 50%, 0.35);
-}
-
-.ext-title {
-    font-family: 'Noto Serif JP', serif;
-    font-size: 1rem;
-    font-weight: 700;
-    line-height: 1.45;
-    margin: 0;
-}
-.ext-description {
-    font-size: 0.84rem;
-    color: var(--text-muted);
-    line-height: 1.75;
-    flex: 1;
-}
-.ext-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-}
-.ext-footer {
-    display: flex;
-    justify-content: flex-end;
-    padding-top: 8px;
-    border-top: 1px solid var(--glass-border);
-    margin-top: auto;
-}
-.ext-github-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 0.78rem;
-    color: var(--text-muted);
-    text-decoration: none;
-    padding: 6px 14px;
-    border: 1px solid var(--glass-border);
-    border-radius: var(--radius-pill);
-    transition: var(--transition);
-    font-family: 'Noto Sans JP', sans-serif;
-}
-.ext-github-link:hover {
-    border-color: var(--primary);
-    color: var(--primary);
-}
-.ext-github-link svg {
-    width: 14px;
-    height: 14px;
-    fill: currentColor;
-    flex-shrink: 0;
 }
 
 /* ローディング / エラー */
