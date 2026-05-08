@@ -208,7 +208,7 @@ a {
 /* スクロールヒント */
 .hero-scroll-hint {
     position: absolute;
-    bottom: 10px;
+    bottom: calc(20px + env(safe-area-inset-bottom, 0px)); /* スマホの下部タブバーや安全領域を考慮 */
     left: 50%;
     transform: translateX(-50%);
     display: flex;
