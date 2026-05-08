@@ -33,7 +33,7 @@ const THEMES = {
     },
 };
 
-const ACTIVE_THEME = 'sunset';
+const ACTIVE_THEME = 'ocean';
 
 function applyTheme(name) {
     const theme = THEMES[name];

@@ -319,6 +319,7 @@ a {
     word-wrap: break-word;
     overflow-wrap: break-word;
     text-align: justify;
+    word-break: keep-all;
 }
 
 /* Organizations */
