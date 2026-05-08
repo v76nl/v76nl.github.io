@@ -208,7 +208,7 @@ a {
 /* スクロールヒント */
 .hero-scroll-hint {
     position: absolute;
-    bottom: 15px;
+    bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -224,7 +224,7 @@ a {
 }
 .scroll-line {
     width: 3px;
-    height: 40px;
+    height: 30px;
     border-radius: 5px;
     background: linear-gradient(to bottom, var(--primary), transparent);
     animation: scroll-pulse 2s ease-in-out infinite;
