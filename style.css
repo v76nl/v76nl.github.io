@@ -347,9 +347,6 @@ a {
         var(--shadow),
         0 0 0 1px var(--primary-glow);
 }
-.org-card:hover::before {
-    transform: scaleX(1);
-}
 
 .org-name {
     font-family: 'Noto Serif JP', serif;
