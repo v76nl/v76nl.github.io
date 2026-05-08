@@ -91,7 +91,7 @@ works:
       url: ''
       github: 'https://github.com/v76nl?tab=repositories&q=manaba'
       detailUrl: './univ-extensions.html'
-      thumbnail: ''
+      thumbnail: 'assets/univ_crx.png'
       date: '2025-'
 
     - title: 'Chuo Scholarship'
@@ -102,5 +102,5 @@ works:
           - '大学'
       url: 'https://v76nl.github.io/chuo-scholarship/'
       github: 'https://github.com/v76nl/chuo-scholarship'
-      thumbnail: ''
+      thumbnail: 'assets/scholarship.png'
       date: '2026 05'
