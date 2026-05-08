@@ -1,76 +1,95 @@
 profile:
-  name: "wash"
-  tagline: "Student Developer"
-  bio: ""
-  github: "https://github.com/v76nl"
-  x: "https://x.com/ln67v"
+    name: 'wash'
+    tagline: 'Student Developer'
+    bio: ''
+    github: 'https://github.com/v76nl'
+    x: 'https://x.com/ln67v'
 
 organizations:
-  - name: "GDGoC Chuo"
-    role: "Core Member"
-    url: "https://gdgoc-chuo.com/"
-    period: "2025 - 現在"
-  - name: "中央大学 電気工学研究部"
-    role: "ソフトウェア班 副班長"
-    url: "https://den-ken.org/"
-    period: "2025 - 現在"
+    - name: 'GDGoC Chuo'
+      role: 'Core Member'
+      url: 'https://gdgoc-chuo.com/'
+      period: '2025 - 現在'
+      projects:
+          - name: 'Chuinfo (Android)'
+            role: '開発メンバー'
+          - name: 'kaggle'
+            role: '参加'
+          - name: 'データサイエンス・コンテスト'
+            role: 'メンバー・Webアプリ開発'
+          - name: '文化祭'
+            role: 'Webアプリ開発・講習・資料作成'
+          - name: 'iTL classrooms'
+            role: '開発メンバー'
+          - name: '日程調整アプリ pogo'
+            role: '企画・プロトタイプ開発'
+          - name: 'p5.js ワークショップ'
+            role: '全体 (企画・資料作成・発表など)'
+          - name: 'Webサイト制作講習'
+            role: '企画・資料作成'
+          - name: '2026 05 Hackathon'
+            role: '企画・運営'
+    - name: '中央大学 電気工学研究部'
+      role: 'ソフトウェア班 副班長'
+      url: 'https://den-ken.org/'
+      period: '2025 - 現在'
 
 works:
-  - title: "Xtrudy"
-    description: "テキストやSVGファイルをモチーフにしてキーチェーンの3Dモデルを作成するツール。"
-    tags:
-      - "Web"
-      - "Three.js"
-      - "3D"
-      - "3D Printing"
-    url: "https://v76nl.github.io/Xtrudy/"
-    github: "https://github.com/v76nl/Xtrudy"
-    thumbnail: "assets/3d_Extruder.png"
-    date: "2026"
+    - title: 'Xtrudy'
+      description: 'テキストやSVGファイルをモチーフにしてキーチェーンの3Dモデルを作成するツール。'
+      tags:
+          - 'Web'
+          - 'Three.js'
+          - '3D'
+          - '3D Printing'
+      url: 'https://v76nl.github.io/Xtrudy/'
+      github: 'https://github.com/v76nl/Xtrudy'
+      thumbnail: 'assets/3d_Extruder.png'
+      date: '2026'
 
-  - title: "iTL 1F Map"
-    description: "iTL (中央大学 国際情報学部 / 市ヶ谷田町キャンパス) の1階の地図を表示しシェアするWebアプリ。"
-    tags:
-      - "Web"
-      - "大学"
-      - "Figma"
-    url: "https://itl-1f-map.vercel.app/"
-    github: "https://github.com/v76nl/itl-1f-map"
-    thumbnail: "assets/iTL_1F_Map.png"
-    date: "2026 3"
+    - title: 'iTL 1F Map'
+      description: 'iTL (中央大学 国際情報学部 / 市ヶ谷田町キャンパス) の1階の地図を表示しシェアするWebアプリ。'
+      tags:
+          - 'Web'
+          - '大学'
+          - 'Figma'
+      url: 'https://itl-1f-map.vercel.app/'
+      github: 'https://github.com/v76nl/itl-1f-map'
+      thumbnail: 'assets/iTL_1F_Map.png'
+      date: '2026 3'
 
-  - title: "Chuinfo (Android)"
-    description: "中央大学の学生のための統合アプリ。時間割や課題を確認可能。"
-    tags:
-      - "Android"
-      - "GDGoC Chuo"
-      - "チーム開発"
-      - "大学"
-      - "オススメ！"
-    url: "https://play.google.com/store/apps/details?id=com.myml_12.chuinfo&hl=ja"
-    github: ""
-    thumbnail: "assets/chuinfo.png"
-    date: "2025-"
+    - title: 'Chuinfo (Android)'
+      description: '中央大学の学生のための統合アプリ。時間割や課題を確認可能。'
+      tags:
+          - 'Android'
+          - 'GDGoC Chuo'
+          - 'チーム開発'
+          - '大学'
+          - 'オススメ！'
+      url: 'https://play.google.com/store/apps/details?id=com.myml_12.chuinfo&hl=ja'
+      github: ''
+      thumbnail: 'assets/chuinfo.png'
+      date: '2025-'
 
-  - title: "ポートフォリオサイト"
-    description: "制作物をYAMLファイルで管理。"
-    tags:
-      - "Web"
-    url: "https://v76nl.github.io"
-    github: "https://github.com/v76nl/v76nl.github.io"
-    thumbnail: "assets/portfolio.png"
-    date: "2026"
+    - title: 'ポートフォリオサイト'
+      description: '制作物をYAMLファイルで管理。'
+      tags:
+          - 'Web'
+      url: 'https://v76nl.github.io'
+      github: 'https://github.com/v76nl/v76nl.github.io'
+      thumbnail: 'assets/portfolio.png'
+      date: '2026'
 
-  - title: "University Custom Chrome Extensions"
-    description: "大学にまつわるさまざまなWebサイトをカスタマイズするChrome拡張機能を数多く制作。"
-    tags:
-      - "Web"
-      - "大学"
-      - "JavaScript"
-      - "Chrome拡張機能"
-      - "オススメ！"
-    url: ""
-    github: "https://github.com/v76nl?tab=repositories&q=manaba"
-    detailUrl: "./univ-extensions.html"
-    thumbnail: ""
-    date: "2025-"
+    - title: 'University Custom Chrome Extensions'
+      description: '大学にまつわるさまざまなWebサイトをカスタマイズするChrome拡張機能を数多く制作。'
+      tags:
+          - 'Web'
+          - '大学'
+          - 'JavaScript'
+          - 'Chrome拡張機能'
+          - 'オススメ！'
+      url: ''
+      github: 'https://github.com/v76nl?tab=repositories&q=manaba'
+      detailUrl: './univ-extensions.html'
+      thumbnail: ''
+      date: '2025-'

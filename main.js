@@ -8,8 +8,6 @@ const DEBUG = true;
 // false → サムネイル領域を非表示
 const SHOW_THUMBNAILS = true;
 
-
-
 function renderHero(profile) {
     document.title = `Portfolio | ${profile.name}`;
 
@@ -49,18 +47,95 @@ function renderOrgs(organizations, bio) {
 
     grid.innerHTML = organizations
         .map((org, i) => {
-            const tag = org.url ? 'a' : 'div';
-            const href = org.url
-                ? `href="${org.url}" target="_blank" rel="noopener noreferrer"`
+            const hasModal = !!org.projects && org.projects.length > 0;
+            const tag = hasModal || org.url ? 'a' : 'div';
+            let href = '';
+            if (hasModal) {
+                href = 'href="#"';
+            } else if (org.url) {
+                href = `href="${org.url}" target="_blank" rel="noopener noreferrer"`;
+            }
+
+            const modalAttr = hasModal
+                ? `data-org='${escHtml(JSON.stringify(org))}'`
                 : '';
+            const modalClass = hasModal ? 'org-card-modal' : '';
+
             return `
-      <${tag} ${href} class="org-card fade-up" style="transition-delay:${i * 75}ms">
+      <${tag} ${href} class="org-card fade-up ${modalClass}" style="transition-delay:${i * 75}ms" ${modalAttr}>
         <div class="org-name">${org.name}</div>
         ${org.role ? `<div class="org-role">${org.role}</div>` : ''}
         ${org.period ? `<div class="org-period">${org.period}</div>` : ''}
       </${tag}>`;
         })
         .join('');
+
+    // Attach event listeners for modals
+    grid.querySelectorAll('.org-card-modal').forEach((card) => {
+        card.addEventListener('click', (e) => {
+            e.preventDefault();
+            const orgData = JSON.parse(card.dataset.org);
+            openOrgModal(orgData);
+        });
+    });
+}
+
+function openOrgModal(org) {
+    const modal = document.getElementById('org-modal');
+    if (!modal) return;
+
+    document.getElementById('modal-title').textContent = org.name;
+
+    let contentHtml = '';
+    if (org.projects && org.projects.length > 0) {
+        contentHtml += `<div class="modal-project-list">`;
+        org.projects.forEach((p) => {
+            contentHtml += `
+            <div class="modal-project">
+                <div class="modal-project-name">${escHtml(p.name)}</div>
+                ${p.role ? `<div class="modal-project-role">${escHtml(p.role)}</div>` : ''}
+            </div>`;
+        });
+        contentHtml += `</div>`;
+    }
+    document.getElementById('modal-content').innerHTML = contentHtml;
+
+    let footerHtml = '';
+    if (org.url) {
+        footerHtml = `
+            <a href="${escHtml(org.url)}" target="_blank" rel="noopener noreferrer" class="modal-btn">
+                ${ICONS.external} 公式HP
+            </a>
+        `;
+    }
+    document.getElementById('modal-footer').innerHTML = footerHtml;
+
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeOrgModal() {
+    const modal = document.getElementById('org-modal');
+    if (!modal) return;
+
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+}
+
+function setupModalEvents() {
+    const modalClose = document.getElementById('modal-close');
+    const modalOverlay = document.getElementById('modal-overlay');
+
+    if (modalClose) modalClose.addEventListener('click', closeOrgModal);
+    if (modalOverlay) modalOverlay.addEventListener('click', closeOrgModal);
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeOrgModal();
+        }
+    });
 }
 
 function renderWorks(works) {
@@ -197,10 +272,9 @@ function renderFooter(profile) {
     linksEl.innerHTML = footerLinks.join('');
 }
 
-
-
 async function main() {
     applyTheme(ACTIVE_THEME);
+    setupModalEvents();
 
     try {
         if (DEBUG) console.log('[1] fetch:', './data/works.yaml');

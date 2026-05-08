@@ -3,9 +3,9 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Wash's Portfolio</title>
+        <title>Portfolio | Wash</title>
 
-        <link rel="icon" href="favicon.ico" sizes="any">
+        <link rel="icon" href="favicon.ico" sizes="any" />
         <meta name="description" content="portfolio" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -66,6 +66,19 @@
                 <div class="footer-links" id="footer-links"></div>
             </div>
         </footer>
+
+        <!-- Modal -->
+        <div id="org-modal" class="modal" aria-hidden="true">
+            <div class="modal-overlay" id="modal-overlay"></div>
+            <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+                <header class="modal-header">
+                    <h2 class="modal-title" id="modal-title"></h2>
+                    <button class="modal-close" id="modal-close" aria-label="閉じる">&times;</button>
+                </header>
+                <div class="modal-content" id="modal-content"></div>
+                <footer class="modal-footer" id="modal-footer"></footer>
+            </div>
+        </div>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
         <script src="common.js"></script>
