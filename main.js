@@ -37,17 +37,17 @@ function renderHero(profile) {
     }
     linksEl.innerHTML = buttons.join('');
     
-    // スクロールヒント: aboutセクション見え始めたら非表示
+    // スクロールヒント: organizationsセクション見え始めたら非表示
     const setupScrollHintObserver = () => {
         const scrollHint = document.querySelector('.hero-scroll-hint');
-        const aboutSection = document.getElementById('about');
+        const organizationsSection = document.getElementById('organizations');
         
-        if (!scrollHint || !aboutSection) return;
+        if (!scrollHint || !organizationsSection) return;
         
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                    // aboutセクションが見え始めたら non-pointer-events & opacity 0
+                    // organizationsセクションが見え始めたら non-pointer-events & opacity 0
                     scrollHint.style.pointerEvents = 'none';
                     scrollHint.style.opacity = '0';
                 } else {
@@ -58,7 +58,7 @@ function renderHero(profile) {
             });
         }, { threshold: 0.1 });
         
-        observer.observe(aboutSection);
+        observer.observe(organizationsSection);
     };
     
     // CSS animation の完了を待ってから observer を初期化
@@ -71,10 +71,14 @@ function renderHero(profile) {
     }
 }
 
-function renderOrgs(organizations, bio) {
-    const bioEl = document.getElementById('bio-text');
-    if (bioEl && bio) bioEl.textContent = bio;
+function renderIntro(profile) {
+    const introEl = document.getElementById('intro-text');
+    if (introEl && profile?.about) {
+        introEl.textContent = profile.about;
+    }
+}
 
+function renderOrgs(organizations) {
     const grid = document.getElementById('org-grid');
     if (!grid) return;
 
@@ -330,7 +334,8 @@ async function main() {
         if (DEBUG) console.log('[4] parsed:', Object.keys(data));
 
         renderHero(data.profile ?? {});
-        renderOrgs(data.organizations ?? [], data.profile?.bio ?? '');
+        renderIntro(data.profile ?? {});
+        renderOrgs(data.organizations ?? []);
         renderWorks(data.works ?? []);
         renderFooter(data.profile ?? {});
 
