@@ -219,8 +219,10 @@ a {
     font-size: 0.65rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    opacity: 0;
+    opacity: 1;
     animation: fade-in 1s 1.5s forwards;
+    transition: opacity 0.3s ease;
+    pointer-events: auto;
 }
 .scroll-line {
     width: 3px;

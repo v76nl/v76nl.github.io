@@ -36,6 +36,39 @@ function renderHero(profile) {
       </a>`);
     }
     linksEl.innerHTML = buttons.join('');
+    
+    // スクロールヒント: aboutセクション見え始めたら非表示
+    const setupScrollHintObserver = () => {
+        const scrollHint = document.querySelector('.hero-scroll-hint');
+        const aboutSection = document.getElementById('about');
+        
+        if (!scrollHint || !aboutSection) return;
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    // aboutセクションが見え始めたら non-pointer-events & opacity 0
+                    scrollHint.style.pointerEvents = 'none';
+                    scrollHint.style.opacity = '0';
+                } else {
+                    // 画面内なら表示
+                    scrollHint.style.pointerEvents = 'auto';
+                    scrollHint.style.opacity = '1';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        observer.observe(aboutSection);
+    };
+    
+    // CSS animation の完了を待ってから observer を初期化
+    const scrollHint = document.querySelector('.hero-scroll-hint');
+    if (scrollHint) {
+        scrollHint.addEventListener('animationend', setupScrollHintObserver, { once: true });
+    } else {
+        // フォールバック：animationend が発火しない場合
+        setTimeout(setupScrollHintObserver, 2500);
+    }
 }
 
 function renderOrgs(organizations, bio) {
