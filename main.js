@@ -48,25 +48,26 @@ function renderOrgs(organizations, bio) {
     grid.innerHTML = organizations
         .map((org, i) => {
             const hasModal = !!org.projects && org.projects.length > 0;
-            const tag = hasModal || org.url ? 'a' : 'div';
-            let href = '';
-            if (hasModal) {
-                href = 'href="#"';
-            } else if (org.url) {
-                href = `href="${org.url}" target="_blank" rel="noopener noreferrer"`;
-            }
-
             const modalAttr = hasModal
                 ? `data-org='${escHtml(JSON.stringify(org))}'`
                 : '';
             const modalClass = hasModal ? 'org-card-modal' : '';
-
-            return `
-      <${tag} ${href} class="org-card fade-up ${modalClass}" style="transition-delay:${i * 75}ms" ${modalAttr}>
-        <div class="org-name">${org.name}</div>
+            const cardRole = hasModal ? 'role="button" tabindex="0"' : '';
+            const externalButton = org.url
+                ? `<a href="${escHtml(org.url)}" target="_blank" rel="noopener noreferrer" class="modal-btn org-url-btn">
+                ${ICONS.external} 公式HP
+              </a>`
+                : '';
+            const footerHtml = `
         ${org.role ? `<div class="org-role">${org.role}</div>` : ''}
         ${org.period ? `<div class="org-period">${org.period}</div>` : ''}
-      </${tag}>`;
+        ${externalButton}`;
+
+            return `
+      <div class="org-card fade-up ${modalClass}" style="transition-delay:${i * 75}ms" ${cardRole} ${modalAttr}>
+        <div class="org-name">${org.name}</div>
+        ${footerHtml.trim() ? `<div class="org-card-footer">${footerHtml}</div>` : ''}
+      </div>`;
         })
         .join('');
 
@@ -76,6 +77,13 @@ function renderOrgs(organizations, bio) {
             e.preventDefault();
             const orgData = JSON.parse(card.dataset.org);
             openOrgModal(orgData);
+        });
+        card.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                const orgData = JSON.parse(card.dataset.org);
+                openOrgModal(orgData);
+            }
         });
     });
 }
