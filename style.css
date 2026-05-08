@@ -319,7 +319,7 @@ a {
     word-wrap: break-word;
     overflow-wrap: break-word;
     text-align: justify;
-    word-break: keep-all;
+    /* word-break: keep-all; あると語の区切りはきれいだが間延びする箇所が出る */
 }
 
 /* Organizations */
