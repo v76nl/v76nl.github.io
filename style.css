@@ -222,8 +222,9 @@ a {
     animation: fade-in 1s 1.5s forwards;
 }
 .scroll-line {
-    width: 1px;
+    width: 3px;
     height: 40px;
+    border-radius: 5px;
     background: linear-gradient(to bottom, var(--primary), transparent);
     animation: scroll-pulse 2s ease-in-out infinite;
 }
