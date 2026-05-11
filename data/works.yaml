@@ -21,7 +21,7 @@ organizations:
           - name: 'iTL classrooms'
             role: '開発メンバー'
           - name: '日程調整アプリ pogo'
-            role: '企画・プロトタイプ開発'
+            role: '企画・プロトタイプ設計'
           - name: 'p5.js ワークショップ'
             role: '全体 (企画・資料作成・発表など)'
           - name: 'Webサイト制作講習'
@@ -60,7 +60,7 @@ works:
       date: '2026 3'
 
     - title: 'Chuinfo (Android)'
-      description: '中央大学の学生のための統合アプリ。時間割や課題を確認可能。'
+      description: '中央大学の学生のための統合アプリ。時間割や課題を確認できます。'
       tags:
           - 'Android'
           - 'GDGoC Chuo'
@@ -73,7 +73,7 @@ works:
       date: '2025-'
 
     - title: 'ポートフォリオサイト'
-      description: '制作物をYAMLファイルで管理。'
+      description: '今後の制作物増加を見据え、YAMLファイルにまとめることで管理しやすくしたポートフォリオサイト。'
       tags:
           - 'Web'
       url: 'https://v76nl.github.io'
@@ -82,7 +82,7 @@ works:
       date: '2026'
 
     - title: 'University Custom Chrome Extensions'
-      description: '大学にまつわるさまざまなWebサイトをカスタマイズするChrome拡張機能を数多く制作。'
+      description: '大学にまつわるさまざまなWebサイトをカスタマイズするChrome拡張機能を数多く制作しています。'
       tags:
           - 'Web'
           - '大学'
