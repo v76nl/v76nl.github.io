@@ -86,7 +86,7 @@ function renderOrgs(organizations) {
         .map((org, i) => {
             const hasModal = !!org.projects && org.projects.length > 0;
             const modalAttr = hasModal
-                ? `data-org='${escHtml(JSON.stringify(org))}'`
+                ? `data-org-index='${i}'`
                 : '';
             const modalClass = hasModal ? 'org-card-modal' : '';
             const cardRole = hasModal ? 'role="button" tabindex="0"' : '';
@@ -112,13 +112,15 @@ function renderOrgs(organizations) {
     grid.querySelectorAll('.org-card-modal').forEach((card) => {
         card.addEventListener('click', (e) => {
             e.preventDefault();
-            const orgData = JSON.parse(card.dataset.org);
+            const index = parseInt(card.dataset.orgIndex, 10);
+            const orgData = organizations[index];
             openOrgModal(orgData);
         });
         card.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
-                const orgData = JSON.parse(card.dataset.org);
+                const index = parseInt(card.dataset.orgIndex, 10);
+                const orgData = organizations[index];
                 openOrgModal(orgData);
             }
         });
