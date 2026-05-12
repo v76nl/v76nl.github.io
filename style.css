@@ -393,7 +393,7 @@ a {
 .filter-bar {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 12px;
     margin-bottom: 36px;
 }
 
@@ -511,7 +511,7 @@ a {
 .work-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
+    gap: 12px;
     margin-bottom: 16px;
 }
 
@@ -555,7 +555,7 @@ a {
 /* 作品リンク */
 .work-links {
     display: flex;
-    gap: 8px;
+    gap: 12px;
     flex-wrap: wrap;
 }
 .work-link {
@@ -631,8 +631,8 @@ a {
     color: var(--primary);
 }
 .footer-link svg {
-    width: 14px;
-    height: 14px;
+    width: 24px;
+    height: 24px;
     fill: currentColor;
 }
 
