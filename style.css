@@ -208,7 +208,9 @@ a {
 /* スクロールヒント */
 .hero-scroll-hint {
     position: absolute;
-    bottom: calc(20px + env(safe-area-inset-bottom, 0px)); /* スマホの下部タブバーや安全領域を考慮 */
+    bottom: calc(
+        20px + env(safe-area-inset-bottom, 0px)
+    ); /* スマホの下部タブバーや安全領域を考慮 */
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -775,7 +777,7 @@ a {
 .modal-btn svg {
     width: 1em;
     height: 1em;
-    fill: currentColor;
+    /* fill: currentColor; */
     flex-shrink: 0;
 }
 
