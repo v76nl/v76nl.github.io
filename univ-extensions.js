@@ -1,3 +1,6 @@
+import jsyaml from 'js-yaml';
+import { ACTIVE_THEME, applyTheme, escHtml, getTagColor, ICONS, observeElements } from './common.js';
+
 // ── アプリ設定 ──────────────────────────────────────────
 const DEBUG = false;
 // ────────────────────────────────────────────────────────

@@ -1,3 +1,6 @@
+import jsyaml from 'js-yaml';
+import { ACTIVE_THEME, applyTheme, escHtml, getTagColor, ICONS, observeElements } from './common.js';
+
 // デバッグ出力フラグ
 // true  → console.log / warn / error をすべて出力
 // false → コンソール出力を抑制
