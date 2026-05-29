@@ -91,7 +91,7 @@ works:
           - 'オススメ！'
       url: ''
       github: 'https://github.com/v76nl?tab=repositories&q=manaba'
-      detailUrl: './univ-extensions.html'
+      detailUrl: './univ-extensions/'
       thumbnail: 'assets/univ_crx.png'
       date: '2025-'
 

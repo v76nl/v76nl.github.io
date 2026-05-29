@@ -60,7 +60,7 @@ async function main() {
 
     try {
         if (DEBUG) console.log('[1] fetch univ-extensions.yaml');
-        const res = await fetch('./data/univ-extensions.yaml');
+        const res = await fetch('/data/univ-extensions.yaml');
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
         const data = jsyaml.load(await res.text());
