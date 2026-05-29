@@ -49,40 +49,9 @@
     font-weight: 500;
 }
 
-/* ページヒーロー */
 .page-hero {
     padding: 72px 0 56px;
     position: relative;
-    overflow: hidden;
-}
-.page-hero-orb {
-    position: absolute;
-    border-radius: 50%;
-    pointer-events: none;
-}
-.page-hero-orb--a {
-    width: 380px;
-    height: 380px;
-    top: -60px;
-    right: -60px;
-    background: radial-gradient(
-        circle,
-        var(--primary-glow) 0%,
-        transparent 68%
-    );
-    animation: orb-float 10s ease-in-out infinite;
-}
-.page-hero-orb--b {
-    width: 260px;
-    height: 260px;
-    bottom: -40px;
-    left: 10%;
-    background: radial-gradient(
-        circle,
-        var(--pink-glow) 0%,
-        transparent 68%
-    );
-    animation: orb-float 14s ease-in-out infinite reverse;
 }
 
 .page-eyebrow {
@@ -200,3 +169,8 @@
         display: none;
     }
 }
+
+main {
+    padding-bottom: 104px;
+}
+
