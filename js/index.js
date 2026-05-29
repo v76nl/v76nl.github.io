@@ -328,7 +328,7 @@ async function main() {
 
     try {
         if (DEBUG) console.log('[1] fetch:', './data/works.yaml');
-        const res = await fetch('./data/works.yaml');
+        const res = await fetch('/data/works.yaml');
         if (DEBUG) console.log('[2] status:', res.status, res.ok);
         if (!res.ok) throw new Error(`HTTP ${res.status} - file not found`);
 

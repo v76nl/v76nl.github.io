@@ -7,7 +7,7 @@ export default defineConfig({
         rollupOptions: {
             input: {
                 main: resolve(__dirname, 'index.html'),
-                univExtensions: resolve(__dirname, 'univ-extensions.html'),
+                univExtensions: resolve(__dirname, 'univ-extensions/index.html'),
             },
         },
     },
