@@ -114,12 +114,14 @@ function renderOrgs(organizations) {
     // Attach event listeners for modals
     grid.querySelectorAll('.org-card-modal').forEach((card) => {
         card.addEventListener('click', (e) => {
+            if (e.target.closest('a')) return;
             e.preventDefault();
             const index = parseInt(card.dataset.orgIndex, 10);
             const orgData = organizations[index];
             openOrgModal(orgData);
         });
         card.addEventListener('keydown', (e) => {
+            if (e.target.closest('a')) return;
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
                 const index = parseInt(card.dataset.orgIndex, 10);
