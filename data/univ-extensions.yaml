@@ -5,6 +5,7 @@ extensions:
       tags:
           - 'UX改善'
           - 'UI'
+          - 'manaba'
       status: 'active'
 
     - title: 'Tab Renamer'
@@ -12,6 +13,7 @@ extensions:
       github: 'https://github.com/v76nl/crx-manaba-tab-renamer'
       tags:
           - 'UI'
+          - 'manaba'
       status: 'active'
 
     - title: 'Form Refiner'
@@ -20,6 +22,7 @@ extensions:
       tags:
           - 'UX改善'
           - 'UI'
+          - 'manaba'
       status: 'active'
 
     - title: 'Word Replacer'
@@ -28,6 +31,7 @@ extensions:
       tags:
           - 'UX改善'
           - 'プライバシー'
+          - 'manaba'
       status: 'active'
 
     - title: 'Book Info Copier'
