@@ -360,7 +360,6 @@ a {
 .work-link svg {
     width: 13px;
     height: 13px;
-    fill: currentColor;
     flex-shrink: 0;
 }
 
@@ -553,7 +552,6 @@ a {
 .modal-btn svg {
     width: 1em;
     height: 1em;
-    /* fill: currentColor; */
     flex-shrink: 0;
 }
 
