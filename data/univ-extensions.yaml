@@ -1,6 +1,6 @@
 extensions:
     - title: 'Subject Title Editor'
-      description: 'manaba のコース名（科目名）をブラウザ上で自由に編集・保存できる。'
+      description: 'manaba のコース名（科目名）を自由に編集できるようになります。'
       github: 'https://github.com/v76nl/crx-manaba-subject-title-editor'
       tags:
           - 'UX改善'
@@ -8,14 +8,14 @@ extensions:
       status: 'active'
 
     - title: 'Tab Renamer'
-      description: 'タブのタイトルをコース名に自動変更。特に垂直タブバーユーザーにオススメ。'
+      description: 'タブのタイトルをコース名に自動変更します。垂直タブバーユーザーにオススメです。'
       github: 'https://github.com/v76nl/crx-manaba-tab-renamer'
       tags:
           - 'UI'
       status: 'active'
 
     - title: 'Form Refiner'
-      description: 'デフォルトでは見にくい回答フォームを見やすくする。'
+      description: 'デフォルトでは見にくい回答フォームを見やすくします。'
       github: 'https://github.com/v76nl/crx-manaba-form-refiner'
       tags:
           - 'UX改善'
@@ -23,7 +23,7 @@ extensions:
       status: 'active'
 
     - title: 'Word Replacer'
-      description: '特定の文字列を置換できる。本名など機密情報を表示したくない場合に便利。'
+      description: '特定の文字列を置換できるようになります。本名など機密情報を表示したくない場合に便利です。'
       github: 'https://github.com/v76nl/crx-manaba-replace'
       tags:
           - 'UX改善'
@@ -31,7 +31,7 @@ extensions:
       status: 'active'
 
     - title: 'Book Info Copier'
-      description: '中央大学の蔵書検索システム CHOIS において、書籍に関する情報をコピーするボタンを設置する'
+      description: '中央大学の蔵書検索システム CHOIS (WebOPAC) において、書籍に関する情報をコピーするボタンを設置します。'
       github: 'https://github.com/v76nl/crx-book-info-copier-for-chois'
       tags:
           - 'UX改善'

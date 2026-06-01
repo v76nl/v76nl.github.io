@@ -4,7 +4,7 @@ profile:
     bio: ''
     github: 'https://github.com/v76nl'
     x: 'https://x.com/ln67v'
-    about: '29卒予定の学生デベロッパーです。Webをメインに開発を行うとともに、技術系サークルの活動に力を注いでいます。ユーザーエクスペリエンスや、生活をより良くするツールの開発に関心があります。'
+    about: '29卒予定の学生デベロッパーです。Webをメインに開発を行うとともに、技術系サークルの活動に力を注いでいます。ユーザーエクスペリエンスや、生活をより良くするツールの開発、「IT」に限らない情報の取り扱いに関心があります。'
 
 organizations:
     - name: 'Google Developer Groups on Campus Chuo'
@@ -37,7 +37,7 @@ organizations:
 
 works:
     - title: 'Xtrudy'
-      description: 'テキストやSVGファイルをモチーフにしてキーチェーンの3Dモデルを作成するツール。'
+      description: 'テキストやSVGファイルをモチーフにしてキーチェーンの3Dモデルを作成するツールです。'
       tags:
           - 'Web'
           - 'Three.js'
@@ -49,7 +49,7 @@ works:
       date: '2026'
 
     - title: 'iTL 1F Map'
-      description: 'iTL (中央大学 国際情報学部 / 市ヶ谷田町キャンパス) の1階の地図を表示しシェアするWebアプリ。'
+      description: 'iTL (中央大学 国際情報学部 / 市ヶ谷田町キャンパス) の1階の地図を表示しシェアするWebアプリです。'
       tags:
           - 'Web'
           - '大学'
@@ -73,7 +73,7 @@ works:
       date: '2025-'
 
     - title: 'ポートフォリオサイト'
-      description: '今後の制作物増加を見据え、YAMLファイルにまとめることで管理しやすくしたポートフォリオサイト。'
+      description: '制作物増加を見据え、YAMLファイルにまとめることで管理しやすくする工夫をしたポートフォリオサイトです。'
       tags:
           - 'Web'
       url: 'https://v76nl.github.io'
@@ -96,7 +96,7 @@ works:
       date: '2025-'
 
     - title: 'Chuo Scholarship'
-      description: '大学公式で公開している奨学金に関する情報をわかりやすくまとめ、公開するプロジェクト。'
+      description: '大学公式で公開している奨学金に関する情報をわかりやすくまとめ、公開するプロジェクトです。'
       tags:
           - 'Web'
           - 'GDGoC Chuo'
