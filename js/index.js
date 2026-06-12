@@ -194,15 +194,23 @@ function renderWorks(works) {
     // 全タグに色を事前割当（カード・フィルター両方で一貫した色にする）
     works.forEach((w) => (w.tags ?? []).forEach((t) => getTagColor(t)));
 
+    // 各タグの件数を集計
+    const tagCounts = {};
+    works.forEach((w) => {
+        (w.tags ?? []).forEach((tag) => {
+            tagCounts[tag] = (tagCounts[tag] ?? 0) + 1;
+        });
+    });
+
     const allTags = [...new Set(works.flatMap((w) => w.tags ?? []))];
     const filterBar = document.getElementById('filter-bar');
     if (filterBar) {
         filterBar.innerHTML =
-            `<button id="filter-all" class="filter-btn active" data-tag="all">すべて</button>` +
+            `<button id="filter-all" class="filter-btn active" data-tag="all">すべて <span class="filter-count">${works.length}</span></button>` +
             allTags
                 .map(
                     (tag) =>
-                        `<button class="filter-btn" data-tag="${tag}">${tag}</button>`
+                        `<button class="filter-btn" data-tag="${tag}">${tag} <span class="filter-count">${tagCounts[tag] ?? 0}</span></button>`
                 )
                 .join('');
 

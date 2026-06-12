@@ -180,6 +180,9 @@ a {
 }
 
 .filter-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     padding: 6px 16px;
     border-radius: var(--radius-pill);
     border: 1px solid var(--glass-border);
@@ -200,6 +203,24 @@ a {
     background: var(--primary-glass);
     border-color: var(--primary);
     color: var(--primary);
+}
+
+.filter-count {
+    font-size: 0.72rem;
+    padding: 1px 6px;
+    border-radius: var(--radius-pill);
+    background: var(--glass-border);
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+    transition: var(--transition);
+}
+.filter-btn:hover .filter-count {
+    background: var(--primary-glass);
+    color: var(--primary);
+}
+.filter-btn.active .filter-count {
+    background: var(--primary);
+    color: #fff;
 }
 
 /* Works grid */
