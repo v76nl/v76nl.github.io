@@ -4,6 +4,16 @@
 
 ポートフォリオというより制作物管理の意味合いが強い
 
+## ページ
+
+- メイン
+
+    https://v76nl.github.io/
+
+- 拡張機能一覧
+
+    https://v76nl.github.io/univ-extensions/
+
 ## 実行方法
 
 ```bash
