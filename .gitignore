@@ -1,0 +1,6 @@
+SKILL.md
+.gitignore
+node_modules/
+dist/
+.agent/
+.astro/
