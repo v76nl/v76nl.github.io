@@ -386,8 +386,10 @@ a {
 .work-link svg {
     width: 13px;
     height: 13px;
-    fill: currentColor;
     flex-shrink: 0;
+}
+.work-link svg:not([fill="none"]) {
+    fill: currentColor;
 }
 
 /* 「詳しく見る」ボタン: アクセントカラーで強調 */
