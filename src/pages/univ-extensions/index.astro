@@ -1,7 +1,10 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { getUnivExtensionsData, getTagColor, ICONS } from '../../utils/data.js';
+import { getPortfolioData, getUnivExtensionsData, getTagColor, ICONS } from '../../utils/data.js';
 import '../../styles/univ-extensions.css';
+
+const portfolioData = getPortfolioData();
+const profile = portfolioData.profile || {};
 
 const data = getUnivExtensionsData();
 const extensions = data.extensions || [];
@@ -12,14 +15,37 @@ const STATUS_LABEL = {
     wip: '開発中',
 };
 ---
-<Layout title="Univ Extensions | Portfolio">
-	<section class="section" style="padding-top: max(12vh, 80px);">
+<Layout title={`University Custom Chrome Extensions | ${profile.name}`}>
+	<!-- 固定ヘッダー -->
+	<header class="page-header" role="banner">
+		<div class="page-header-inner">
+			<a href="/" class="back-link" aria-label="ポートフォリオに戻る">
+				<svg viewBox="0 0 24 24" aria-hidden="true">
+					<polyline points="15 18 9 12 15 6"></polyline>
+				</svg>
+				戻る
+			</a>
+			<span class="page-header-sep" aria-hidden="true">/</span>
+			<span class="page-header-title">University Custom Chrome Extensions</span>
+		</div>
+	</header>
+
+	<!-- ページヒーロー -->
+	<section class="page-hero" aria-label="ページ概要">
 		<div class="container">
-			<div class="section-header fade-up">
-				<h2 class="section-title">University Extensions</h2>
-			</div>
-			
-			<div class="works-grid" id="ext-grid" style="grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));">
+			<h1 class="page-title">
+				University Custom<br />Chrome Extensions
+			</h1>
+			<p class="page-desc">
+				中央大学内で使用されているポータルサイト「manaba」をはじめとする、大学に関係するさまざまな Web サイトをカスタマイズする Chrome 拡張機能のコレクション。学生生活をより快適にするため、UX改善・UI変更・機能追加など様々な観点から開発しています。
+			</p>
+		</div>
+	</section>
+
+	<!-- 拡張機能グリッド -->
+	<main>
+		<div class="container">
+			<div class="works-grid" id="ext-grid" aria-label="拡張機能一覧">
 				{extensions.map((ext, i) => {
 					const status = ext.status ?? 'active';
 					const delay = Math.min(i * 80, 400);
@@ -51,14 +77,27 @@ const STATUS_LABEL = {
 					);
 				})}
 			</div>
-			
-			<div style="margin-top: 40px; text-align: center;">
-				<a href="/" class="modal-btn" style="display: inline-flex; width: auto; padding: 12px 24px;">
-					トップページに戻る
-				</a>
+		</div>
+	</main>
+
+	<!-- フッター -->
+	<footer class="footer">
+		<div class="container footer-inner">
+			<p class="footer-copy">© {new Date().getFullYear()} {profile.name}</p>
+			<div class="footer-links">
+				{profile.github && (
+					<a href="https://github.com/v76nl?tab=repositories&q=crx" target="_blank" rel="noopener noreferrer" class="footer-link" aria-label="GitHub で関連リポジトリを見る">
+						<Fragment set:html={ICONS.github} />
+					</a>
+				)}
+				{profile.x && (
+					<a href={profile.x} target="_blank" rel="noopener noreferrer" class="footer-link" aria-label="X">
+						<Fragment set:html={ICONS.x} />
+					</a>
+				)}
 			</div>
 		</div>
-	</section>
+	</footer>
 
 	<script>
 		import { ACTIVE_THEME, applyTheme, observeElements } from '../../scripts/common.js';
