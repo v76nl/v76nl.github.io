@@ -15,10 +15,14 @@ function renderHero(profile) {
     document.title = `Portfolio | ${profile.name}`;
 
     const nameEl = document.getElementById('hero-name');
-    if (nameEl) nameEl.textContent = profile.name;
+    if (nameEl && nameEl.textContent !== profile.name) {
+        nameEl.textContent = profile.name;
+    }
 
     const taglineEl = document.getElementById('hero-tagline');
-    if (taglineEl) taglineEl.textContent = profile.tagline ?? '';
+    if (taglineEl && taglineEl.textContent !== (profile.tagline ?? '')) {
+        taglineEl.textContent = profile.tagline ?? '';
+    }
 
     const linksEl = document.getElementById('hero-links');
     if (!linksEl) return;
