@@ -115,7 +115,7 @@ works:
       date: '2026 06'
 
     - title: 'English Vocabulary Quiz'
-      description: '大学の英語の授業で行われる単語テストの対策用Webアプリです。単語リストをGoogle Spreadsheetで管理することにより、グループメンバーで共同して単語リストを作成できるようにしました。'
+      description: '大学の英語の授業で行われる単語テストの対策用Webアプリです。単語リストをGoogleスプレッドシートで管理することにより、グループメンバーで共同して単語リストを作成できるようにしました。'
       tags:
           - 'Web'
           - '大学'
