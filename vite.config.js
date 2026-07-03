@@ -35,7 +35,7 @@ export default defineConfig({
 
                                 if (optimizeImages && ['.png', '.jpg', '.jpeg', '.webp'].includes(ext) && entry.name !== 'noise.png') {
                                     try {
-                                        let pipeline = sharp(srcPath);
+                                        let pipeline = sharp(srcPath).resize({ width: 1000, withoutEnlargement: true });
                                         if (ext === '.png') {
                                             pipeline = pipeline.png({ quality: 80, compressionLevel: 9, palette: true });
                                         } else if (['.jpg', '.jpeg'].includes(ext)) {
