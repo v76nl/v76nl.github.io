@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { getPortfolioData, getTagColor, ICONS } from '../utils/data.js';
+import '../styles/index.css';
 
 const data = getPortfolioData();
 const profile = data.profile || {};
@@ -185,7 +186,6 @@ const SHOW_THUMBNAILS = true;
         window.organizationsData = organizations;
     </script>
 	<script>
-        import '../styles/index.css';
         import { ACTIVE_THEME, applyTheme, escHtml, observeElements, ICONS } from '../scripts/common.js';
         
         applyTheme(ACTIVE_THEME);
