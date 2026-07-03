@@ -1,12 +1,13 @@
 # my portfolio website
 
-[v76nl.github.io](https://v76nl.github.io/) \
+[v76nl.github.io](https://v76nl.github.io/)
+
 ポートフォリオというより制作物管理の意味合いが強い
 
 ## 実行方法
 
 ```bash
-pnpm run dev
+pnpm dev
 ```
 
 ## ディレクトリ構成

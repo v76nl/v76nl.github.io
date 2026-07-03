@@ -4,7 +4,7 @@ profile:
     bio: ''
     github: 'https://github.com/v76nl'
     x: 'https://x.com/ln67v'
-    about: '29卒予定の学生デベロッパーです。Webをメインに開発を行うとともに、技術系サークルの活動に力を注いでいます。ユーザーエクスペリエンスや、生活をより良くするツールの開発、「IT」に限らない情報の取り扱いに関心があります。'
+    about: '29卒予定の学生デベロッパーです。Webをメインに開発を行うとともに、技術系サークルの活動に力を注いでいます。ユーザーエクスペリエンスや、生活をより良くするツールの開発、ITに限らない情報そのもの取り扱いに関心があります。'
 
 organizations:
     - name: 'Google Developer Groups on Campus Chuo'
@@ -49,7 +49,7 @@ works:
       date: '2026'
 
     - title: 'iTL 1F Map'
-      description: 'iTL (中央大学 国際情報学部 / 市ヶ谷田町キャンパス) の1階の地図を表示しシェアするWebアプリです。'
+      description: 'iTL (中央大学 国際情報学部 / 市ヶ谷田町キャンパス) の1階の地図を表示しシェアするWebアプリです。機能を最小限に抑えることで、直感的に使えるようにしました。'
       tags:
           - 'Web'
           - '大学'
@@ -73,7 +73,7 @@ works:
       date: '2025-'
 
     - title: 'ポートフォリオサイト'
-      description: '制作物増加を見据え、YAMLファイルにまとめることで管理しやすくする工夫をしたポートフォリオサイトです。'
+      description: '個人的な制作物管理を兼ねたポートフォリオサイトです。'
       tags:
           - 'Web'
       url: 'https://v76nl.github.io'
@@ -86,7 +86,6 @@ works:
       tags:
           - 'Web'
           - '大学'
-          - 'JavaScript'
           - 'オススメ！'
       url: ''
       github: 'https://github.com/v76nl?tab=repositories&q=manaba'
@@ -104,3 +103,21 @@ works:
       github: 'https://github.com/v76nl/chuo-scholarship'
       thumbnail: 'assets/scholarship.png'
       date: '2026 05'
+
+    - title: 'Lined Paper Generator'
+      description: '罫線つきのメモ用紙を構築して印刷できるWebアプリです。'
+      tags:
+          - 'Web'
+          - '大学'
+      url: 'https://v76nl.github.io/lined-paper-generator/'
+      github: 'https://github.com/v776nl/lined-paper-generator/'
+      thumbnail: 'assets/lined-paper-generator.png'
+      date: '2026 06'
+
+    - title: 'English Vocabulary Quiz'
+      description: '大学の英語の授業で行われる単語テストの対策用Webアプリです。単語リストをGoogle Spreadsheetで管理することにより、グループメンバーで共同して単語リストを作成できるようにしました。'
+      tags:
+          - 'Web'
+          - '大学'
+      thumbnail: 'assets/info-eng-vocab-quiz.png'
+      date: '2026 06'
