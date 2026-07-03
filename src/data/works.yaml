@@ -3,7 +3,7 @@ profile:
     tagline: 'Student Developer'
     github: 'https://github.com/v76nl'
     x: 'https://x.com/ln67v'
-    about: '29卒予定の学生デベロッパーです。Webをメインに開発を行うとともに、技術系サークルの活動に力を注いでいます。ユーザーエクスペリエンスや、生活をより良くするツールの開発、ITに限らない情報そのもの取り扱いに関心があります。'
+    about: '<span class="text-block">29卒予定の</span><span class="text-block">学生</span><span class="text-block">デベロッパーです。</span><span class="text-block">Webを</span><span class="text-block">メインに</span><span class="text-block">開発を</span><span class="text-block">行うとともに、</span><span class="text-block">技術系サークルの</span><span class="text-block">活動に</span><span class="text-block">力を</span><span class="text-block">注いでいます。</span><span class="text-block">ユーザー</span><span class="text-block">エクスペリエンスや、</span><span class="text-block">生活を</span><span class="text-block">より良くする</span><span class="text-block">ツールの</span><span class="text-block">開発、</span><span class="text-block">ITに</span><span class="text-block">限らない</span><span class="text-block">情報</span><span class="text-block">そのものの</span><span class="text-block">取り扱いに</span><span class="text-block">関心があります。</span>'
 
 organizations:
     - name: 'Google Developer Groups on Campus Chuo'
