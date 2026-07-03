@@ -1,0 +1,67 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getUnivExtensionsData, getTagColor, ICONS } from '../../utils/data.js';
+
+const data = getUnivExtensionsData();
+const extensions = data.extensions || [];
+
+const STATUS_LABEL = {
+    active: '公開中',
+    archived: 'アーカイブ',
+    wip: '開発中',
+};
+---
+<Layout title="Univ Extensions | Portfolio">
+	<section class="section" style="padding-top: max(12vh, 80px);">
+		<div class="container">
+			<div class="section-header fade-up">
+				<h2 class="section-title">University Extensions</h2>
+			</div>
+			
+			<div class="works-grid" id="ext-grid" style="grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));">
+				{extensions.map((ext, i) => {
+					const status = ext.status ?? 'active';
+					const delay = Math.min(i * 80, 400);
+
+					return (
+						<article class="work-card fade-up" style={`transition-delay:${delay}ms`} aria-label={ext.title}>
+							<div class="work-body">
+								{status !== 'active' && (
+									<span class={`ext-status-badge ${status}`} aria-label={`ステータス: ${STATUS_LABEL[status] ?? status}`} style="margin-bottom: 8px;">
+										{STATUS_LABEL[status] ?? status}
+									</span>
+								)}
+								<h3 class="work-title">{ext.title}</h3>
+								<p class="work-description">{ext.description || ''}</p>
+								<div class="work-tags" aria-label="タグ">
+									{(ext.tags ?? []).map((tag) => (
+										<span class="tag" data-color={getTagColor(tag)}>{tag}</span>
+									))}
+								</div>
+								{ext.github && (
+									<div class="work-links" style="margin-top:auto; justify-content: flex-end; padding-top: 12px; border-top: 1px solid var(--glass-border);">
+										<a href={ext.github} target="_blank" rel="noopener noreferrer" class="work-link" aria-label={`${ext.title}のリポジトリ`}>
+											<Fragment set:html={ICONS.github} /> GitHub
+										</a>
+									</div>
+								)}
+							</div>
+						</article>
+					);
+				})}
+			</div>
+			
+			<div style="margin-top: 40px; text-align: center;">
+				<a href="/" class="modal-btn" style="display: inline-flex; width: auto; padding: 12px 24px;">
+					トップページに戻る
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<script>
+		import { ACTIVE_THEME, applyTheme, observeElements } from '../../scripts/common.js';
+		applyTheme(ACTIVE_THEME);
+		setTimeout(observeElements, 50);
+	</script>
+</Layout>
