@@ -33,6 +33,9 @@ organizations:
       role: 'ソフトウェア班 副班長'
       url: 'https://den-ken.org/'
       period: '2025 - 現在'
+      projects:
+          - name: 'ソフトウェア班'
+            role: '副班長'
 
 works:
     - title: 'Xtrudy'
