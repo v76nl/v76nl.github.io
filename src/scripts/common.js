@@ -33,7 +33,7 @@ export const THEMES = {
     },
 };
 
-export const ACTIVE_THEME = 'ocean';
+export const ACTIVE_THEME = 'pastel';
 
 export function applyTheme(name) {
     const theme = THEMES[name];
