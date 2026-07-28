@@ -9,8 +9,8 @@ const profile = portfolioData.profile || {};
 const qrItems = [
 	{
 		id: 'x',
-		label: 'X (Twitter)',
-		name: 'X (@ln67v)',
+		label: 'X',
+		name: '(@ln67v)',
 		url: profile.x || 'https://x.com/ln67v',
 		icon: ICONS.x,
 	},
@@ -45,8 +45,7 @@ const qrItems = [
 
 		<!-- タイトル -->
 		<div class="qr-title-wrapper">
-			<h1 class="qr-page-title">{profile.name || 'wash'} の QR Code</h1>
-			<p class="qr-page-subtitle">カメラで読み取ってアクセスできます</p>
+			<h1 class="qr-page-title">{profile.name || 'wash'} の QR コード</h1>
 		</div>
 
 		<!-- タブ切替 -->
@@ -99,17 +98,6 @@ const qrItems = [
 			})}
 		</div>
 
-		<!-- 下部アクション -->
-		<div class="qr-actions">
-			<button id="copy-btn" class="qr-action-btn" type="button">
-				<svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
-				URLをコピー
-			</button>
-			<a id="open-link" href={qrItems[0].url} target="_blank" rel="noopener noreferrer" class="qr-action-btn">
-				<Fragment set:html={ICONS.external} />
-				直接開く
-			</a>
-		</div>
 	</div>
 
 	<!-- 拡大表示用モーダル -->
