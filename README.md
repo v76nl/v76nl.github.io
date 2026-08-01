@@ -7,10 +7,17 @@
 ## ページ
 
 - メイン
+  
   https://v76nl.github.io/
 
 - 拡張機能一覧
+  
   https://v76nl.github.io/univ-extensions/
+
+- QRコード
+  
+  https://v76nl.github.io/qr/
+  
 
 ## 実行方法
 
