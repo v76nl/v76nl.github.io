@@ -1,6 +1,5 @@
 # v76nl.github.io
 
-
 [v76nl.github.io](https://v76nl.github.io/)
 
 個人的な制作物管理を兼ねたポートフォリオサイト。
@@ -24,6 +23,7 @@
 - フレームワーク: Astro 5
 - スタイリング: CSS
 - フォント: Zen 角ゴシック (Zen Kaku Gothic New), Noto Serif JP
+- ライブラリ: qrcode (ビルド時インラインSVG生成)
 - パッケージマネージャー: pnpm
 
 ## 実行方法
