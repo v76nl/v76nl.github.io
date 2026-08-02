@@ -87,8 +87,10 @@
 .qr-tab-btn svg {
     width: 15px;
     height: 15px;
-    fill: currentColor;
     flex-shrink: 0;
+}
+.qr-tab-btn svg:not([fill='none']) {
+    fill: currentColor;
 }
 
 .qr-tab-btn.active {
@@ -156,7 +158,12 @@
 .qr-card-name svg {
     width: 16px;
     height: 16px;
+}
+.qr-card-name svg:not([fill='none']) {
     fill: #111827;
+}
+.qr-card-name svg[fill='none'] {
+    stroke: #111827;
 }
 
 .qr-card-url {
@@ -207,6 +214,8 @@
 .qr-action-btn svg {
     width: 14px;
     height: 14px;
+}
+.qr-action-btn svg:not([fill='none']) {
     fill: currentColor;
 }
 
