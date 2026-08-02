@@ -9,7 +9,7 @@ const profile = portfolioData.profile || {};
 const qrItems = [
 	{
 		id: 'x',
-		label: 'X',
+		label: '',
 		name: '(@ln67v)',
 		url: profile.x || 'https://x.com/ln67v',
 		icon: ICONS.x,
@@ -23,7 +23,7 @@ const qrItems = [
 	},
 	{
 		id: 'github',
-		label: 'GitHub',
+		label: '',
 		name: 'GitHub (@v76nl)',
 		url: profile.github || 'https://github.com/v76nl',
 		icon: ICONS.github,
@@ -45,7 +45,12 @@ const qrItems = [
 
 		<!-- タイトル -->
 		<div class="qr-title-wrapper">
-			<h1 class="qr-page-title">{profile.name || 'wash'} の QR コード</h1>
+			<img
+				src={profile.avatar || 'https://github.com/v76nl.png'}
+				alt={profile.name || 'wash'}
+				class="qr-profile-avatar"
+			/>
+			<h1 class="qr-page-title">QRコード</h1>
 		</div>
 
 		<!-- タブ切替 -->
@@ -78,7 +83,7 @@ const qrItems = [
 					>
 						<img
 							src={qrApiUrl}
-							alt={`${item.name} の QRコード`}
+							alt={`${item.name}のQRコード`}
 							class="qr-image"
 							loading="eager"
 						/>
