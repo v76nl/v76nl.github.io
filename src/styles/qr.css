@@ -78,7 +78,7 @@
     font-family: inherit;
     color: var(--text-muted);
     background: transparent;
-    border: none;
+    border: 1px solid transparent;
     border-radius: 8px;
     cursor: pointer;
     transition: var(--transition);
@@ -96,7 +96,7 @@
 .qr-tab-btn.active {
     background: var(--glass-card-bg);
     color: var(--text);
-    border: 1px solid var(--glass-border);
+    border-color: var(--glass-border);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
