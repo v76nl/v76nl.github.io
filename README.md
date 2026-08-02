@@ -1,8 +1,9 @@
-# my portfolio website
+# v76nl.github.io
+
 
 [v76nl.github.io](https://v76nl.github.io/)
 
-ポートフォリオというより制作物管理の意味合いが強い
+個人的な制作物管理を兼ねたポートフォリオサイト。
 
 ## ページ
 
@@ -17,43 +18,52 @@
 - QRコード
   
   https://v76nl.github.io/qr/
-  
+
+## 技術スタック
+
+- フレームワーク: Astro 5
+- スタイリング: CSS
+- フォント: Zen 角ゴシック (Zen Kaku Gothic New), Noto Serif JP
+- パッケージマネージャー: pnpm
 
 ## 実行方法
 
-```bash
-pnpm dev
-```
+| コマンド | 実行内容 |
+| -- | -- |
+| `pnpm install` | 依存パッケージのインストール |
+| `pnpm dev` | 開発サーバーの起動 |
+| `pnpm build` | プロダクションビルド |
 
 ### データの更新・アセットの追加について
 
-- **データ**: `src/data/works.yaml` または `src/data/univ-extensions.yaml` を編集するだけ
+- **データ**: `src/data/works.yaml` または `src/data/univ-extensions.yaml` を編集
 - **画像アセット**: 制作物のサムネイル等の画像は `public/assets/` に配置し、YAML には `assets/ファイル名.png` のように記述
 
 ## ディレクトリ構成
 
 ```text
 .
-├── astro.config.mjs             # Astroの設定
-├── public/                      # そのまま配信される静的ファイル
-│   ├── favicon.ico
-│   └── assets/                  # サムネイルなどの画像アセット
+├── astro.config.mjs             - Astroの設定
+├── public/                      - 静的配信ファイル
+│   └── assets/                  - サムネイル等の画像アセット
 └── src/
-    ├── data/                    # YAML形式のデータソース
-    │   ├── works.yaml           # 制作物の一覧データ
-    │   └── univ-extensions.yaml # 開発した拡張機能の一覧データ
+    ├── data/                    - YAML形式のデータソース
+    │   ├── works.yaml           - 制作物・人物データ
+    │   └── univ-extensions.yaml - 開発した拡張機能データ
     ├── layouts/
-    │   └── Layout.astro         # サイト全体の共通レイアウト (headや背景の定義)
+    │   └── Layout.astro         - 全体の共通レイアウト
     ├── pages/
-    │   ├── index.astro          # ポートフォリオのトップページ
+    │   ├── index.astro          - トップページ
+    │   ├── qr.astro             - QRコード表示ページ
     │   └── univ-extensions/
-    │       └── index.astro      # 拡張機能一覧ページ
+    │       └── index.astro      - 拡張機能一覧ページ
     ├── scripts/
-    │   └── common.js            # クライアントサイドで動作するJS (テーマ切替, フィルター等)
+    │   └── common.js            - クライアントスクリプト (テーマ切替, フィルター等)
     ├── styles/
-    │   ├── global.css           # 共通テーマ・コンポーネントスタイル
-    │   ├── index.css            # トップページ専用スタイル
-    │   └── univ-extensions.css  # 拡張機能一覧ページ専用スタイル
+    │   ├── global.css           - 共通スタイル
+    │   ├── index.css            - トップページ専用スタイル
+    │   ├── qr.css               - QRコードページ専用スタイル
+    │   └── univ-extensions.css  - 拡張機能一覧ページ専用スタイル
     └── utils/
-        └── data.js              # ビルド時にYAMLを読み込むサーバーサイドユーティリティ
+        └── data.js              - ビルド用YAML読み込みユーティリティ
 ```
