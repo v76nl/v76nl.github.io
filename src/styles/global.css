@@ -97,6 +97,55 @@ a {
     margin-right: 0.25em;
 }
 
+/* Accessibility: Focus visible indicator */
+:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm, 6px);
+}
+
+/* Accessibility: Skip to main content link */
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 1rem;
+    background: var(--primary);
+    color: #ffffff;
+    padding: 0.6rem 1.2rem;
+    border-radius: var(--radius);
+    z-index: 10000;
+    font-weight: 700;
+    text-decoration: none;
+    transition: top 0.2s ease;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+    top: 1rem;
+}
+
+/* Accessibility: Reduced motion media query */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .fade-up,
+    .hero-label,
+    .hero-name,
+    .hero-tagline,
+    .hero-links,
+    .hero-scroll-hint {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
+
 /* Noise texture overlay */
 .noise-overlay {
     position: fixed;
