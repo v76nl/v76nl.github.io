@@ -4,14 +4,10 @@ import {
     applyTheme,
     escHtml,
     getTagColor,
+    getTextBlocks,
     ICONS,
     observeElements,
 } from './common.js';
-
-// デバッグ出力フラグ
-// true  → console.log / warn / error をすべて出力
-// false → コンソール出力を抑制
-const DEBUG = true;
 
 // サムネイル表示フラグ
 // true  → work.thumbnail があれば画像表示、なければプレースホルダー表示
@@ -91,30 +87,6 @@ function renderHero(profile) {
         // フォールバック：animationend が発火しない場合
         setTimeout(setupScrollHintObserver, 2500);
     }
-}
-
-function getTextBlocks(blocks) {
-    if (!Array.isArray(blocks)) return [];
-    return blocks.map((block, i) => {
-        const text = String(block).trim();
-        const prev = String(blocks[i - 1] ?? '').trim();
-        const next = String(blocks[i + 1] ?? '').trim();
-
-        const isLatinStart = /^[A-Za-z0-9]/.test(text);
-        const isLatinEnd = /[A-Za-z0-9]$/.test(text);
-        const prevIsJapanese = /[^\x00-\x7F]$/.test(prev);
-        const prevIsLatin = /[A-Za-z0-9]$/.test(prev);
-        const nextIsJapanese = /^[^\x00-\x7F]/.test(next);
-
-        const classes = ['text-block'];
-        if ((prevIsJapanese || prevIsLatin) && isLatinStart) {
-            classes.push('text-block--space-before');
-        }
-        if (isLatinEnd && nextIsJapanese) {
-            classes.push('text-block--space-after');
-        }
-        return { text, className: classes.join(' ') };
-    });
 }
 
 function renderIntro(profile) {

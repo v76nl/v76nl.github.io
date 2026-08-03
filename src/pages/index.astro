@@ -13,15 +13,14 @@ const profile = data.profile || {};
 const organizations = data.organizations || [];
 const works = data.works || [];
 
-works.forEach((w) => (w.tags ?? []).forEach((t) => getTagColor(t)));
-
 const tagCounts = {};
 works.forEach((w) => {
     (w.tags ?? []).forEach((tag) => {
+        getTagColor(tag);
         tagCounts[tag] = (tagCounts[tag] ?? 0) + 1;
     });
 });
-const allTags = [...new Set(works.flatMap((w) => w.tags ?? []))];
+const allTags = Object.keys(tagCounts);
 
 const SHOW_THUMBNAILS = true;
 const textBlocks = Array.isArray(profile.about)
