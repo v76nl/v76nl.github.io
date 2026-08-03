@@ -19,7 +19,10 @@ const DEBUG = true;
 const SHOW_THUMBNAILS = true;
 
 function renderHero(profile) {
-    document.title = `Portfolio | ${profile.name}`;
+    const isDev =
+        location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+    const pageTitle = `Portfolio | ${profile.name}`;
+    document.title = isDev ? `[DEV] ${pageTitle}` : pageTitle;
 
     const nameEl = document.getElementById('hero-name');
     if (nameEl && nameEl.textContent !== profile.name) {
