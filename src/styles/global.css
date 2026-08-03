@@ -88,6 +88,11 @@ a {
     display: inline-block;
 }
 
+.visual-space {
+    user-select: none;
+    -webkit-user-select: none;
+}
+
 /* Accessibility: Focus visible indicator */
 :focus-visible {
     outline: 2px solid var(--primary);

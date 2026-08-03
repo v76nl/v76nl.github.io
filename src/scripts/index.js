@@ -97,7 +97,7 @@ function renderIntro(profile) {
             introEl.innerHTML = blocks
                 .map(
                     (b) =>
-                        `${b.spaceBefore ? ' ' : ''}<span class="${b.className}">${escHtml(b.text)}</span>`
+                        `${b.literalSpaceBefore ? ' ' : ''}${b.visualSpaceBefore ? '<span class="visual-space" aria-hidden="true"> </span>' : ''}<span class="${b.className}">${escHtml(b.text)}</span>`
                 )
                 .join('');
         } else {

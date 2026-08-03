@@ -80,14 +80,19 @@ export function getTextBlocks(blocks) {
         const prev = String(blocks[i - 1] ?? '').trim();
 
         const isLatinStart = /^[A-Za-z0-9]/.test(text);
-        const prevIsJapanese = /[^\x00-\x7F]$/.test(prev);
+        const isJapaneseStart = /^[^\x00-\x7F]/.test(text);
         const prevIsLatin = /[A-Za-z0-9]$/.test(prev);
+        const prevIsJapanese = /[^\x00-\x7F]$/.test(prev);
 
-        const spaceBefore = (prevIsJapanese || prevIsLatin) && isLatinStart;
+        const visualSpaceBefore =
+            (prevIsJapanese && isLatinStart) ||
+            (prevIsLatin && isJapaneseStart);
+        const literalSpaceBefore = prevIsLatin && isLatinStart;
 
         return {
             text,
-            spaceBefore,
+            visualSpaceBefore,
+            literalSpaceBefore,
             className: 'text-block',
         };
     });
