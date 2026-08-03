@@ -86,6 +86,7 @@ a {
 
 .text-block {
     display: inline-block;
+    white-space: pre-wrap;
 }
 
 /* Noise texture overlay */
