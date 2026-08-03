@@ -110,7 +110,7 @@
     white-space: normal;
     word-wrap: break-word;
     overflow-wrap: break-word;
-    text-align: justify;
+    text-align: left;
 }
 
 /* Organizations */
