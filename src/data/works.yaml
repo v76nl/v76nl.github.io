@@ -151,7 +151,7 @@ works:
       date: '2026'
 
     - title: 'Chuo Scholarship'
-      description: '大学公式で公開している奨学金に関する情報をわかりやすくまとめ、公開するプロジェクトです。'
+      description: '大学公式で公開している奨学金に関する情報をわかりやすくまとめ、公開するプロジェクトです。情報格差を解決したいという思いで制作しました。'
       tags:
           - 'Web'
           - 'GDGoC Chuo'
