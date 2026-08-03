@@ -83,7 +83,10 @@ const textBlocks = Array.isArray(profile.about)
                     {
                         Array.isArray(textBlocks) ? (
                             textBlocks.map((b) => (
-                                <span class={b.className}>{b.text}</span>
+                                <>
+                                    {b.spaceBefore ? ' ' : ''}
+                                    <span class={b.className}>{b.text}</span>
+                                </>
                             ))
                         ) : (
                             <Fragment set:html={textBlocks} />

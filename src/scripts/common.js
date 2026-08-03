@@ -76,19 +76,18 @@ export function getTextBlocks(blocks) {
     if (!Array.isArray(blocks)) return [];
 
     return blocks.map((block, i) => {
-        let text = String(block).trim();
+        const text = String(block).trim();
         const prev = String(blocks[i - 1] ?? '').trim();
 
         const isLatinStart = /^[A-Za-z0-9]/.test(text);
         const prevIsJapanese = /[^\x00-\x7F]$/.test(prev);
         const prevIsLatin = /[A-Za-z0-9]$/.test(prev);
 
-        if ((prevIsJapanese || prevIsLatin) && isLatinStart) {
-            text = ' ' + text;
-        }
+        const spaceBefore = (prevIsJapanese || prevIsLatin) && isLatinStart;
 
         return {
             text,
+            spaceBefore,
             className: 'text-block',
         };
     });
