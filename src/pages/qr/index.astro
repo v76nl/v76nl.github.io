@@ -1,8 +1,8 @@
 ---
 import QRCode from 'qrcode';
-import Layout from '../layouts/Layout.astro';
-import { getPortfolioData, ICONS } from '../utils/data.js';
-import '../styles/qr.css';
+import Layout from '../../layouts/Layout.astro';
+import { getPortfolioData, ICONS } from '../../utils/data.js';
+import '../../styles/qr.css';
 
 const portfolioData = getPortfolioData();
 const profile = portfolioData.profile || {};
@@ -130,7 +130,7 @@ const qrItems = await Promise.all(
 	</div>
 
 	<script>
-		import { ACTIVE_THEME, applyTheme } from '../scripts/common.js';
+		import { ACTIVE_THEME, applyTheme } from '../../scripts/common.js';
 		applyTheme(ACTIVE_THEME);
 
 		const tabBtns = document.querySelectorAll('.qr-tab-btn');

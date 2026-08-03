@@ -54,7 +54,8 @@
     │   └── Layout.astro         - 全体の共通レイアウト
     ├── pages/
     │   ├── index.astro          - トップページ
-    │   ├── qr.astro             - QRコード表示ページ
+    │   ├── qr/
+    │   │   └── index.astro      - QRコード表示ページ
     │   └── univ-extensions/
     │       └── index.astro      - 拡張機能一覧ページ
     ├── scripts/
