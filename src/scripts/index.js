@@ -81,7 +81,13 @@ function renderHero(profile) {
 function renderIntro(profile) {
     const introEl = document.getElementById('intro-text');
     if (introEl && profile?.about) {
-        introEl.textContent = profile.about;
+        if (Array.isArray(profile.about)) {
+            introEl.innerHTML = profile.about
+                .map((block) => `<span class="text-block">${escHtml(block)}</span>`)
+                .join('');
+        } else {
+            introEl.innerHTML = profile.about;
+        }
     }
 }
 
