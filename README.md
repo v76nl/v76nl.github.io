@@ -23,6 +23,7 @@
 - フレームワーク: Astro 5
 - スタイリング: CSS
 - フォント: Zen 角ゴシック (Zen Kaku Gothic New), Noto Serif JP
+- フォーマッター: Prettier (`prettier-plugin-astro`)
 - ライブラリ: qrcode (ビルド時インラインSVG生成)
 - パッケージマネージャー: pnpm
 
@@ -33,6 +34,7 @@
 | `pnpm install` | 依存パッケージのインストール |
 | `pnpm dev`     | 開発サーバーの起動           |
 | `pnpm build`   | プロダクションビルド         |
+| `pnpm format`  | コード自動整形 (Prettier)    |
 
 ### データの更新・アセットの追加について
 
@@ -43,6 +45,7 @@
 
 ```text
 .
+├── .prettierrc                  - Prettierの設定
 ├── astro.config.mjs             - Astroの設定
 ├── public/                      - 静的配信ファイル
 │   └── assets/                  - サムネイル等の画像アセット
