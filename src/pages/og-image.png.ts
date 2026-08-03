@@ -5,11 +5,17 @@ import fs from 'fs';
 import path from 'path';
 
 export const GET: APIRoute = async () => {
-    const fontPath = path.resolve(
+    const zenGothicPath = path.resolve(
         process.cwd(),
-        'node_modules/@fontsource/zen-kaku-gothic-new/files/zen-kaku-gothic-new-japanese-700-normal.woff'
+        'node_modules/@fontsource/zen-kaku-gothic-new/files/zen-kaku-gothic-new-japanese-500-normal.woff'
     );
-    const fontData = fs.readFileSync(fontPath);
+    const notoSerifPath = path.resolve(
+        process.cwd(),
+        'node_modules/@fontsource/noto-serif-jp/files/noto-serif-jp-japanese-900-normal.woff'
+    );
+
+    const zenGothicData = fs.readFileSync(zenGothicPath);
+    const notoSerifData = fs.readFileSync(notoSerifPath);
 
     const svg = await satori(
         {
@@ -22,42 +28,33 @@ export const GET: APIRoute = async () => {
                     flexDirection: 'column',
                     alignItems: 'flex-start',
                     justifyContent: 'space-between',
-                    backgroundColor: '#0d1117',
+                    backgroundColor: '#f5f7fb',
                     backgroundImage:
-                        'radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.3) 0%, transparent 50%), radial-gradient(circle at 20% 80%, rgba(236, 72, 153, 0.25) 0%, transparent 50%)',
+                        'radial-gradient(circle at 85% 15%, rgba(14, 165, 233, 0.18) 0%, transparent 55%), radial-gradient(circle at 15% 85%, rgba(236, 72, 153, 0.14) 0%, transparent 55%)',
                     padding: '80px',
                     fontFamily: 'Zen Kaku Gothic New',
-                    color: '#ffffff',
+                    color: '#0f172a',
                 },
                 children: [
+                    // ヘッダー (アンダーライン装飾付き小文字ドメイン)
                     {
                         type: 'div',
                         props: {
                             style: {
                                 display: 'flex',
                                 alignItems: 'center',
-                                gap: '16px',
+                                borderBottom: '3px solid #0284c7',
+                                paddingBottom: '6px',
                             },
                             children: [
-                                {
-                                    type: 'div',
-                                    props: {
-                                        style: {
-                                            width: '16px',
-                                            height: '16px',
-                                            borderRadius: '50%',
-                                            backgroundColor: '#6366f1',
-                                        },
-                                    },
-                                },
                                 {
                                     type: 'span',
                                     props: {
                                         style: {
                                             fontSize: '24px',
-                                            letterSpacing: '0.2em',
-                                            color: '#a5b4fc',
-                                            textTransform: 'uppercase',
+                                            fontWeight: '700',
+                                            letterSpacing: '0.15em',
+                                            color: '#0284c7',
                                         },
                                         children: 'v76nl.github.io',
                                     },
@@ -65,6 +62,7 @@ export const GET: APIRoute = async () => {
                             ],
                         },
                     },
+                    // メインコンテンツ (タイトル & キャッチコピー)
                     {
                         type: 'div',
                         props: {
@@ -78,11 +76,12 @@ export const GET: APIRoute = async () => {
                                     type: 'h1',
                                     props: {
                                         style: {
-                                            fontSize: '64px',
+                                            fontFamily: 'Noto Serif JP',
+                                            fontSize: '68px',
                                             fontWeight: '900',
                                             margin: 0,
                                             lineHeight: 1.2,
-                                            color: '#ffffff',
+                                            color: '#0f172a',
                                         },
                                         children: 'wash Portfolio',
                                     },
@@ -91,41 +90,44 @@ export const GET: APIRoute = async () => {
                                     type: 'p',
                                     props: {
                                         style: {
+                                            fontFamily: 'Zen Kaku Gothic New',
                                             fontSize: '28px',
-                                            color: '#94a3b8',
+                                            fontWeight: '500',
+                                            color: '#334155',
                                             margin: 0,
                                         },
                                         children:
-                                            '「感覚 × デジタル」をテーマに開発を行う学生デベロッパー',
+                                            '「感覚 × デジタル」をテーマに開発を行う文系学生デベロッパー',
                                     },
                                 },
                             ],
                         },
                     },
+                    // 下部タグバッジ
                     {
                         type: 'div',
                         props: {
                             style: { display: 'flex', gap: '16px' },
-                            children: [
-                                'Astro 5',
-                                'Web',
-                                'UX Design',
-                                'GDGoC Chuo',
-                            ].map((tag) => ({
-                                type: 'span',
-                                props: {
-                                    style: {
-                                        padding: '8px 20px',
-                                        borderRadius: '9999px',
-                                        backgroundColor:
-                                            'rgba(255, 255, 255, 0.08)',
-                                        border: '1px solid rgba(255, 255, 255, 0.15)',
-                                        fontSize: '20px',
-                                        color: '#cbd5e1',
+                            children: ['Web', 'UX Design', 'チーム開発'].map(
+                                (tag) => ({
+                                    type: 'span',
+                                    props: {
+                                        style: {
+                                            padding: '8px 22px',
+                                            borderRadius: '9999px',
+                                            backgroundColor:
+                                                'rgba(255, 255, 255, 0.85)',
+                                            border: '1px solid rgba(203, 213, 225, 0.8)',
+                                            fontSize: '20px',
+                                            fontWeight: '700',
+                                            color: '#334155',
+                                            boxShadow:
+                                                '0 4px 12px rgba(0, 0, 0, 0.04)',
+                                        },
+                                        children: tag,
                                     },
-                                    children: tag,
-                                },
-                            })),
+                                })
+                            ),
                         },
                     },
                 ],
@@ -137,8 +139,14 @@ export const GET: APIRoute = async () => {
             fonts: [
                 {
                     name: 'Zen Kaku Gothic New',
-                    data: fontData,
-                    weight: 700,
+                    data: zenGothicData,
+                    weight: 500,
+                    style: 'normal',
+                },
+                {
+                    name: 'Noto Serif JP',
+                    data: notoSerifData,
+                    weight: 900,
                     style: 'normal',
                 },
             ],
