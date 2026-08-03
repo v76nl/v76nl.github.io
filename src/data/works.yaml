@@ -47,9 +47,13 @@ organizations:
       url: 'https://gdgoc-chuo.com/'
       period: '2025 - 現在'
       projects:
+          - name: '2026年度オープンキャンパス'
+            role: 'Webアプリ開発・講習'
+          - name: '2026年度 GDGoC 関東合同新歓'
+            role: 'イベント運営'
           - name: 'Chuinfo (Android)'
             role: '開発メンバー'
-          - name: 'データサイエンス・コンテスト'
+          - name: 'データサイエンスコンテスト (2026)'
             role: 'メンバー・Webアプリ開発'
           - name: '文化祭'
             role: 'Webアプリ開発・講習・資料作成'
@@ -75,6 +79,7 @@ organizations:
     - name: 'C3'
       role: 'メンバー'
       period: '2025 - 現在'
+      url: 'https://linktr.ee/c3ofcl'
       projects:
           - name: '音声入力による感情認識と歌詞作成機能を持つ音楽生成システム構築'
             role: '制作協力'
