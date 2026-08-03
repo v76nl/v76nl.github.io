@@ -144,7 +144,7 @@ works:
       tags:
           - 'Web'
           - 'Three.js'
-          - '3D Printing'
+          - '3Dプリント'
       url: 'https://v76nl.github.io/Xtrudy/'
       github: 'https://github.com/v76nl/Xtrudy'
       thumbnail: 'assets/3d_Extruder.png'
