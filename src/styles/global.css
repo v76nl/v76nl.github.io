@@ -708,6 +708,7 @@ a {
 .fade-up.visible {
     opacity: 1;
     transform: translateY(0);
+    transition-delay: 0ms !important;
 }
 
 /* Responsive */
