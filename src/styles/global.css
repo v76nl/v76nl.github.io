@@ -85,16 +85,7 @@ a {
 }
 
 .text-block {
-    display: inline-block;
-    white-space: pre-wrap;
-}
-
-.text-block--space-before {
-    margin-left: 0.25em;
-}
-
-.text-block--space-after {
-    margin-right: 0.25em;
+    display: inline;
 }
 
 /* Accessibility: Focus visible indicator */
