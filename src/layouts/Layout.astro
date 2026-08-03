@@ -1,4 +1,11 @@
 ---
+import '@fontsource/zen-kaku-gothic-new/300.css';
+import '@fontsource/zen-kaku-gothic-new/400.css';
+import '@fontsource/zen-kaku-gothic-new/500.css';
+import '@fontsource/zen-kaku-gothic-new/700.css';
+import '@fontsource/noto-serif-jp/400.css';
+import '@fontsource/noto-serif-jp/700.css';
+import '@fontsource/noto-serif-jp/900.css';
 import '../styles/global.css';
 
 interface Props {
@@ -6,7 +13,12 @@ interface Props {
     description?: string;
 }
 
-const { title, description = 'portfolio' } = Astro.props;
+const {
+    title,
+    description = '「感覚 × デジタル」をテーマに開発を行う学生デベロッパー wash のポートフォリオサイトです。',
+} = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = new URL('/og-image.png', Astro.site);
 ---
 
 <!doctype html>
@@ -17,25 +29,21 @@ const { title, description = 'portfolio' } = Astro.props;
         <title>{title}</title>
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <meta name="description" content={description} />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            rel="preload"
-            as="style"
-            href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap"
-        />
-        <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap"
-            media="print"
-            onload="this.media='all'"
-        />
-        <noscript>
-            <link
-                rel="stylesheet"
-                href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap"
-            />
-        </noscript>
+        <link rel="canonical" href={canonicalURL} />
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={canonicalURL} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={ogImageURL} />
+
+        <!-- Twitter -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content={canonicalURL} />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={ogImageURL} />
     </head>
     <body>
         <div class="noise-overlay" aria-hidden="true"></div>
