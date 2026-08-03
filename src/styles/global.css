@@ -124,27 +124,6 @@ a {
     top: 1rem;
 }
 
-/* Accessibility: Reduced motion media query */
-@media (prefers-reduced-motion: reduce) {
-    *,
-    ::before,
-    ::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-    }
-    .fade-up,
-    .hero-label,
-    .hero-name,
-    .hero-tagline,
-    .hero-links,
-    .hero-scroll-hint {
-        opacity: 1 !important;
-        transform: none !important;
-    }
-}
-
 /* Noise texture overlay */
 .noise-overlay {
     position: fixed;
