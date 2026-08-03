@@ -22,8 +22,10 @@
 
 - フレームワーク: Astro 5
 - スタイリング: CSS
-- フォント: Zen 角ゴシック (Zen Kaku Gothic New), Noto Serif JP
+- フォント: Fontsource セルフホスト (Zen 角ゴシック, Noto Serif JP)
 - フォーマッター: Prettier (`prettier-plugin-astro`)
+- SEO: `@astrojs/sitemap`
+- OGP画像生成: Satori (`satori`, `@resvg/resvg-js`)
 - ライブラリ: qrcode (ビルド時インラインSVG生成)
 - パッケージマネージャー: pnpm
 
@@ -46,7 +48,7 @@
 ```text
 .
 ├── .prettierrc                  - Prettierの設定
-├── astro.config.mjs             - Astroの設定
+├── astro.config.mjs             - Astroの設定 (Sitemap等)
 ├── public/                      - 静的配信ファイル
 │   └── assets/                  - サムネイル等の画像アセット
 └── src/
@@ -54,9 +56,10 @@
     │   ├── works.yaml           - 制作物・人物データ
     │   └── univ-extensions.yaml - 開発した拡張機能データ
     ├── layouts/
-    │   └── Layout.astro         - 全体の共通レイアウト
+    │   └── Layout.astro         - 全体の共通レイアウト (Fontsource, OGPタグ)
     ├── pages/
     │   ├── index.astro          - トップページ
+    │   ├── og-image.png.ts      - Satoriによる動的OGP画像エンドポイント
     │   ├── qr/
     │   │   └── index.astro      - QRコード表示ページ
     │   └── univ-extensions/
