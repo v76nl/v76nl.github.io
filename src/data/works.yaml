@@ -72,30 +72,14 @@ organizations:
       projects:
           - name: 'ソフトウェア班'
             role: '副班長'
+    - name: 'C3'
+      role: 'メンバー'
+      period: '2025 - 現在'
+      projects:
+          - name: '音声入力による感情認識と歌詞作成機能を持つ音楽生成システム構築'
+            role: '制作協力'
 
 works:
-    - title: 'Xtrudy'
-      description: 'テキストやSVGファイルをモチーフにしてキーチェーンの3Dモデルを作成するツールです。'
-      tags:
-          - 'Web'
-          - 'Three.js'
-          - '3D Printing'
-      url: 'https://v76nl.github.io/Xtrudy/'
-      github: 'https://github.com/v76nl/Xtrudy'
-      thumbnail: 'assets/3d_Extruder.png'
-      date: '2026'
-
-    - title: 'iTL 1F Map'
-      description: 'iTL (中央大学 国際情報学部 / 市ヶ谷田町キャンパス) の1階の地図を表示しシェアするWebアプリです。機能を最小限に抑えることで、直感的に使えるようにしました。'
-      tags:
-          - 'Web'
-          - '大学'
-          - 'Figma'
-      url: 'https://itl-1f-map.vercel.app/'
-      github: 'https://github.com/v76nl/itl-1f-map'
-      thumbnail: 'assets/iTL_1F_Map.png'
-      date: '2026 3'
-
     - title: 'Chuinfo (Android)'
       description: '中央大学の学生のための統合アプリ。時間割や課題を確認できます。'
       tags:
@@ -109,15 +93,6 @@ works:
       thumbnail: 'assets/chuinfo.png'
       date: '2025-'
 
-    - title: 'ポートフォリオサイト'
-      description: '個人的な制作物管理を兼ねたポートフォリオサイトです。'
-      tags:
-          - 'Web'
-      url: 'https://v76nl.github.io'
-      github: 'https://github.com/v76nl/v76nl.github.io'
-      thumbnail: 'assets/portfolio.png'
-      date: '2026'
-
     - title: 'University Custom Chrome Extensions'
       description: '大学にまつわるさまざまなWebサイトをカスタマイズするChrome拡張機能を数多く制作しています。'
       tags:
@@ -129,6 +104,37 @@ works:
       detailUrl: './univ-extensions/'
       thumbnail: 'assets/univ_crx.png'
       date: '2025-'
+
+    - title: 'iTL 1F Map'
+      description: 'iTL (中央大学 国際情報学部 / 市ヶ谷田町キャンパス) の1階の地図を表示しシェアするWebアプリです。機能を最小限に抑えることで、直感的に使えるようにしました。'
+      tags:
+          - 'Web'
+          - '大学'
+          - 'Figma'
+      url: 'https://itl-1f-map.vercel.app/'
+      github: 'https://github.com/v76nl/itl-1f-map'
+      thumbnail: 'assets/iTL_1F_Map.png'
+      date: '2026 3'
+
+    - title: 'ポートフォリオサイト'
+      description: '個人的な制作物管理を兼ねたポートフォリオサイトです。'
+      tags:
+          - 'Web'
+      url: 'https://v76nl.github.io'
+      github: 'https://github.com/v76nl/v76nl.github.io'
+      thumbnail: 'assets/portfolio.png'
+      date: '2026'
+
+    - title: 'Xtrudy'
+      description: 'テキストやSVGファイルをモチーフにしてキーチェーンの3Dモデルを作成するツールです。'
+      tags:
+          - 'Web'
+          - 'Three.js'
+          - '3D Printing'
+      url: 'https://v76nl.github.io/Xtrudy/'
+      github: 'https://github.com/v76nl/Xtrudy'
+      thumbnail: 'assets/3d_Extruder.png'
+      date: '2026'
 
     - title: 'Chuo Scholarship'
       description: '大学公式で公開している奨学金に関する情報をわかりやすくまとめ、公開するプロジェクトです。'
