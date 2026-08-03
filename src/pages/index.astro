@@ -1,6 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getPortfolioData, getTagColor, ICONS } from '../utils/data.js';
+import {
+    getPortfolioData,
+    getTagColor,
+    ICONS,
+    formatTextBlocks,
+} from '../utils/data.js';
 import '../styles/index.css';
 
 const data = getPortfolioData();
@@ -19,6 +24,9 @@ works.forEach((w) => {
 const allTags = [...new Set(works.flatMap((w) => w.tags ?? []))];
 
 const SHOW_THUMBNAILS = true;
+const formattedAbout = Array.isArray(profile.about)
+    ? formatTextBlocks(profile.about)
+    : profile.about;
 ---
 
 <Layout title={`Portfolio | ${profile.name}`}>

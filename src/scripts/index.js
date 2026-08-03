@@ -93,11 +93,35 @@ function renderHero(profile) {
     }
 }
 
+function formatTextBlocks(blocks) {
+    if (!Array.isArray(blocks)) return blocks;
+    return blocks.map((block, i) => {
+        let text = String(block);
+        const prev = String(blocks[i - 1] ?? '');
+        const next = String(blocks[i + 1] ?? '');
+        if (
+            (/[\u3040-\u30ff\u4e00-\u9faf]$/.test(prev) ||
+                /[A-Za-z0-9]$/.test(prev)) &&
+            /^[A-Za-z0-9]/.test(text)
+        ) {
+            if (!text.startsWith(' ')) text = ' ' + text;
+        }
+        if (
+            /[A-Za-z0-9]$/.test(text) &&
+            /^[\u3040-\u30ff\u4e00-\u9faf]/.test(next)
+        ) {
+            if (!text.endsWith(' ')) text = text + ' ';
+        }
+        return text;
+    });
+}
+
 function renderIntro(profile) {
     const introEl = document.getElementById('intro-text');
     if (introEl && profile?.about) {
         if (Array.isArray(profile.about)) {
-            introEl.innerHTML = profile.about
+            const formatted = formatTextBlocks(profile.about);
+            introEl.innerHTML = formatted
                 .map(
                     (block) =>
                         `<span class="text-block">${escHtml(block)}</span>`
