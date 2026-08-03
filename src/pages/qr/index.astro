@@ -8,175 +8,194 @@ const portfolioData = getPortfolioData();
 const profile = portfolioData.profile || {};
 
 const rawItems = [
-	{
-		id: 'x',
-		label: '',
-		name: '(@ln67v)',
-		url: profile.x || 'https://x.com/ln67v',
-		icon: ICONS.x,
-	},
-	{
-		id: 'portfolio',
-		label: 'Portfolio',
-		name: `${profile.name || 'wash'} Portfolio`,
-		url: 'https://v76nl.github.io',
-		icon: ICONS.external,
-	},
-	{
-		id: 'github',
-		label: '',
-		name: 'GitHub (@v76nl)',
-		url: profile.github || 'https://github.com/v76nl',
-		icon: ICONS.github,
-	},
+    {
+        id: 'x',
+        label: '',
+        name: '(@ln67v)',
+        url: profile.x || 'https://x.com/ln67v',
+        icon: ICONS.x,
+    },
+    {
+        id: 'portfolio',
+        label: 'Portfolio',
+        name: `${profile.name || 'wash'} Portfolio`,
+        url: 'https://v76nl.github.io',
+        icon: ICONS.external,
+    },
+    {
+        id: 'github',
+        label: '',
+        name: 'GitHub (@v76nl)',
+        url: profile.github || 'https://github.com/v76nl',
+        icon: ICONS.github,
+    },
 ];
 
 // ビルド時にQRコードのインラインSVGを生成 (0ms レテンシー & 外部リクエスト不要)
 const qrItems = await Promise.all(
-	rawItems.map(async (item) => {
-		const svgString = await QRCode.toString(item.url, {
-			type: 'svg',
-			margin: 1,
-			width: 300,
-			color: {
-				dark: '#000000',
-				light: '#ffffff',
-			},
-		});
-		return {
-			...item,
-			qrSvg: svgString,
-		};
-	})
+    rawItems.map(async (item) => {
+        const svgString = await QRCode.toString(item.url, {
+            type: 'svg',
+            margin: 1,
+            width: 300,
+            color: {
+                dark: '#000000',
+                light: '#ffffff',
+            },
+        });
+        return {
+            ...item,
+            qrSvg: svgString,
+        };
+    })
 );
 ---
 
 <Layout title={`QR Code | ${profile.name || 'wash'}`}>
-	<div class="qr-page-container">
-		<!-- ヘッダー -->
-		<header class="qr-header">
-			<a href="/" class="back-link" aria-label="ポートフォリオに戻る">
-				<svg viewBox="0 0 24 24" aria-hidden="true" style="width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;">
-					<polyline points="15 18 9 12 15 6"></polyline>
-				</svg>
-				戻る
-			</a>
-		</header>
+    <div class="qr-page-container">
+        <!-- ヘッダー -->
+        <header class="qr-header">
+            <a href="/" class="back-link" aria-label="ポートフォリオに戻る">
+                <svg
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    style="width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"
+                >
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+                戻る
+            </a>
+        </header>
 
-		<!-- タイトル -->
-		<div class="qr-title-wrapper">
-			<img
-				src={profile.avatar || 'https://github.com/v76nl.png'}
-				alt={profile.name || 'wash'}
-				class="qr-profile-avatar"
-			/>
-			<h1 class="qr-page-title">QRコード</h1>
-		</div>
+        <!-- タイトル -->
+        <div class="qr-title-wrapper">
+            <img
+                src={profile.avatar || 'https://github.com/v76nl.png'}
+                alt={profile.name || 'wash'}
+                class="qr-profile-avatar"
+            />
+            <h1 class="qr-page-title">QRコード</h1>
+        </div>
 
-		<!-- タブ切替 -->
-		<div class="qr-tabs" role="tablist" aria-label="QRコード選択">
-			{qrItems.map((item, index) => (
-				<button
-					class={`qr-tab-btn ${index === 0 ? 'active' : ''}`}
-					data-target={item.id}
-					role="tab"
-					aria-selected={index === 0 ? 'true' : 'false'}
-				>
-					<Fragment set:html={item.icon} />
-					{item.label && <span>{item.label}</span>}
-				</button>
-			))}
-		</div>
+        <!-- タブ切替 -->
+        <div class="qr-tabs" role="tablist" aria-label="QRコード選択">
+            {
+                qrItems.map((item, index) => (
+                    <button
+                        class={`qr-tab-btn ${index === 0 ? 'active' : ''}`}
+                        data-target={item.id}
+                        role="tab"
+                        aria-selected={index === 0 ? 'true' : 'false'}
+                    >
+                        <Fragment set:html={item.icon} />
+                        {item.label && <span>{item.label}</span>}
+                    </button>
+                ))
+            }
+        </div>
 
-		<!-- QRカード表示領域 -->
-		<div class="qr-card-wrapper">
-			{qrItems.map((item, index) => (
-				<div
-					class="qr-card"
-					id={`qr-card-${item.id}`}
-					style={index === 0 ? '' : 'display: none;'}
-					data-url={item.url}
-					data-title={item.name}
-				>
-					<div class="qr-svg-wrapper">
-						<Fragment set:html={item.qrSvg} />
-					</div>
-					<div class="qr-card-info">
-						<h2 class="qr-card-name">
-							<Fragment set:html={item.icon} />
-							{item.name}
-						</h2>
-						<p class="qr-card-url">{item.url}</p>
-					</div>
-					<div class="qr-tap-hint">
-						<svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:currentColor;"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-						タップして拡大
-					</div>
-				</div>
-			))}
-		</div>
-	</div>
+        <!-- QRカード表示領域 -->
+        <div class="qr-card-wrapper">
+            {
+                qrItems.map((item, index) => (
+                    <div
+                        class="qr-card"
+                        id={`qr-card-${item.id}`}
+                        style={index === 0 ? '' : 'display: none;'}
+                        data-url={item.url}
+                        data-title={item.name}
+                    >
+                        <div class="qr-svg-wrapper">
+                            <Fragment set:html={item.qrSvg} />
+                        </div>
+                        <div class="qr-card-info">
+                            <h2 class="qr-card-name">
+                                <Fragment set:html={item.icon} />
+                                {item.name}
+                            </h2>
+                            <p class="qr-card-url">{item.url}</p>
+                        </div>
+                        <div class="qr-tap-hint">
+                            <svg
+                                viewBox="0 0 24 24"
+                                style="width:14px;height:14px;fill:currentColor;"
+                            >
+                                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+                            </svg>
+                            タップして拡大
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
 
-	<!-- 拡大表示用モーダル -->
-	<div id="qr-modal" class="qr-modal" role="dialog" aria-modal="true" aria-label="QRコード拡大表示">
-		<div class="qr-modal-content">
-			<div id="modal-qr-container" class="qr-modal-svg-wrapper"></div>
-			<div class="qr-modal-info">
-				<h3 id="modal-title" class="qr-modal-title"></h3>
-				<p id="modal-url" class="qr-modal-url"></p>
-			</div>
-		</div>
-		<p class="qr-modal-close-hint">タップして閉じる</p>
-	</div>
+    <!-- 拡大表示用モーダル -->
+    <div
+        id="qr-modal"
+        class="qr-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-label="QRコード拡大表示"
+    >
+        <div class="qr-modal-content">
+            <div id="modal-qr-container" class="qr-modal-svg-wrapper"></div>
+            <div class="qr-modal-info">
+                <h3 id="modal-title" class="qr-modal-title"></h3>
+                <p id="modal-url" class="qr-modal-url"></p>
+            </div>
+        </div>
+        <p class="qr-modal-close-hint">タップして閉じる</p>
+    </div>
 
-	<script>
-		import { ACTIVE_THEME, applyTheme } from '../../scripts/common.js';
-		applyTheme(ACTIVE_THEME);
+    <script>
+        import { ACTIVE_THEME, applyTheme } from '../../scripts/common.js';
+        applyTheme(ACTIVE_THEME);
 
-		const tabBtns = document.querySelectorAll('.qr-tab-btn');
-		const qrCards = document.querySelectorAll('.qr-card');
-		const modal = document.getElementById('qr-modal');
-		const modalContainer = document.getElementById('modal-qr-container');
-		const modalTitle = document.getElementById('modal-title');
-		const modalUrl = document.getElementById('modal-url');
+        const tabBtns = document.querySelectorAll('.qr-tab-btn');
+        const qrCards = document.querySelectorAll('.qr-card');
+        const modal = document.getElementById('qr-modal');
+        const modalContainer = document.getElementById('modal-qr-container');
+        const modalTitle = document.getElementById('modal-title');
+        const modalUrl = document.getElementById('modal-url');
 
-		tabBtns.forEach((btn) => {
-			btn.addEventListener('click', () => {
-				const target = (btn as HTMLElement).dataset.target;
+        tabBtns.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                const target = (btn as HTMLElement).dataset.target;
 
-				tabBtns.forEach((b) => {
-					b.classList.remove('active');
-					b.setAttribute('aria-selected', 'false');
-				});
-				btn.classList.add('active');
-				btn.setAttribute('aria-selected', 'true');
+                tabBtns.forEach((b) => {
+                    b.classList.remove('active');
+                    b.setAttribute('aria-selected', 'false');
+                });
+                btn.classList.add('active');
+                btn.setAttribute('aria-selected', 'true');
 
-				qrCards.forEach((card) => {
-					const el = card as HTMLElement;
-					if (el.id === `qr-card-${target}`) {
-						el.style.display = 'flex';
-					} else {
-						el.style.display = 'none';
-					}
-				});
-			});
-		});
+                qrCards.forEach((card) => {
+                    const el = card as HTMLElement;
+                    if (el.id === `qr-card-${target}`) {
+                        el.style.display = 'flex';
+                    } else {
+                        el.style.display = 'none';
+                    }
+                });
+            });
+        });
 
-		qrCards.forEach((card) => {
-			card.addEventListener('click', () => {
-				const el = card as HTMLElement;
-				const svgWrapper = el.querySelector('.qr-svg-wrapper');
-				if (svgWrapper && modalContainer) {
-					modalContainer.innerHTML = svgWrapper.innerHTML;
-				}
-				if (modalTitle) modalTitle.textContent = el.dataset.title || '';
-				if (modalUrl) modalUrl.textContent = el.dataset.url || '';
-				modal?.classList.add('active');
-			});
-		});
+        qrCards.forEach((card) => {
+            card.addEventListener('click', () => {
+                const el = card as HTMLElement;
+                const svgWrapper = el.querySelector('.qr-svg-wrapper');
+                if (svgWrapper && modalContainer) {
+                    modalContainer.innerHTML = svgWrapper.innerHTML;
+                }
+                if (modalTitle) modalTitle.textContent = el.dataset.title || '';
+                if (modalUrl) modalUrl.textContent = el.dataset.url || '';
+                modal?.classList.add('active');
+            });
+        });
 
-		modal?.addEventListener('click', () => {
-			modal.classList.remove('active');
-		});
-	</script>
+        modal?.addEventListener('click', () => {
+            modal.classList.remove('active');
+        });
+    </script>
 </Layout>

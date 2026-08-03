@@ -1,5 +1,12 @@
 import jsyaml from 'js-yaml';
-import { ACTIVE_THEME, applyTheme, escHtml, getTagColor, ICONS, observeElements } from './common.js';
+import {
+    ACTIVE_THEME,
+    applyTheme,
+    escHtml,
+    getTagColor,
+    ICONS,
+    observeElements,
+} from './common.js';
 
 // デバッグ出力フラグ
 // true  → console.log / warn / error をすべて出力
@@ -43,35 +50,40 @@ function renderHero(profile) {
       </a>`);
     }
     linksEl.innerHTML = buttons.join('');
-    
+
     // スクロールヒント: organizationsセクション見え始めたら非表示
     const setupScrollHintObserver = () => {
         const scrollHint = document.querySelector('.hero-scroll-hint');
         const organizationsSection = document.getElementById('organizations');
-        
+
         if (!scrollHint || !organizationsSection) return;
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    // organizationsセクションが見え始めたら non-pointer-events & opacity 0
-                    scrollHint.style.pointerEvents = 'none';
-                    scrollHint.style.opacity = '0';
-                } else {
-                    // 画面内なら表示
-                    scrollHint.style.pointerEvents = 'auto';
-                    scrollHint.style.opacity = '1';
-                }
-            });
-        }, { threshold: 0.1 });
-        
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        // organizationsセクションが見え始めたら non-pointer-events & opacity 0
+                        scrollHint.style.pointerEvents = 'none';
+                        scrollHint.style.opacity = '0';
+                    } else {
+                        // 画面内なら表示
+                        scrollHint.style.pointerEvents = 'auto';
+                        scrollHint.style.opacity = '1';
+                    }
+                });
+            },
+            { threshold: 0.1 }
+        );
+
         observer.observe(organizationsSection);
     };
-    
+
     // CSS animation の完了を待ってから observer を初期化
     const scrollHint = document.querySelector('.hero-scroll-hint');
     if (scrollHint) {
-        scrollHint.addEventListener('animationend', setupScrollHintObserver, { once: true });
+        scrollHint.addEventListener('animationend', setupScrollHintObserver, {
+            once: true,
+        });
     } else {
         // フォールバック：animationend が発火しない場合
         setTimeout(setupScrollHintObserver, 2500);
@@ -83,7 +95,10 @@ function renderIntro(profile) {
     if (introEl && profile?.about) {
         if (Array.isArray(profile.about)) {
             introEl.innerHTML = profile.about
-                .map((block) => `<span class="text-block">${escHtml(block)}</span>`)
+                .map(
+                    (block) =>
+                        `<span class="text-block">${escHtml(block)}</span>`
+                )
                 .join('');
         } else {
             introEl.innerHTML = profile.about;
@@ -98,9 +113,7 @@ function renderOrgs(organizations) {
     grid.innerHTML = organizations
         .map((org, i) => {
             const hasModal = !!org.projects && org.projects.length > 0;
-            const modalAttr = hasModal
-                ? `data-org-index='${i}'`
-                : '';
+            const modalAttr = hasModal ? `data-org-index='${i}'` : '';
             const modalClass = hasModal ? 'org-card-modal' : '';
             const cardRole = hasModal ? 'role="button" tabindex="0"' : '';
             const externalButton = org.url
@@ -321,7 +334,8 @@ function buildWorkLinks(work) {
 
 function renderFooter(profile) {
     const copyEl = document.getElementById('footer-name');
-    if (copyEl) copyEl.textContent = `© ${new Date().getFullYear()} ${profile.name}`;
+    if (copyEl)
+        copyEl.textContent = `© ${new Date().getFullYear()} ${profile.name}`;
 
     const linksEl = document.getElementById('footer-links');
     if (!linksEl) return;

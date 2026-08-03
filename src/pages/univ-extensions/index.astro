@@ -1,6 +1,11 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { getPortfolioData, getUnivExtensionsData, getTagColor, ICONS } from '../../utils/data.js';
+import {
+    getPortfolioData,
+    getUnivExtensionsData,
+    getTagColor,
+    ICONS,
+} from '../../utils/data.js';
 import '../../styles/univ-extensions.css';
 
 const portfolioData = getPortfolioData();
@@ -15,96 +20,180 @@ const STATUS_LABEL = {
     wip: '開発中',
 };
 ---
+
 <Layout title={`University Custom Chrome Extensions | ${profile.name}`}>
-	<!-- 固定ヘッダー -->
-	<header class="page-header" role="banner">
-		<div class="page-header-inner">
-			<a href="/" class="back-link" aria-label="ポートフォリオに戻る">
-				<svg viewBox="0 0 24 24" aria-hidden="true">
-					<polyline points="15 18 9 12 15 6"></polyline>
-				</svg>
-				戻る
-			</a>
-			<span class="page-header-sep" aria-hidden="true">/</span>
-			<span class="page-header-title">University Custom Chrome Extensions</span>
-		</div>
-	</header>
+    <!-- 固定ヘッダー -->
+    <header class="page-header" role="banner">
+        <div class="page-header-inner">
+            <a href="/" class="back-link" aria-label="ポートフォリオに戻る">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+                戻る
+            </a>
+            <span class="page-header-sep" aria-hidden="true">/</span>
+            <span class="page-header-title"
+                >University Custom Chrome Extensions</span
+            >
+        </div>
+    </header>
 
-	<!-- ページヒーロー -->
-	<section class="page-hero" aria-label="ページ概要">
-		<div class="container">
-			<h1 class="page-title">
-				University Custom<br />Chrome Extensions
-			</h1>
-			<p class="page-desc">
-				<span class="text-block">中央大学内で</span><span class="text-block">使用されている</span><span class="text-block">ポータルサイト</span><span class="text-block">「manaba」を</span><span class="text-block">はじめとする、</span><span class="text-block">大学に</span><span class="text-block">関係する</span><span class="text-block">さまざまな</span><span class="text-block">Web サイトを</span><span class="text-block">カスタマイズする</span><span class="text-block">Chrome拡張機能の</span><span class="text-block">コレクション。</span><span class="text-block">学生生活を</span><span class="text-block">より</span><span class="text-block">快適に</span><span class="text-block">するため、</span><span class="text-block">UX改善・</span><span class="text-block">UI変更・</span><span class="text-block">機能追加など</span><span class="text-block">様々な</span><span class="text-block">観点から</span><span class="text-block">開発しています。</span>
-			</p>
-		</div>
-	</section>
+    <!-- ページヒーロー -->
+    <section class="page-hero" aria-label="ページ概要">
+        <div class="container">
+            <h1 class="page-title">
+                University Custom<br />Chrome Extensions
+            </h1>
+            <p class="page-desc">
+                <span class="text-block">中央大学内で</span><span
+                    class="text-block">使用されている</span
+                ><span class="text-block">ポータルサイト</span><span
+                    class="text-block">「manaba」を</span
+                ><span class="text-block">はじめとする、</span><span
+                    class="text-block">大学に</span
+                ><span class="text-block">関係する</span><span
+                    class="text-block">さまざまな</span
+                ><span class="text-block">Web サイトを</span><span
+                    class="text-block">カスタマイズする</span
+                ><span class="text-block">Chrome拡張機能の</span><span
+                    class="text-block">コレクション。</span
+                ><span class="text-block">学生生活を</span><span
+                    class="text-block">より</span
+                ><span class="text-block">快適に</span><span class="text-block"
+                    >するため、</span
+                ><span class="text-block">UX改善・</span><span
+                    class="text-block">UI変更・</span
+                ><span class="text-block">機能追加など</span><span
+                    class="text-block">様々な</span
+                ><span class="text-block">観点から</span><span
+                    class="text-block">開発しています。</span
+                >
+            </p>
+        </div>
+    </section>
 
-	<!-- 拡張機能グリッド -->
-	<main>
-		<div class="container">
-			<div class="works-grid" id="ext-grid" aria-label="拡張機能一覧">
-				{extensions.map((ext, i) => {
-					const status = ext.status ?? 'active';
-					const delay = Math.min(i * 80, 400);
+    <!-- 拡張機能グリッド -->
+    <main>
+        <div class="container">
+            <div class="works-grid" id="ext-grid" aria-label="拡張機能一覧">
+                {
+                    extensions.map((ext, i) => {
+                        const status = ext.status ?? 'active';
+                        const delay = Math.min(i * 80, 400);
 
-					return (
-						<article class="work-card fade-up" style={`transition-delay:${delay}ms`} aria-label={ext.title}>
-							<div class="work-body">
-								{status !== 'active' && (
-									<span class={`ext-status-badge ${status}`} aria-label={`ステータス: ${STATUS_LABEL[status] ?? status}`} style="margin-bottom: 8px;">
-										{STATUS_LABEL[status] ?? status}
-									</span>
-								)}
-								<h3 class="work-title">{ext.title}</h3>
-								<p class="work-description">{ext.description || ''}</p>
-								<div class="work-tags" aria-label="タグ">
-									{(ext.tags ?? []).map((tag) => (
-										<span class="tag" data-color={getTagColor(tag)}>{tag}</span>
-									))}
-								</div>
-								{ext.github && (
-									<div class="work-links" style="margin-top:auto; justify-content: flex-end; padding-top: 12px; border-top: 1px solid var(--glass-border);">
-										<a href={ext.github} target="_blank" rel="noopener noreferrer" class="work-link" aria-label={`${ext.title}のリポジトリ`}>
-											<Fragment set:html={ICONS.github} /> GitHub
-										</a>
-									</div>
-								)}
-							</div>
-						</article>
-					);
-				})}
-			</div>
-		</div>
-	</main>
+                        return (
+                            <article
+                                class="work-card fade-up"
+                                style={`transition-delay:${delay}ms`}
+                                aria-label={ext.title}
+                            >
+                                <div class="work-body">
+                                    {status !== 'active' && (
+                                        <span
+                                            class={`ext-status-badge ${status}`}
+                                            aria-label={`ステータス: ${STATUS_LABEL[status] ?? status}`}
+                                            style="margin-bottom: 8px;"
+                                        >
+                                            {STATUS_LABEL[status] ?? status}
+                                        </span>
+                                    )}
+                                    <h3 class="work-title">{ext.title}</h3>
+                                    <p class="work-description">
+                                        {ext.description || ''}
+                                    </p>
+                                    <div class="work-tags" aria-label="タグ">
+                                        {(ext.tags ?? []).map((tag) => (
+                                            <span
+                                                class="tag"
+                                                data-color={getTagColor(tag)}
+                                            >
+                                                {tag}
+                                            </span>
+                                        ))}
+                                    </div>
+                                    {ext.github && (
+                                        <div
+                                            class="work-links"
+                                            style="margin-top:auto; justify-content: flex-end; padding-top: 12px; border-top: 1px solid var(--glass-border);"
+                                        >
+                                            <a
+                                                href={ext.github}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                class="work-link"
+                                                aria-label={`${ext.title}のリポジトリ`}
+                                            >
+                                                <Fragment
+                                                    set:html={ICONS.github}
+                                                />{' '}
+                                                GitHub
+                                            </a>
+                                        </div>
+                                    )}
+                                </div>
+                            </article>
+                        );
+                    })
+                }
+            </div>
+        </div>
+    </main>
 
-	<!-- フッター -->
-	<footer class="footer">
-		<div class="container footer-inner">
-			<p class="footer-copy">© {new Date().getFullYear()} {profile.name}</p>
-			<div class="footer-links">
-				{profile.github && (
-					<a href="https://github.com/v76nl?tab=repositories&q=crx" target="_blank" rel="noopener noreferrer" class="footer-link" aria-label="GitHub で関連リポジトリを見る">
-						<Fragment set:html={ICONS.github} />
-					</a>
-				)}
-				{profile.x && (
-					<a href={profile.x} target="_blank" rel="noopener noreferrer" class="footer-link" aria-label="X">
-						<Fragment set:html={ICONS.x} />
-					</a>
-				)}
-				<a href="/qr" class="footer-link" aria-label="QR Code ページ">
-					<svg viewBox="0 0 24 24" aria-hidden="true" style="width:18px;height:18px;fill:currentColor;"><path d="M3 11h8V3H3v8zm2-6h4v4H5V5zM3 21h8v-8H3v8zm2-6h4v4H5v-4zM13 3v8h8V3h-8zm6 6h-4V5h4v4zM13 13h2v2h-2zM15 15h2v2h-2zM13 17h2v2h-2zM17 13h2v2h-2zM19 15h2v2h-2zM17 17h2v2h-2zM15 19h2v2h-2zM19 19h2v2h-2z"/></svg>
-				</a>
-			</div>
-		</div>
-	</footer>
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <p class="footer-copy">
+                © {new Date().getFullYear()}
+                {profile.name}
+            </p>
+            <div class="footer-links">
+                {
+                    profile.github && (
+                        <a
+                            href="https://github.com/v76nl?tab=repositories&q=crx"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="footer-link"
+                            aria-label="GitHub で関連リポジトリを見る"
+                        >
+                            <Fragment set:html={ICONS.github} />
+                        </a>
+                    )
+                }
+                {
+                    profile.x && (
+                        <a
+                            href={profile.x}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="footer-link"
+                            aria-label="X"
+                        >
+                            <Fragment set:html={ICONS.x} />
+                        </a>
+                    )
+                }
+                <a href="/qr" class="footer-link" aria-label="QR Code ページ">
+                    <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                        style="width:18px;height:18px;fill:currentColor;"
+                        ><path
+                            d="M3 11h8V3H3v8zm2-6h4v4H5V5zM3 21h8v-8H3v8zm2-6h4v4H5v-4zM13 3v8h8V3h-8zm6 6h-4V5h4v4zM13 13h2v2h-2zM15 15h2v2h-2zM13 17h2v2h-2zM17 13h2v2h-2zM19 15h2v2h-2zM17 17h2v2h-2zM15 19h2v2h-2zM19 19h2v2h-2z"
+                        ></path></svg
+                    >
+                </a>
+            </div>
+        </div>
+    </footer>
 
-	<script>
-		import { ACTIVE_THEME, applyTheme, observeElements } from '../../scripts/common.js';
-		applyTheme(ACTIVE_THEME);
-		setTimeout(observeElements, 50);
-	</script>
+    <script>
+        import {
+            ACTIVE_THEME,
+            applyTheme,
+            observeElements,
+        } from '../../scripts/common.js';
+        applyTheme(ACTIVE_THEME);
+        setTimeout(observeElements, 50);
+    </script>
 </Layout>

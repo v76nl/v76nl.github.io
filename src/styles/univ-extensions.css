@@ -112,8 +112,6 @@
     flex-shrink: 0;
 }
 
-
-
 .ext-status-badge {
     display: inline-flex;
     align-items: center;
@@ -173,4 +171,3 @@
 main {
     padding-bottom: 104px;
 }
-

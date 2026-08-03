@@ -1,5 +1,12 @@
 import jsyaml from 'js-yaml';
-import { ACTIVE_THEME, applyTheme, escHtml, getTagColor, ICONS, observeElements } from './common.js';
+import {
+    ACTIVE_THEME,
+    applyTheme,
+    escHtml,
+    getTagColor,
+    ICONS,
+    observeElements,
+} from './common.js';
 
 // ── アプリ設定 ──────────────────────────────────────────
 const DEBUG = false;
@@ -33,9 +40,10 @@ function renderExtensions(extensions) {
    </a>`
                 : '';
 
-            const statusBadgeHtml = status !== 'active'
-                ? `\n  <span class="ext-status-badge ${escHtml(status)}" aria-label="ステータス: ${escHtml(STATUS_LABEL[status] ?? status)}" style="margin-bottom: 8px;">\n    ${escHtml(STATUS_LABEL[status] ?? status)}\n  </span>`
-                : '';
+            const statusBadgeHtml =
+                status !== 'active'
+                    ? `\n  <span class="ext-status-badge ${escHtml(status)}" aria-label="ステータス: ${escHtml(STATUS_LABEL[status] ?? status)}" style="margin-bottom: 8px;">\n    ${escHtml(STATUS_LABEL[status] ?? status)}\n  </span>`
+                    : '';
 
             return `
 <article class="work-card fade-up" style="transition-delay:${delay}ms"

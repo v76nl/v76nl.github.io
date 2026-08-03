@@ -7,16 +7,16 @@
 ## ページ
 
 - メイン
-  
-  https://v76nl.github.io/
+
+    https://v76nl.github.io/
 
 - 拡張機能一覧
-  
-  https://v76nl.github.io/univ-extensions/
+
+    https://v76nl.github.io/univ-extensions/
 
 - QRコード
-  
-  https://v76nl.github.io/qr/
+
+    https://v76nl.github.io/qr/
 
 ## 技術スタック
 
@@ -28,11 +28,11 @@
 
 ## 実行方法
 
-| コマンド | 実行内容 |
-| -- | -- |
+| コマンド       | 実行内容                     |
+| -------------- | ---------------------------- |
 | `pnpm install` | 依存パッケージのインストール |
-| `pnpm dev` | 開発サーバーの起動 |
-| `pnpm build` | プロダクションビルド |
+| `pnpm dev`     | 開発サーバーの起動           |
+| `pnpm build`   | プロダクションビルド         |
 
 ### データの更新・アセットの追加について
 

@@ -22,203 +22,370 @@ const SHOW_THUMBNAILS = true;
 ---
 
 <Layout title={`Portfolio | ${profile.name}`}>
-	<section id="hero" class="section hero" aria-label="プロフィール">
-		<div class="container hero-content">
-			<h1 class="hero-name" id="hero-name" elementtiming="LCP">{profile.name}</h1>
-			<p class="hero-tagline" id="hero-tagline">{profile.tagline}</p>
-			<div class="hero-links" id="hero-links" role="list">
-				{profile.github && (
-					<a id="btn-github" href={profile.github} target="_blank" rel="noopener noreferrer"
-						class="btn-social btn-github" role="listitem" aria-label="GitHub">
-						<Fragment set:html={ICONS.github} /> GitHub
-					</a>
-				)}
-				{profile.x && (
-					<a id="btn-x" href={profile.x} target="_blank" rel="noopener noreferrer"
-						class="btn-social btn-x" role="listitem" aria-label="X">
-						<Fragment set:html={ICONS.x} /> X
-					</a>
-				)}
-			</div>
-		</div>
-		<div class="hero-scroll-hint" aria-hidden="true">
-			<span class="scroll-line"></span>
-		</div>
-	</section>
+    <section id="hero" class="section hero" aria-label="プロフィール">
+        <div class="container hero-content">
+            <h1 class="hero-name" id="hero-name" elementtiming="LCP">
+                {profile.name}
+            </h1>
+            <p class="hero-tagline" id="hero-tagline">{profile.tagline}</p>
+            <div class="hero-links" id="hero-links" role="list">
+                {
+                    profile.github && (
+                        <a
+                            id="btn-github"
+                            href={profile.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="btn-social btn-github"
+                            role="listitem"
+                            aria-label="GitHub"
+                        >
+                            <Fragment set:html={ICONS.github} /> GitHub
+                        </a>
+                    )
+                }
+                {
+                    profile.x && (
+                        <a
+                            id="btn-x"
+                            href={profile.x}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="btn-social btn-x"
+                            role="listitem"
+                            aria-label="X"
+                        >
+                            <Fragment set:html={ICONS.x} /> X
+                        </a>
+                    )
+                }
+            </div>
+        </div>
+        <div class="hero-scroll-hint" aria-hidden="true">
+            <span class="scroll-line"></span>
+        </div>
+    </section>
 
-	<section id="intro" class="section" aria-label="人物">
-		<div class="container">
-			<div class="section-header fade-up">
-				<h2 class="section-title">人物</h2>
-			</div>
-			<p id="intro-text" class="intro-text fade-up">
-				{Array.isArray(profile.about)
-					? profile.about.map((block) => <span class="text-block">{block}</span>)
-					: <Fragment set:html={profile.about} />
-				}
-			</p>
-		</div>
-	</section>
+    <section id="intro" class="section" aria-label="人物">
+        <div class="container">
+            <div class="section-header fade-up">
+                <h2 class="section-title">人物</h2>
+            </div>
+            <p id="intro-text" class="intro-text fade-up">
+                {
+                    Array.isArray(profile.about) ? (
+                        profile.about.map((block) => (
+                            <span class="text-block">{block}</span>
+                        ))
+                    ) : (
+                        <Fragment set:html={profile.about} />
+                    )
+                }
+            </p>
+        </div>
+    </section>
 
-	<section id="organizations" class="section" aria-label="所属組織">
-		<div class="container">
-			<div class="section-header fade-up">
-				<h2 class="section-title">所属</h2>
-			</div>
-			<div class="org-grid" id="org-grid">
-				{organizations.map((org, i) => {
-					const hasModal = !!org.projects && org.projects.length > 0;
-					const modalAttr = hasModal ? { 'data-org-index': i } : {};
-					const modalClass = hasModal ? 'org-card-modal' : '';
-					const cardRole = hasModal ? { role: 'button', tabindex: 0 } : {};
+    <section id="organizations" class="section" aria-label="所属組織">
+        <div class="container">
+            <div class="section-header fade-up">
+                <h2 class="section-title">所属</h2>
+            </div>
+            <div class="org-grid" id="org-grid">
+                {
+                    organizations.map((org, i) => {
+                        const hasModal =
+                            !!org.projects && org.projects.length > 0;
+                        const modalAttr = hasModal
+                            ? { 'data-org-index': i }
+                            : {};
+                        const modalClass = hasModal ? 'org-card-modal' : '';
+                        const cardRole = hasModal
+                            ? { role: 'button', tabindex: 0 }
+                            : {};
 
-					return (
-						<div class={`org-card fade-up ${modalClass}`} style={`transition-delay:${i * 75}ms`} {...cardRole} {...modalAttr}>
-							<div class="org-name">{org.name}</div>
-							{(org.role || org.period || org.url) && (
-								<div class="org-card-footer">
-									{org.role && <div class="org-role">{org.role}</div>}
-									{org.period && <div class="org-period">{org.period}</div>}
-									{org.url && (
-										<a href={org.url} target="_blank" rel="noopener noreferrer" class="modal-btn org-url-btn">
-											<Fragment set:html={ICONS.external} /> 公式HP
-										</a>
-									)}
-								</div>
-							)}
-						</div>
-					);
-				})}
-			</div>
-		</div>
-	</section>
+                        return (
+                            <div
+                                class={`org-card fade-up ${modalClass}`}
+                                style={`transition-delay:${i * 75}ms`}
+                                {...cardRole}
+                                {...modalAttr}
+                            >
+                                <div class="org-name">{org.name}</div>
+                                {(org.role || org.period || org.url) && (
+                                    <div class="org-card-footer">
+                                        {org.role && (
+                                            <div class="org-role">
+                                                {org.role}
+                                            </div>
+                                        )}
+                                        {org.period && (
+                                            <div class="org-period">
+                                                {org.period}
+                                            </div>
+                                        )}
+                                        {org.url && (
+                                            <a
+                                                href={org.url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                class="modal-btn org-url-btn"
+                                            >
+                                                <Fragment
+                                                    set:html={ICONS.external}
+                                                />{' '}
+                                                公式HP
+                                            </a>
+                                        )}
+                                    </div>
+                                )}
+                            </div>
+                        );
+                    })
+                }
+            </div>
+        </div>
+    </section>
 
-	<section id="works" class="section" aria-label="制作物">
-		<div class="container">
-			<div class="section-header fade-up">
-				<h2 class="section-title">制作物</h2>
-			</div>
-			<div class="filter-bar" id="filter-bar" role="toolbar" aria-label="タグフィルター">
-				<button id="filter-all" class="filter-btn active" data-tag="all">
-					すべて <span class="filter-count">{works.length}</span>
-				</button>
-				{allTags.map((tag) => (
-					<button class="filter-btn" data-tag={tag}>
-						{tag} <span class="filter-count">{tagCounts[tag]}</span>
-					</button>
-				))}
-			</div>
-			<div class="works-grid" id="works-grid">
-				{works.map((work, i) => {
-					const tagList = (work.tags ?? []).join(',');
-					const delay = Math.min(i * 80, 400);
+    <section id="works" class="section" aria-label="制作物">
+        <div class="container">
+            <div class="section-header fade-up">
+                <h2 class="section-title">制作物</h2>
+            </div>
+            <div
+                class="filter-bar"
+                id="filter-bar"
+                role="toolbar"
+                aria-label="タグフィルター"
+            >
+                <button
+                    id="filter-all"
+                    class="filter-btn active"
+                    data-tag="all"
+                >
+                    すべて <span class="filter-count">{works.length}</span>
+                </button>
+                {
+                    allTags.map((tag) => (
+                        <button class="filter-btn" data-tag={tag}>
+                            {tag}{' '}
+                            <span class="filter-count">{tagCounts[tag]}</span>
+                        </button>
+                    ))
+                }
+            </div>
+            <div class="works-grid" id="works-grid">
+                {
+                    works.map((work, i) => {
+                        const tagList = (work.tags ?? []).join(',');
+                        const delay = Math.min(i * 80, 400);
 
-					return (
-						<article class="work-card fade-up" data-tags={tagList} style={`transition-delay:${delay}ms`} aria-label={work.title}>
-							{SHOW_THUMBNAILS && work.thumbnail ? (
-								<div class="work-thumbnail">
-									<img src={`/${work.thumbnail}`} alt={work.title} loading="lazy" />
-								</div>
-							) : SHOW_THUMBNAILS ? (
-								<div class="work-thumbnail-placeholder" aria-hidden="true">◈</div>
-							) : null}
-							
-							<div class="work-body">
-								{work.date && <time class="work-date" datetime={work.date}>{work.date}</time>}
-								<h3 class="work-title">{work.title}</h3>
-								<p class="work-description">{work.description || ''}</p>
-								<div class="work-tags" aria-label="タグ">
-									{(work.tags ?? []).map((tag) => (
-										<span class="tag" data-color={getTagColor(tag)}>{tag}</span>
-									))}
-								</div>
-								<div class="work-links">
-									{work.detailUrl && (
-										<a href={work.detailUrl} class="work-link work-link--detail" aria-label={`${work.title}の詳細を見る`}>
-											<Fragment set:html={ICONS.external} /> 詳しく見る
-										</a>
-									)}
-									{work.url && (
-										<a href={work.url} target="_blank" rel="noopener noreferrer" class="work-link" aria-label={`${work.title}を開く`}>
-											<Fragment set:html={ICONS.external} /> Webページ
-										</a>
-									)}
-									{work.github && (
-										<a href={work.github} target="_blank" rel="noopener noreferrer" class="work-link" aria-label={`${work.title}のコード`}>
-											<Fragment set:html={ICONS.github} /> GitHub
-										</a>
-									)}
-								</div>
-							</div>
-						</article>
-					);
-				})}
-			</div>
-		</div>
-	</section>
+                        return (
+                            <article
+                                class="work-card fade-up"
+                                data-tags={tagList}
+                                style={`transition-delay:${delay}ms`}
+                                aria-label={work.title}
+                            >
+                                {SHOW_THUMBNAILS && work.thumbnail ? (
+                                    <div class="work-thumbnail">
+                                        <img
+                                            src={`/${work.thumbnail}`}
+                                            alt={work.title}
+                                            loading="lazy"
+                                        />
+                                    </div>
+                                ) : SHOW_THUMBNAILS ? (
+                                    <div
+                                        class="work-thumbnail-placeholder"
+                                        aria-hidden="true"
+                                    >
+                                        ◈
+                                    </div>
+                                ) : null}
 
-	<footer class="footer">
-		<div class="container footer-inner">
-			<p id="footer-name" class="footer-copy">© {new Date().getFullYear()} {profile.name}</p>
-			<div class="footer-links" id="footer-links">
-				{profile.github && (
-					<a href={profile.github} target="_blank" rel="noopener noreferrer" class="footer-link" aria-label="GitHub">
-						<Fragment set:html={ICONS.github} />
-					</a>
-				)}
-				{profile.x && (
-					<a href={profile.x} target="_blank" rel="noopener noreferrer" class="footer-link" aria-label="X">
-						<Fragment set:html={ICONS.x} />
-					</a>
-				)}
-				<a href="/qr" class="footer-link" aria-label="QR Code ページ">
-					<svg viewBox="0 0 24 24" aria-hidden="true" style="width:18px;height:18px;fill:currentColor;"><path d="M3 11h8V3H3v8zm2-6h4v4H5V5zM3 21h8v-8H3v8zm2-6h4v4H5v-4zM13 3v8h8V3h-8zm6 6h-4V5h4v4zM13 13h2v2h-2zM15 15h2v2h-2zM13 17h2v2h-2zM17 13h2v2h-2zM19 15h2v2h-2zM17 17h2v2h-2zM15 19h2v2h-2zM19 19h2v2h-2z"/></svg>
-				</a>
-			</div>
-		</div>
-	</footer>
+                                <div class="work-body">
+                                    {work.date && (
+                                        <time
+                                            class="work-date"
+                                            datetime={work.date}
+                                        >
+                                            {work.date}
+                                        </time>
+                                    )}
+                                    <h3 class="work-title">{work.title}</h3>
+                                    <p class="work-description">
+                                        {work.description || ''}
+                                    </p>
+                                    <div class="work-tags" aria-label="タグ">
+                                        {(work.tags ?? []).map((tag) => (
+                                            <span
+                                                class="tag"
+                                                data-color={getTagColor(tag)}
+                                            >
+                                                {tag}
+                                            </span>
+                                        ))}
+                                    </div>
+                                    <div class="work-links">
+                                        {work.detailUrl && (
+                                            <a
+                                                href={work.detailUrl}
+                                                class="work-link work-link--detail"
+                                                aria-label={`${work.title}の詳細を見る`}
+                                            >
+                                                <Fragment
+                                                    set:html={ICONS.external}
+                                                />{' '}
+                                                詳しく見る
+                                            </a>
+                                        )}
+                                        {work.url && (
+                                            <a
+                                                href={work.url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                class="work-link"
+                                                aria-label={`${work.title}を開く`}
+                                            >
+                                                <Fragment
+                                                    set:html={ICONS.external}
+                                                />{' '}
+                                                Webページ
+                                            </a>
+                                        )}
+                                        {work.github && (
+                                            <a
+                                                href={work.github}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                class="work-link"
+                                                aria-label={`${work.title}のコード`}
+                                            >
+                                                <Fragment
+                                                    set:html={ICONS.github}
+                                                />{' '}
+                                                GitHub
+                                            </a>
+                                        )}
+                                    </div>
+                                </div>
+                            </article>
+                        );
+                    })
+                }
+            </div>
+        </div>
+    </section>
 
-	<div id="org-modal" class="modal" aria-hidden="true">
-		<div class="modal-overlay" id="modal-overlay"></div>
-		<div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-			<header class="modal-header">
-				<h2 class="modal-title" id="modal-title"></h2>
-				<button class="modal-close" id="modal-close" aria-label="閉じる">&times;</button>
-			</header>
-			<div class="modal-content" id="modal-content"></div>
-			<footer class="modal-footer" id="modal-footer"></footer>
-		</div>
-	</div>
+    <footer class="footer">
+        <div class="container footer-inner">
+            <p id="footer-name" class="footer-copy">
+                © {new Date().getFullYear()}
+                {profile.name}
+            </p>
+            <div class="footer-links" id="footer-links">
+                {
+                    profile.github && (
+                        <a
+                            href={profile.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="footer-link"
+                            aria-label="GitHub"
+                        >
+                            <Fragment set:html={ICONS.github} />
+                        </a>
+                    )
+                }
+                {
+                    profile.x && (
+                        <a
+                            href={profile.x}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="footer-link"
+                            aria-label="X"
+                        >
+                            <Fragment set:html={ICONS.x} />
+                        </a>
+                    )
+                }
+                <a href="/qr" class="footer-link" aria-label="QR Code ページ">
+                    <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                        style="width:18px;height:18px;fill:currentColor;"
+                        ><path
+                            d="M3 11h8V3H3v8zm2-6h4v4H5V5zM3 21h8v-8H3v8zm2-6h4v4H5v-4zM13 3v8h8V3h-8zm6 6h-4V5h4v4zM13 13h2v2h-2zM15 15h2v2h-2zM13 17h2v2h-2zM17 13h2v2h-2zM19 15h2v2h-2zM17 17h2v2h-2zM15 19h2v2h-2zM19 19h2v2h-2z"
+                        ></path></svg
+                    >
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="org-modal" class="modal" aria-hidden="true">
+        <div class="modal-overlay" id="modal-overlay"></div>
+        <div
+            class="modal-container"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modal-title"
+        >
+            <header class="modal-header">
+                <h2 class="modal-title" id="modal-title"></h2>
+                <button class="modal-close" id="modal-close" aria-label="閉じる"
+                    >&times;</button
+                >
+            </header>
+            <div class="modal-content" id="modal-content"></div>
+            <footer class="modal-footer" id="modal-footer"></footer>
+        </div>
+    </div>
 
     <script is:inline define:vars={{ organizations }}>
         window.organizationsData = organizations;
     </script>
-	<script>
-        import { ACTIVE_THEME, applyTheme, escHtml, observeElements, ICONS } from '../scripts/common.js';
-        
+    <script>
+        import {
+            ACTIVE_THEME,
+            applyTheme,
+            escHtml,
+            observeElements,
+            ICONS,
+        } from '../scripts/common.js';
+
         applyTheme(ACTIVE_THEME);
 
         // スクロールヒントの処理
         const setupScrollHintObserver = () => {
             const scrollHint = document.querySelector('.hero-scroll-hint');
-            const organizationsSection = document.getElementById('organizations');
+            const organizationsSection =
+                document.getElementById('organizations');
             if (!scrollHint || !organizationsSection) return;
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        scrollHint.style.pointerEvents = 'none';
-                        scrollHint.style.opacity = '0';
-                    } else {
-                        scrollHint.style.pointerEvents = 'auto';
-                        scrollHint.style.opacity = '1';
-                    }
-                });
-            }, { threshold: 0.1 });
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            scrollHint.style.pointerEvents = 'none';
+                            scrollHint.style.opacity = '0';
+                        } else {
+                            scrollHint.style.pointerEvents = 'auto';
+                            scrollHint.style.opacity = '1';
+                        }
+                    });
+                },
+                { threshold: 0.1 }
+            );
             observer.observe(organizationsSection);
         };
         const scrollHint = document.querySelector('.hero-scroll-hint');
         if (scrollHint) {
-            scrollHint.addEventListener('animationend', setupScrollHintObserver, { once: true });
+            scrollHint.addEventListener(
+                'animationend',
+                setupScrollHintObserver,
+                { once: true }
+            );
         } else {
             setTimeout(setupScrollHintObserver, 2500);
         }
@@ -229,12 +396,17 @@ const SHOW_THUMBNAILS = true;
             filterBar.addEventListener('click', (e) => {
                 const btn = e.target.closest('.filter-btn');
                 if (!btn) return;
-                document.querySelectorAll('.filter-btn').forEach((b) => b.classList.remove('active'));
+                document
+                    .querySelectorAll('.filter-btn')
+                    .forEach((b) => b.classList.remove('active'));
                 btn.classList.add('active');
                 const selected = btn.dataset.tag;
                 document.querySelectorAll('.work-card').forEach((card) => {
-                    const cardTags = card.dataset.tags ? card.dataset.tags.split(',') : [];
-                    const show = selected === 'all' || cardTags.includes(selected);
+                    const cardTags = card.dataset.tags
+                        ? card.dataset.tags.split(',')
+                        : [];
+                    const show =
+                        selected === 'all' || cardTags.includes(selected);
                     card.classList.toggle('hidden', !show);
                 });
                 setTimeout(observeElements, 50);
@@ -309,5 +481,5 @@ const SHOW_THUMBNAILS = true;
         });
 
         setTimeout(observeElements, 120);
-	</script>
+    </script>
 </Layout>

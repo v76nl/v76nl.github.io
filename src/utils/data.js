@@ -9,7 +9,10 @@ export function getPortfolioData() {
 }
 
 export function getUnivExtensionsData() {
-    const filePath = path.resolve(process.cwd(), 'src/data/univ-extensions.yaml');
+    const filePath = path.resolve(
+        process.cwd(),
+        'src/data/univ-extensions.yaml'
+    );
     if (!fs.existsSync(filePath)) return { extensions: [] };
     const fileContents = fs.readFileSync(filePath, 'utf8');
     return yaml.load(fileContents);
