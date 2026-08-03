@@ -89,6 +89,14 @@ a {
     white-space: pre-wrap;
 }
 
+.text-block--space-before {
+    margin-left: 0.25em;
+}
+
+.text-block--space-after {
+    margin-right: 0.25em;
+}
+
 /* Noise texture overlay */
 .noise-overlay {
     position: fixed;

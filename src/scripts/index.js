@@ -93,26 +93,27 @@ function renderHero(profile) {
     }
 }
 
-function formatTextBlocks(blocks) {
-    if (!Array.isArray(blocks)) return blocks;
+function getTextBlocks(blocks) {
+    if (!Array.isArray(blocks)) return [];
     return blocks.map((block, i) => {
-        let text = String(block);
-        const prev = String(blocks[i - 1] ?? '');
-        const next = String(blocks[i + 1] ?? '');
-        if (
-            (/[\u3040-\u30ff\u4e00-\u9faf]$/.test(prev) ||
-                /[A-Za-z0-9]$/.test(prev)) &&
-            /^[A-Za-z0-9]/.test(text)
-        ) {
-            if (!text.startsWith(' ')) text = ' ' + text;
+        const text = String(block).trim();
+        const prev = String(blocks[i - 1] ?? '').trim();
+        const next = String(blocks[i + 1] ?? '').trim();
+
+        const isLatinStart = /^[A-Za-z0-9]/.test(text);
+        const isLatinEnd = /[A-Za-z0-9]$/.test(text);
+        const prevIsJapanese = /[^\x00-\x7F]$/.test(prev);
+        const prevIsLatin = /[A-Za-z0-9]$/.test(prev);
+        const nextIsJapanese = /^[^\x00-\x7F]/.test(next);
+
+        const classes = ['text-block'];
+        if ((prevIsJapanese || prevIsLatin) && isLatinStart) {
+            classes.push('text-block--space-before');
         }
-        if (
-            /[A-Za-z0-9]$/.test(text) &&
-            /^[\u3040-\u30ff\u4e00-\u9faf]/.test(next)
-        ) {
-            if (!text.endsWith(' ')) text = text + ' ';
+        if (isLatinEnd && nextIsJapanese) {
+            classes.push('text-block--space-after');
         }
-        return text;
+        return { text, className: classes.join(' ') };
     });
 }
 
@@ -120,11 +121,11 @@ function renderIntro(profile) {
     const introEl = document.getElementById('intro-text');
     if (introEl && profile?.about) {
         if (Array.isArray(profile.about)) {
-            const formatted = formatTextBlocks(profile.about);
-            introEl.innerHTML = formatted
+            const blocks = getTextBlocks(profile.about);
+            introEl.innerHTML = blocks
                 .map(
-                    (block) =>
-                        `<span class="text-block">${escHtml(block)}</span>`
+                    (b) =>
+                        `<span class="${b.className}">${escHtml(b.text)}</span>`
                 )
                 .join('');
         } else {

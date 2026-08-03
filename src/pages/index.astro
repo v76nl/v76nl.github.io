@@ -4,7 +4,7 @@ import {
     getPortfolioData,
     getTagColor,
     ICONS,
-    formatTextBlocks,
+    getTextBlocks,
 } from '../utils/data.js';
 import '../styles/index.css';
 
@@ -24,8 +24,8 @@ works.forEach((w) => {
 const allTags = [...new Set(works.flatMap((w) => w.tags ?? []))];
 
 const SHOW_THUMBNAILS = true;
-const formattedAbout = Array.isArray(profile.about)
-    ? formatTextBlocks(profile.about)
+const textBlocks = Array.isArray(profile.about)
+    ? getTextBlocks(profile.about)
     : profile.about;
 ---
 
@@ -81,12 +81,12 @@ const formattedAbout = Array.isArray(profile.about)
             </div>
             <p id="intro-text" class="intro-text fade-up">
                 {
-                    Array.isArray(profile.about) ? (
-                        profile.about.map((block) => (
-                            <span class="text-block">{block}</span>
+                    Array.isArray(textBlocks) ? (
+                        textBlocks.map((b) => (
+                            <span class={b.className}>{b.text}</span>
                         ))
                     ) : (
-                        <Fragment set:html={profile.about} />
+                        <Fragment set:html={textBlocks} />
                     )
                 }
             </p>

@@ -29,37 +29,38 @@ export function getTagColor(tag) {
 }
 
 /**
- * テキストブロック（配列）の境界におけるスペース（和欧文間アキ・英単語間アキ）を自動補正する関数
+ * テキストブロック（配列）の境界におけるスペース（和欧文間アキ・英単語間アキ）を CSS margin クラスで適用する関数
  */
-export function formatTextBlocks(blocks) {
-    if (!Array.isArray(blocks)) return blocks;
+export function getTextBlocks(blocks) {
+    if (!Array.isArray(blocks)) return [];
 
     return blocks.map((block, i) => {
-        let text = String(block);
-        const prev = String(blocks[i - 1] ?? '');
-        const next = String(blocks[i + 1] ?? '');
+        const text = String(block).trim();
+        const prev = String(blocks[i - 1] ?? '').trim();
+        const next = String(blocks[i + 1] ?? '').trim();
 
-        // 前が和文で自身が英数字で始まる、または前が英数字で自身が英数字で始まる場合 ➔ 先頭スペース自動補正
-        if (
-            (/[\u3040-\u30ff\u4e00-\u9faf]$/.test(prev) ||
-                /[A-Za-z0-9]$/.test(prev)) &&
-            /^[A-Za-z0-9]/.test(text)
-        ) {
-            if (!text.startsWith(' ')) {
-                text = ' ' + text;
-            }
+        const isLatinStart = /^[A-Za-z0-9]/.test(text);
+        const isLatinEnd = /[A-Za-z0-9]$/.test(text);
+        const prevIsJapanese = /[^\x00-\x7F]$/.test(prev);
+        const prevIsLatin = /[A-Za-z0-9]$/.test(prev);
+        const nextIsJapanese = /^[^\x00-\x7F]/.test(next);
+
+        const classes = ['text-block'];
+
+        // 前が和文で自身が英数字、または前が英数字で自身が英数字の場合 ➔ 左マージン付与
+        if ((prevIsJapanese || prevIsLatin) && isLatinStart) {
+            classes.push('text-block--space-before');
         }
 
-        // 自身が英数字で終わり、次が和文で始まる場合 ➔ 末尾スペース自動補正
-        if (
-            /[A-Za-z0-9]$/.test(text) &&
-            /^[\u3040-\u30ff\u4e00-\u9faf]/.test(next)
-        ) {
-            if (!text.endsWith(' ')) {
-                text = text + ' ';
-            }
+        // 自身が英数字で次が和文の場合 ➔ 右マージン付与
+        if (isLatinEnd && nextIsJapanese) {
+            classes.push('text-block--space-after');
         }
-        return text;
+
+        return {
+            text,
+            className: classes.join(' '),
+        };
     });
 }
 
