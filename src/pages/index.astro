@@ -12,6 +12,7 @@ const data = getPortfolioData();
 const profile = data.profile || {};
 const organizations = data.organizations || [];
 const works = data.works || [];
+const skills = data.skills || [];
 
 const tagCounts = {};
 works.forEach((w) => {
@@ -168,6 +169,59 @@ const textBlocks = Array.isArray(profile.about)
                 </div>
             </div>
         </section>
+
+        {
+            skills.length > 0 && (
+                <section id="skills" class="section" aria-label="技能">
+                    <div class="container">
+                        <div class="section-header fade-up">
+                            <h2 class="section-title">技能</h2>
+                        </div>
+                        <div class="skills-wrapper">
+                            {skills.map((group, groupIdx) => (
+                                <div
+                                    class="skills-group fade-up"
+                                    style={`transition-delay:${groupIdx * 100}ms`}
+                                >
+                                    <h3 class="skills-category-title">
+                                        {group.category}
+                                    </h3>
+                                    <div class="skills-grid">
+                                        {(group.items || []).map(
+                                            (skill, itemIdx) => (
+                                                <div class="skill-card">
+                                                    <div class="skill-card-header">
+                                                        <span class="skill-name">
+                                                            {skill.name}
+                                                        </span>
+                                                        {skill.level && (
+                                                            <span
+                                                                class="skill-level-badge"
+                                                                data-level={
+                                                                    skill.levelKey ||
+                                                                    skill.level.toLowerCase()
+                                                                }
+                                                            >
+                                                                {skill.level}
+                                                            </span>
+                                                        )}
+                                                    </div>
+                                                    {skill.description && (
+                                                        <p class="skill-desc">
+                                                            {skill.description}
+                                                        </p>
+                                                    )}
+                                                </div>
+                                            )
+                                        )}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )
+        }
 
         <section id="works" class="section" aria-label="制作物">
             <div class="container">

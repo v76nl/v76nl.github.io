@@ -183,3 +183,98 @@
     width: auto;
     margin-top: 14px;
 }
+
+/* Skills */
+.skills-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+}
+
+.skills-category-title {
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 16px;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+}
+
+.skill-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+}
+.skill-card:hover {
+    border-color: var(--glass-border-h);
+    transform: translateY(-4px);
+    box-shadow:
+        var(--shadow),
+        0 0 24px var(--primary-glow);
+}
+
+.skill-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.skill-name {
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--text);
+}
+
+.skill-level-badge {
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: var(--radius-pill);
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+}
+.skill-level-badge[data-level='main'] {
+    background: hsla(var(--hue-primary), 70%, 60%, 0.14);
+    color: hsl(var(--hue-primary), 70%, 36%);
+    border: 1px solid hsla(var(--hue-primary), 70%, 55%, 0.35);
+}
+.skill-level-badge[data-level='advanced'] {
+    background: hsla(var(--hue-mint), 55%, 55%, 0.14);
+    color: hsl(var(--hue-mint), 55%, 34%);
+    border: 1px solid hsla(var(--hue-mint), 55%, 50%, 0.35);
+}
+.skill-level-badge[data-level='learning'],
+.skill-level-badge[data-level='intermediate'] {
+    background: hsla(var(--hue-yellow), 80%, 58%, 0.16);
+    color: hsl(var(--hue-yellow), 75%, 36%);
+    border: 1px solid hsla(var(--hue-yellow), 80%, 55%, 0.4);
+}
+.skill-level-badge[data-level='focus'] {
+    background: hsla(var(--hue-pink), 62%, 60%, 0.14);
+    color: hsl(var(--hue-pink), 62%, 40%);
+    border: 1px solid hsla(var(--hue-pink), 62%, 58%, 0.35);
+}
+
+.skill-desc {
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0;
+}
+
