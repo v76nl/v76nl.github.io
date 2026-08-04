@@ -197,10 +197,7 @@ const textBlocks = Array.isArray(profile.about)
                                                         {skill.level && (
                                                             <span
                                                                 class="skill-level-badge"
-                                                                data-level={
-                                                                    skill.levelKey ||
-                                                                    skill.level.toLowerCase()
-                                                                }
+                                                                data-level={skill.level}
                                                             >
                                                                 {skill.level}
                                                             </span>
