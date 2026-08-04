@@ -94,6 +94,10 @@ organizations:
       projects:
           - name: '音声入力による感情認識と歌詞作成機能を持つ音楽生成システム構築'
             role: '制作協力'
+          - name: '投稿動画の制作に協力'
+            role: '音声合成'
+          - name: 'p5.js ワークショップ'
+            role: '全体 (企画・資料作成・発表など)'
 
 works:
     - title: 'Chuinfo (Android)'
