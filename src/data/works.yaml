@@ -53,7 +53,7 @@ organizations:
       projects:
           - name: '2026年度オープンキャンパス'
             role: 'Webアプリ開発・講習'
-    - name: 'Google Developer Groups on Campus Chuo University'
+    - name: 'Google Developer Groups on Campus Chuo University (GDGoC Chuo)'
       role: 'Co-organizer'
       url: 'https://gdgoc-chuo.com/'
       period: '2025 – 現在'
@@ -228,14 +228,12 @@ skills:
             description: 'AIエージェントを活用した開発環境'
           - name: 'Figma'
             level: '学習中'
-            description: 'UI/UXプロトタイピングとデザイン作成'
+            description: 'プロトタイピングとデザイン作成'
     - category: 'Domains'
       items:
           - name: 'データサイエンス'
-            level: '探求中'
             description: 'Python等を用いたデータ収集・分析・可視化、ゼミでの自然言語処理'
           - name: '教育・コミュニティ'
-            level: '探求中'
             description: '技術コミュニティでの情報共有や学習の支援、情報系に限らない教育全般'
 
 
