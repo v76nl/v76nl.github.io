@@ -4,10 +4,25 @@ import yaml from 'js-yaml';
 
 export { ICONS, getTagColor, getTextBlocks } from '../scripts/common.js';
 
-export function getPortfolioData() {
-    const filePath = path.resolve(process.cwd(), 'src/data/works.yaml');
+function loadYamlData(filename) {
+    const filePath = path.resolve(process.cwd(), `src/data/${filename}`);
+    if (!fs.existsSync(filePath)) return {};
     const fileContents = fs.readFileSync(filePath, 'utf8');
-    return yaml.load(fileContents);
+    return yaml.load(fileContents) || {};
+}
+
+export function getPortfolioData() {
+    const profileData = loadYamlData('profile.yaml');
+    const orgsData = loadYamlData('organizations.yaml');
+    const worksData = loadYamlData('works.yaml');
+    const skillsData = loadYamlData('skills.yaml');
+
+    return {
+        profile: profileData.profile || profileData,
+        organizations: orgsData.organizations || [],
+        works: worksData.works || [],
+        skills: skillsData.skills || [],
+    };
 }
 
 export function getUnivExtensionsData() {
