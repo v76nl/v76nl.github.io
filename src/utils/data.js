@@ -16,12 +16,14 @@ export function getPortfolioData() {
     const orgsData = loadYamlData('organizations.yaml');
     const worksData = loadYamlData('works.yaml');
     const skillsData = loadYamlData('skills.yaml');
+    const activitiesData = loadYamlData('activities.yaml');
 
     return {
         profile: profileData.profile || profileData,
         organizations: orgsData.organizations || [],
         works: worksData.works || [],
         skills: skillsData.skills || [],
+        activities: activitiesData.activities || [],
     };
 }
 

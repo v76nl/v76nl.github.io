@@ -13,6 +13,7 @@ const profile = data.profile || {};
 const organizations = data.organizations || [];
 const works = data.works || [];
 const skills = data.skills || [];
+const activities = data.activities || [];
 
 const tagCounts = {};
 works.forEach((w) => {
@@ -197,7 +198,9 @@ const textBlocks = Array.isArray(profile.about)
                                                         {skill.level && (
                                                             <span
                                                                 class="skill-level-badge"
-                                                                data-level={skill.level}
+                                                                data-level={
+                                                                    skill.level
+                                                                }
                                                             >
                                                                 {skill.level}
                                                             </span>
@@ -361,6 +364,82 @@ const textBlocks = Array.isArray(profile.about)
                 </div>
             </div>
         </section>
+
+        {
+            activities.length > 0 && (
+                <section id="activities" class="section" aria-label="活動記録">
+                    <div class="container">
+                        <div class="section-header fade-up">
+                            <h2 class="section-title">活動記録</h2>
+                        </div>
+                        <div class="activities-list">
+                            {activities.map((act, i) => {
+                                const isExternal =
+                                    act.url &&
+                                    (act.url.startsWith('http://') ||
+                                        act.url.startsWith('https://') ||
+                                        act.url.startsWith('//'));
+                                const delay = Math.min(i * 75, 400);
+
+                                return (
+                                    <div
+                                        class="activity-card fade-up"
+                                        style={`transition-delay:${delay}ms`}
+                                    >
+                                        <div class="activity-header">
+                                            {act.date && (
+                                                <time
+                                                    class="activity-date"
+                                                    datetime={act.date}
+                                                >
+                                                    {act.date}
+                                                </time>
+                                            )}
+                                            <h3 class="activity-title">
+                                                {act.url ? (
+                                                    <a
+                                                        href={act.url}
+                                                        target={
+                                                            isExternal
+                                                                ? '_blank'
+                                                                : undefined
+                                                        }
+                                                        rel={
+                                                            isExternal
+                                                                ? 'noopener noreferrer'
+                                                                : undefined
+                                                        }
+                                                        class="activity-link"
+                                                    >
+                                                        {act.title}
+                                                        {isExternal && (
+                                                            <span class="activity-icon">
+                                                                <Fragment
+                                                                    set:html={
+                                                                        ICONS.external
+                                                                    }
+                                                                />
+                                                            </span>
+                                                        )}
+                                                    </a>
+                                                ) : (
+                                                    act.title
+                                                )}
+                                            </h3>
+                                        </div>
+                                        {act.description && (
+                                            <p class="activity-description">
+                                                {act.description}
+                                            </p>
+                                        )}
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                </section>
+            )
+        }
     </main>
 
     <footer class="footer">
