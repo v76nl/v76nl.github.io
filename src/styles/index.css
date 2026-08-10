@@ -212,16 +212,8 @@
     padding: 18px 20px;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    transition: var(--transition);
     display: flex;
     flex-direction: column;
-}
-.skill-card:hover {
-    border-color: var(--glass-border-h);
-    transform: translateY(-4px);
-    box-shadow:
-        var(--shadow),
-        0 0 24px var(--primary-glow);
 }
 
 .skill-card-header {
@@ -287,17 +279,9 @@
     padding: 20px 24px;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    transition: var(--transition);
     display: flex;
     flex-direction: column;
     gap: 8px;
-}
-.activity-card:hover {
-    border-color: var(--glass-border-h);
-    transform: translateY(-2px);
-    box-shadow:
-        var(--shadow),
-        0 0 20px var(--primary-glow);
 }
 
 .activity-header {
