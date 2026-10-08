@@ -1,6 +1,24 @@
 extensions:
+    - title: 'manaba Customizer'
+      description: '中央大学で使われている学習管理システムmanabaをより使いやすくするためのChrome拡張機能。過去に作成したmanaba関連の拡張機能を統合したものです。'
+      github: 'https://github.com/v76nl/crx-manaba-customizer'
+      tags:
+          - 'UX改善'
+          - 'UI'
+          - 'manaba'
+      status: 'active'
+
+    - title: 'CampusSquare Customizer'
+      description: '中央大学で2026年秋学期から導入された教務システムCampusSquareをより使いやすくするためのChrome拡張機能。'
+      github: 'https://github.com/v76nl/crx-campussquare-customizer'
+      tags:
+          - 'UX改善'
+          - 'UI'
+          - 'CampusSquare'
+      status: 'active'
+
     - title: 'Subject Title Editor'
-      description: 'manaba のコース名（科目名）を自由に編集できるようになります。'
+      description: 'manabaのコース名（科目名）を自由に編集できるようになります。'
       github: 'https://github.com/v76nl/crx-manaba-subject-title-editor'
       tags:
           - 'UX改善'

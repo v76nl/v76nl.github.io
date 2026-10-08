@@ -2,7 +2,7 @@ works:
     - title: 'Chuinfo (Android)'
       description: '中央大学の学生のための統合アプリ。時間割や課題を確認できます。'
       tags:
-          - 'Android'
+          - 'Kotlin'
           - 'GDGoC Chuo'
           - 'チーム開発'
           - '大学'
@@ -45,14 +45,14 @@ works:
       date: '2026'
 
     - title: 'Xtrudy'
-      description: 'テキストやSVGファイルをモチーフにしてキーチェーンの3Dモデルを作成するツールです。'
+      description: 'テキストやSVGファイルをモチーフにしてキーチェーンの3Dモデルを作成するツールです。STECH FES 2026にてブース展示しました。'
       tags:
           - 'Web'
           - 'Three.js'
           - '3Dプリント'
       url: 'https://v76nl.github.io/Xtrudy/'
       github: 'https://github.com/v76nl/Xtrudy'
-      thumbnail: 'assets/3d_Extruder.png'
+      thumbnail: 'assets/xtrudy.png'
       date: '2026'
 
     - title: 'Chuo Scholarship'
@@ -83,3 +83,11 @@ works:
           - '大学'
       thumbnail: 'assets/info-eng-vocab-quiz.png'
       date: '2026.06'
+
+    - title: 'file-toss'
+      description: 'デバイス間でファイルを送受信するソフトウェア。WindowsとLinux間での利用を想定して作成しました。'
+      tags:
+          - 'Kotlin'
+      github: 'https://github.com/v76nl/file-toss'
+      thumbnail: 'assets/file-toss.png'
+      date: '2026.09'
