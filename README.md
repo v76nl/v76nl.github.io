@@ -18,9 +18,13 @@
 
     https://v76nl.github.io/qr/
 
+- ブログ
+
+    https://v76nl.github.io/blog/
+
 ## 技術スタック
 
-- フレームワーク: Astro 5
+- フレームワーク: Astro 7
 - スタイリング: CSS
 - フォント: Fontsource セルフホスト (Zen 角ゴシック, Noto Serif JP)
 - フォーマッター: Prettier (`prettier-plugin-astro`)
@@ -38,6 +42,20 @@
 | `pnpm build`   | プロダクションビルド         |
 | `pnpm format`  | コード自動整形 (Prettier)    |
 
+### ブログ記事の追加
+
+`src/content/blog/` に Markdown ファイルを追加する。ファイル名がそのまま URL になる (`hoge-fuga.md` → `/blog/hoge-fuga/`)。
+
+```md
+---
+title: 'タイトル'
+description: '概要 (省略可)'
+date: 2026-11-05
+tags: ['タグ'] # 省略可
+draft: false # true で非公開 (省略可)
+---
+```
+
 ### データの更新・アセットの追加について
 
 - **データ**: `src/data/works.yaml` または `src/data/univ-extensions.yaml` を編集
@@ -49,17 +67,24 @@
 .
 ├── .prettierrc                  - Prettierの設定
 ├── astro.config.mjs             - Astroの設定 (Sitemap等)
+├── tsconfig.json                - TypeScriptの設定 (Astroの型定義)
 ├── public/                      - 静的配信ファイル
 │   └── assets/                  - サムネイル等の画像アセット
 └── src/
     ├── data/                    - YAML形式のデータソース
     │   ├── works.yaml           - 制作物・人物データ
     │   └── univ-extensions.yaml - 開発した拡張機能データ
+    ├── content/
+    │   └── blog/                - ブログ記事 (Markdown)
+    ├── content.config.ts        - ブログのコレクション定義
     ├── layouts/
     │   └── Layout.astro         - 全体の共通レイアウト (Fontsource, OGPタグ)
     ├── pages/
     │   ├── index.astro          - トップページ
     │   ├── og-image.png.ts      - Satoriによる動的OGP画像エンドポイント
+    │   ├── blog/
+    │   │   ├── index.astro      - ブログ記事一覧
+    │   │   └── [slug].astro     - ブログ記事ページ
     │   ├── qr/
     │   │   └── index.astro      - QRコード表示ページ
     │   └── univ-extensions/
@@ -68,9 +93,11 @@
     │   └── common.js            - クライアントスクリプト (テーマ切替, フィルター等)
     ├── styles/
     │   ├── global.css           - 共通スタイル
+    │   ├── blog.css             - ブログ専用スタイル
     │   ├── index.css            - トップページ専用スタイル
     │   ├── qr.css               - QRコードページ専用スタイル
     │   └── univ-extensions.css  - 拡張機能一覧ページ専用スタイル
     └── utils/
+        ├── blog.js              - ブログ記事取得ユーティリティ
         └── data.js              - ビルド用YAML読み込みユーティリティ
 ```
