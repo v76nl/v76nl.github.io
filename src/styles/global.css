@@ -640,6 +640,7 @@ a {
     align-items: center;
     justify-content: center;
     width: 40%;
+    min-width: max-content;
     gap: 8px;
     padding: 12px 20px;
     border-radius: var(--radius-sm);
