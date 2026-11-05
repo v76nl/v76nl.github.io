@@ -355,41 +355,83 @@ a {
     margin-bottom: 16px;
 }
 
-/* タグ: data-color 属性で色変わる (0〜4)、ライト背景向けに暗めのテキスト */
+/* タグ: 商品タグ型 (左が三角形) の半透明ガラス。data-color 属性で色変わる (0〜4) */
 .tag {
+    --tag-h: 1.95em;
+    --tag-tip: calc(var(--tag-h) / 2);
+    --tag-bg: hsla(var(--hue-primary), 70%, 60%, 0.14);
+    --tag-fg: hsl(var(--hue-primary), 70%, 36%);
+    --tag-bd: hsla(var(--hue-primary), 70%, 55%, 0.35);
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    height: var(--tag-h);
+    padding: 0 12px 0 calc(var(--tag-tip) + 8px);
     font-size: 0.7rem;
-    padding: 3px 10px;
-    border-radius: var(--radius-pill);
-    border: 1px solid;
     font-family: 'Zen Kaku Gothic New', sans-serif;
     font-weight: 500;
     letter-spacing: 0.03em;
     white-space: nowrap;
+    color: var(--tag-fg);
+    border-radius: 0 6px 6px 0;
+    /* 斜めの縁取り線 (上・下) */
+    background:
+        linear-gradient(
+                135deg,
+                transparent calc(50% - 1px),
+                var(--tag-bd) 50%,
+                transparent calc(50% + 1px)
+            )
+            0 0 / var(--tag-tip) var(--tag-tip) no-repeat,
+        linear-gradient(
+                45deg,
+                transparent calc(50% - 1px),
+                var(--tag-bd) 50%,
+                transparent calc(50% + 1px)
+            )
+            0 100% / var(--tag-tip) var(--tag-tip) no-repeat,
+        var(--tag-bg);
+    box-shadow: inset 0 0 0 1px var(--tag-bd);
+    clip-path: polygon(
+        var(--tag-tip) 0,
+        100% 0,
+        100% 100%,
+        var(--tag-tip) 100%,
+        0 50%
+    );
 }
-.tag[data-color='0'] {
-    background: hsla(var(--hue-primary), 70%, 60%, 0.14);
-    color: hsl(var(--hue-primary), 70%, 36%);
-    border-color: hsla(var(--hue-primary), 70%, 55%, 0.35);
+/* タグの穴 */
+.tag::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: calc(var(--tag-tip) - 1px);
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: hsla(0, 0%, 100%, 0.8);
+    box-shadow: inset 0 1px 1px hsla(var(--hue-bg), 25%, 30%, 0.35);
+    transform: translateY(-50%);
 }
 .tag[data-color='1'] {
-    background: hsla(var(--hue-pink), 62%, 60%, 0.14);
-    color: hsl(var(--hue-pink), 62%, 40%);
-    border-color: hsla(var(--hue-pink), 62%, 58%, 0.35);
+    --tag-bg: hsla(var(--hue-pink), 62%, 60%, 0.14);
+    --tag-fg: hsl(var(--hue-pink), 62%, 40%);
+    --tag-bd: hsla(var(--hue-pink), 62%, 58%, 0.35);
 }
 .tag[data-color='2'] {
-    background: hsla(var(--hue-yellow), 80%, 58%, 0.16);
-    color: hsl(var(--hue-yellow), 75%, 36%);
-    border-color: hsla(var(--hue-yellow), 80%, 55%, 0.4);
+    --tag-bg: hsla(var(--hue-yellow), 80%, 58%, 0.16);
+    --tag-fg: hsl(var(--hue-yellow), 75%, 36%);
+    --tag-bd: hsla(var(--hue-yellow), 80%, 55%, 0.4);
 }
 .tag[data-color='3'] {
-    background: hsla(var(--hue-lavender), 58%, 60%, 0.14);
-    color: hsl(var(--hue-lavender), 58%, 38%);
-    border-color: hsla(var(--hue-lavender), 58%, 58%, 0.35);
+    --tag-bg: hsla(var(--hue-lavender), 58%, 60%, 0.14);
+    --tag-fg: hsl(var(--hue-lavender), 58%, 38%);
+    --tag-bd: hsla(var(--hue-lavender), 58%, 58%, 0.35);
 }
 .tag[data-color='4'] {
-    background: hsla(var(--hue-mint), 55%, 55%, 0.14);
-    color: hsl(var(--hue-mint), 55%, 34%);
-    border-color: hsla(var(--hue-mint), 55%, 50%, 0.35);
+    --tag-bg: hsla(var(--hue-mint), 55%, 55%, 0.14);
+    --tag-fg: hsl(var(--hue-mint), 55%, 34%);
+    --tag-bd: hsla(var(--hue-mint), 55%, 50%, 0.35);
 }
 
 /* 作品リンク */
