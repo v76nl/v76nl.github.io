@@ -49,6 +49,15 @@
     --radius-pill: 50px;
     --shadow: 0 8px 28px hsla(var(--hue-bg), 25%, 55%, 0.18);
     --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* 文字サイズ: 12px未満は使わない */
+    --fs-xs: 0.75rem; /* 12px: タグ・バッジ・日付などのメタ情報 */
+    --fs-sm: 0.875rem; /* 14px: 補助テキスト・ボタン */
+    --fs-base: 1rem; /* 16px: 本文 */
+    --fs-lg: 1.125rem; /* 18px: カードの見出し */
+    --fs-xl: 1.25rem; /* 20px: モーダルの見出し */
+    --fs-2xl: 1.5rem; /* 24px: 小さめのページ見出し */
+    --fs-page-title: clamp(1.8rem, 5vw, 3rem);
 }
 
 /* Reset */
@@ -150,7 +159,7 @@ a {
     padding: 10px 22px;
     border-radius: var(--radius-pill);
     text-decoration: none;
-    font-size: 0.875rem;
+    font-size: var(--fs-sm);
     font-weight: 500;
     font-family: 'Zen Kaku Gothic New', sans-serif;
     border: 1px solid var(--glass-border);
@@ -216,7 +225,7 @@ a {
 
 .section-subtitle {
     color: var(--text-muted);
-    font-size: 0.93rem;
+    font-size: var(--fs-sm);
     max-width: 560px;
     margin-top: 4px;
 }
@@ -238,7 +247,7 @@ a {
     border: 1px solid var(--glass-border);
     background: var(--glass-bg);
     color: var(--text-muted);
-    font-size: 0.8rem;
+    font-size: var(--fs-sm);
     font-family: 'Zen Kaku Gothic New', sans-serif;
     cursor: pointer;
     transition: var(--transition);
@@ -256,7 +265,7 @@ a {
 }
 
 .filter-count {
-    font-size: 0.72rem;
+    font-size: var(--fs-xs);
     padding: 1px 6px;
     border-radius: var(--radius-pill);
     background: var(--glass-border);
@@ -328,7 +337,7 @@ a {
     flex-direction: column;
 }
 .work-date {
-    font-size: 0.72rem;
+    font-size: var(--fs-xs);
     color: var(--text-faint);
     margin-bottom: 9px;
     font-family: 'Zen Kaku Gothic New', sans-serif;
@@ -336,13 +345,13 @@ a {
 }
 .work-title {
     font-family: 'Noto Serif JP', serif;
-    font-size: 1.02rem;
+    font-size: var(--fs-lg);
     font-weight: 700;
     margin-bottom: 10px;
     line-height: 1.45;
 }
 .work-description {
-    font-size: 0.84rem;
+    font-size: var(--fs-sm);
     color: var(--text-muted);
     line-height: 1.7;
     margin-bottom: 16px;
@@ -367,7 +376,7 @@ a {
     align-items: center;
     height: var(--tag-h);
     padding: 0 12px 0 calc(var(--tag-tip) + 8px);
-    font-size: 0.7rem;
+    font-size: var(--fs-xs);
     font-family: 'Zen Kaku Gothic New', sans-serif;
     font-weight: 500;
     letter-spacing: 0.03em;
@@ -444,7 +453,7 @@ a {
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    font-size: 0.77rem;
+    font-size: var(--fs-sm);
     color: var(--text-muted);
     text-decoration: none;
     padding: 5px 13px;
@@ -495,7 +504,7 @@ a {
     gap: 16px;
 }
 .footer-copy {
-    font-size: 0.8rem;
+    font-size: var(--fs-xs);
     color: var(--text-faint);
 }
 .footer-links {
@@ -506,7 +515,7 @@ a {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    font-size: 0.78rem;
+    font-size: var(--fs-sm);
     color: var(--text-faint);
     text-decoration: none;
     transition: color 0.2s;
@@ -577,7 +586,7 @@ a {
 
 .modal-title {
     font-family: 'Noto Serif JP', serif;
-    font-size: 1.25rem;
+    font-size: var(--fs-xl);
     font-weight: 700;
 }
 
@@ -585,7 +594,7 @@ a {
     background: transparent;
     border: none;
     color: var(--text-muted);
-    font-size: 1.5rem;
+    font-size: var(--fs-2xl);
     line-height: 1;
     cursor: pointer;
     transition: color 0.2s;
@@ -618,13 +627,13 @@ a {
 
 .modal-project-name {
     font-weight: 700;
-    font-size: 1rem;
+    font-size: var(--fs-base);
     margin-bottom: 4px;
     font-family: 'Noto Serif JP', serif;
 }
 
 .modal-project-role {
-    font-size: 0.85rem;
+    font-size: var(--fs-sm);
     color: var(--primary);
 }
 
@@ -640,11 +649,12 @@ a {
     align-items: center;
     justify-content: center;
     width: 40%;
+    min-width: max-content;
     gap: 8px;
     padding: 12px 20px;
     border-radius: var(--radius-sm);
     text-decoration: none;
-    font-size: 0.95rem;
+    font-size: var(--fs-sm);
     font-weight: 500;
     white-space: nowrap;
     background: var(--primary);
