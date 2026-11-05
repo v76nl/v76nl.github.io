@@ -366,7 +366,7 @@ a {
 
 /* タグ: 商品タグ型 (左が三角形) の半透明ガラス。data-color 属性で色変わる (0〜4) */
 .tag {
-    --tag-h: 1.95em;
+    --tag-h: calc(2em + 1px);
     --tag-tip: calc(var(--tag-h) / 2);
     --tag-bg: hsla(var(--hue-primary), 70%, 60%, 0.14);
     --tag-fg: hsl(var(--hue-primary), 70%, 36%);
@@ -375,11 +375,12 @@ a {
     display: inline-flex;
     align-items: center;
     height: var(--tag-h);
-    padding: 0 12px 2px calc(var(--tag-tip) + 8px);
+    padding: 0 8px 3px calc(var(--tag-tip) + 12px);
     font-size: var(--fs-xs);
     font-family: 'Zen Kaku Gothic New', sans-serif;
     font-weight: 500;
     letter-spacing: 0.03em;
+    line-height: 1.5;
     white-space: nowrap;
     color: var(--tag-fg);
     border-radius: 0 6px 6px 0;
