@@ -25,24 +25,54 @@ works.forEach((w) => {
 const allTags = Object.keys(tagCounts);
 
 // 技能: レベルごとの軌道(内側ほど習熟)と、レベルを持たない領域(Domains)に分ける
-const SKILL_RINGS = [
-    { level: 'メイン', phase: 20 },
-    { level: 'サブ', phase: -75 },
-    { level: '勉強中', phase: -10 },
-];
+const SKILL_LEVELS = ['メイン', 'サブ', '勉強中'];
+const RING_RADII = [21, 32, 43]; // CSS の --r (cqw) と同じ値
+const REF_WIDTH = 680; // 軌道図の最小想定幅(px)
+const CHIP_H = 32;
+const chipWidth = (name) =>
+    [...name].reduce((w, c) => w + (c.charCodeAt(0) < 256 ? 7.1 : 14.5), 26);
 const allSkillItems = skills.flatMap((g) =>
     (g.items ?? []).map((item) => ({ ...item, category: g.category }))
 );
-const skillRings = SKILL_RINGS.map(({ level, phase }) => {
+// 輪ごとに等間隔に並べ、外側の輪は内側の輪のチップと重ならない位相を探す
+const placed = [];
+const gapBetween = (a, b) =>
+    Math.max(
+        Math.abs(a.x - b.x) - (a.w + b.w) / 2,
+        Math.abs(a.y - b.y) - CHIP_H
+    );
+const skillRings = SKILL_LEVELS.map((level, ri) => {
     const items = allSkillItems.filter((s) => s.level === level);
+    const r = (RING_RADII[ri] / 100) * REF_WIDTH;
+    const layout = (phase) =>
+        items.map((s, i) => {
+            const angle = phase + (360 / items.length) * i;
+            const rad = (angle * Math.PI) / 180;
+            return {
+                angle,
+                x: r * Math.cos(rad),
+                y: r * Math.sin(rad),
+                w: chipWidth(s.name),
+            };
+        });
+    let best = { phase: 20, score: -Infinity };
+    for (let phase = 0; phase < 360 / Math.max(items.length, 1); phase += 1) {
+        const score = Math.min(
+            ...layout(phase).flatMap((c) => placed.map((o) => gapBetween(c, o))),
+            Infinity
+        );
+        if (score > best.score) best = { phase, score };
+    }
+    const chosen = layout(ri === 0 ? 20 : best.phase);
+    placed.push(...chosen);
     return {
         level,
         items: items.map((s, i) => ({
             ...s,
-            angle: Math.round(phase + (360 / items.length) * i),
+            angle: Math.round(chosen[i].angle * 10) / 10,
         })),
     };
-}).filter((r) => r.items.length > 0);
+}).filter((ring) => ring.items.length > 0);
 const skillDomains = allSkillItems.filter((s) => !s.level);
 
 const SHOW_THUMBNAILS = true;
@@ -232,7 +262,6 @@ const textBlocks = Array.isArray(profile.about)
                                                     data-level={ring.level}
                                                     data-desc={s.description ?? ''}
                                                 >
-                                                    <span class="orbit-dot" aria-hidden="true" />
                                                     <span class="orbit-name">{s.name}</span>
                                                     {s.description && (
                                                         <span class="orbit-desc">{s.description}</span>
