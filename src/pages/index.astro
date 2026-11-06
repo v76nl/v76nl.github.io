@@ -34,45 +34,64 @@ const chipWidth = (name) =>
 const allSkillItems = skills.flatMap((g) =>
     (g.items ?? []).map((item) => ({ ...item, category: g.category }))
 );
-// 輪ごとに等間隔に並べ、外側の輪は内側の輪のチップと重ならない位相を探す
-const placed = [];
+// 輪ごとに等間隔に並べる。全体が回転しても輪の違うチップがなるべく重ならないよう、
+// 回転角を振りながら最も近づく瞬間の余白が最大になる輪ごとの位相を探す
+const levelItems = SKILL_LEVELS.map((level) =>
+    allSkillItems.filter((s) => s.level === level)
+);
+const chipPos = (ri, phase, i, spin) => {
+    const items = levelItems[ri];
+    const rad = ((phase + (360 / items.length) * i + spin) * Math.PI) / 180;
+    const r = (RING_RADII[ri] / 100) * REF_WIDTH;
+    return {
+        x: r * Math.cos(rad),
+        y: r * Math.sin(rad),
+        w: chipWidth(items[i].name),
+    };
+};
 const gapBetween = (a, b) =>
     Math.max(
         Math.abs(a.x - b.x) - (a.w + b.w) / 2,
         Math.abs(a.y - b.y) - CHIP_H
     );
-const skillRings = SKILL_LEVELS.map((level, ri) => {
-    const items = allSkillItems.filter((s) => s.level === level);
-    const r = (RING_RADII[ri] / 100) * REF_WIDTH;
-    const layout = (phase) =>
-        items.map((s, i) => {
-            const angle = phase + (360 / items.length) * i;
-            const rad = (angle * Math.PI) / 180;
-            return {
-                angle,
-                x: r * Math.cos(rad),
-                y: r * Math.sin(rad),
-                w: chipWidth(s.name),
-            };
-        });
-    let best = { phase: 20, score: -Infinity };
-    for (let phase = 0; phase < 360 / Math.max(items.length, 1); phase += 1) {
-        const score = Math.min(
-            ...layout(phase).flatMap((c) => placed.map((o) => gapBetween(c, o))),
-            Infinity
+const worstGap = (phases) => {
+    let worst = Infinity;
+    for (let spin = 0; spin < 360; spin += 3) {
+        const all = phases.map((ph, ri) =>
+            levelItems[ri].map((_, i) => chipPos(ri, ph, i, spin))
         );
-        if (score > best.score) best = { phase, score };
+        for (let a = 0; a < all.length; a++)
+            for (let b = a + 1; b < all.length; b++)
+                for (const u of all[a])
+                    for (const v of all[b])
+                        worst = Math.min(worst, gapBetween(u, v));
     }
-    const chosen = layout(ri === 0 ? 20 : best.phase);
-    placed.push(...chosen);
-    return {
-        level,
-        items: items.map((s, i) => ({
-            ...s,
-            angle: Math.round(chosen[i].angle * 10) / 10,
-        })),
-    };
-}).filter((ring) => ring.items.length > 0);
+    return worst;
+};
+let bestPhases = levelItems.map(() => 0);
+let bestScore = -Infinity;
+const searchPhases = (ri, phases) => {
+    if (ri === levelItems.length) {
+        const score = worstGap(phases);
+        if (score > bestScore) {
+            bestScore = score;
+            bestPhases = [...phases];
+        }
+        return;
+    }
+    const n = levelItems[ri].length;
+    // 最初の輪は回転対称なので固定。それ以外は 1 ステップ(1度)刻み
+    const range = ri === 0 || n === 0 ? 1 : Math.ceil(360 / n);
+    for (let ph = 0; ph < range; ph++) searchPhases(ri + 1, [...phases, ph]);
+};
+searchPhases(0, []);
+const skillRings = SKILL_LEVELS.map((level, ri) => ({
+    level,
+    items: levelItems[ri].map((s, i) => ({
+        ...s,
+        angle: Math.round((bestPhases[ri] + (360 / levelItems[ri].length) * i) * 10) / 10,
+    })),
+})).filter((ring) => ring.items.length > 0);
 const skillDomains = allSkillItems.filter((s) => !s.level);
 
 const SHOW_THUMBNAILS = true;
@@ -272,9 +291,7 @@ const textBlocks = Array.isArray(profile.about)
                                     </ol>
                                 ))}
                             </div>
-                            <p class="orbit-caption" id="orbit-caption" aria-live="polite">
-                                内側ほど得意な分野です。気になる項目にカーソルを合わせるか、選んでみてください。
-                            </p>
+                            <p class="orbit-caption" id="orbit-caption" aria-live="polite"></p>
                         </div>
                         {skillDomains.length > 0 && (
                             <div class="skills-domains fade-up">

@@ -257,13 +257,17 @@
 .orbit-ring {
     --r: 21;
     --hue: var(--lv-main);
+    --spin: 120s;
     position: absolute;
-    inset: 50% auto auto 50%;
+    left: calc(50% - var(--r) * 1cqw);
+    top: calc(50% - var(--r) * 1cqw);
+    box-sizing: border-box;
     width: calc(var(--r) * 2cqw);
     height: calc(var(--r) * 2cqw);
-    transform: translate(-50%, -50%);
+    animation: orbit-spin var(--spin) linear infinite;
     border-radius: 50%;
     border: 1px dashed hsla(var(--hue), 55%, 50%, 0.4);
+    pointer-events: none;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -284,7 +288,19 @@
         rotate(calc(var(--a) * -1)) translate(-50%, -50%);
 }
 
+@keyframes orbit-spin {
+    from {
+        rotate: 0deg;
+    }
+    to {
+        rotate: 360deg;
+    }
+}
+
+/* 輪が回る間、チップは逆回転して文字を水平に保つ。ホバー・フォーカス中は止める */
 .orbit-chip {
+    animation: orbit-spin var(--spin, 120s) linear infinite reverse;
+    pointer-events: auto;
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -329,6 +345,13 @@
     overflow: hidden;
     clip-path: inset(50%);
     white-space: nowrap;
+}
+
+.orbit:hover .orbit-ring,
+.orbit:hover .orbit-chip,
+.orbit:focus-within .orbit-ring,
+.orbit:focus-within .orbit-chip {
+    animation-play-state: paused;
 }
 
 .orbit-legend {
@@ -413,6 +436,10 @@
     .orbit-caption {
         display: none;
     }
+    .orbit-ring,
+    .orbit-chip {
+        animation: none;
+    }
     .orbit-ring {
         position: static;
         width: auto;
@@ -463,6 +490,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+    .orbit-ring,
+    .orbit-chip {
+        animation: none;
+    }
     .orbit-chip {
         transition: none;
     }
