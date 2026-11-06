@@ -728,12 +728,25 @@ const textBlocks = Array.isArray(profile.about)
                 delete coreLevel.dataset.level;
                 caption.textContent = idle.caption;
             };
-            orbit.querySelectorAll('.orbit-chip').forEach((chip) => {
-                chip.addEventListener('mouseenter', () => show(chip));
-                chip.addEventListener('focus', () => show(chip));
-                chip.addEventListener('click', () => show(chip));
-                chip.addEventListener('mouseleave', reset);
-                chip.addEventListener('blur', reset);
+            // 項目の間や拡大時の縁で mouseleave と mouseenter が連続しても
+            // 表示が戻らないよう、リセットは少し遅らせる
+            let resetTimer = 0;
+            const scheduleReset = () => {
+                clearTimeout(resetTimer);
+                resetTimer = setTimeout(reset, 150);
+            };
+            const showNow = (chip) => {
+                clearTimeout(resetTimer);
+                show(chip);
+            };
+            orbit.querySelectorAll('.orbit-item').forEach((item) => {
+                const chip = item.querySelector('.orbit-chip');
+                // 拡大する chip ではなく、拡大しない li で出入りを判定する
+                item.addEventListener('mouseenter', () => showNow(chip));
+                item.addEventListener('mouseleave', scheduleReset);
+                chip.addEventListener('focus', () => showNow(chip));
+                chip.addEventListener('blur', scheduleReset);
+                chip.addEventListener('click', () => showNow(chip));
             });
         }
 
