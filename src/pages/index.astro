@@ -24,6 +24,27 @@ works.forEach((w) => {
 });
 const allTags = Object.keys(tagCounts);
 
+// 技能: レベルごとの軌道(内側ほど習熟)と、レベルを持たない領域(Domains)に分ける
+const SKILL_RINGS = [
+    { level: 'メイン', phase: 20 },
+    { level: 'サブ', phase: -75 },
+    { level: '勉強中', phase: -10 },
+];
+const allSkillItems = skills.flatMap((g) =>
+    (g.items ?? []).map((item) => ({ ...item, category: g.category }))
+);
+const skillRings = SKILL_RINGS.map(({ level, phase }) => {
+    const items = allSkillItems.filter((s) => s.level === level);
+    return {
+        level,
+        items: items.map((s, i) => ({
+            ...s,
+            angle: Math.round(phase + (360 / items.length) * i),
+        })),
+    };
+}).filter((r) => r.items.length > 0);
+const skillDomains = allSkillItems.filter((s) => !s.level);
+
 const SHOW_THUMBNAILS = true;
 const textBlocks = Array.isArray(profile.about)
     ? getTextBlocks(profile.about)
@@ -178,46 +199,67 @@ const textBlocks = Array.isArray(profile.about)
                         <div class="section-header fade-up">
                             <h2 class="section-title">技能</h2>
                         </div>
-                        <div class="skills-wrapper">
-                            {skills.map((group, groupIdx) => (
-                                <div
-                                    class="skills-group fade-up"
-                                    style={`transition-delay:${groupIdx * 100}ms`}
-                                >
-                                    <h3 class="skills-category-title">
-                                        {group.category}
-                                    </h3>
-                                    <div class="skills-grid">
-                                        {(group.items || []).map(
-                                            (skill, itemIdx) => (
-                                                <div class="skill-card">
-                                                    <div class="skill-card-header">
-                                                        <span class="skill-name">
-                                                            {skill.name}
-                                                        </span>
-                                                        {skill.level && (
-                                                            <span
-                                                                class="skill-level-badge"
-                                                                data-level={
-                                                                    skill.level
-                                                                }
-                                                            >
-                                                                {skill.level}
-                                                            </span>
-                                                        )}
-                                                    </div>
-                                                    {skill.description && (
-                                                        <p class="skill-desc">
-                                                            {skill.description}
-                                                        </p>
-                                                    )}
-                                                </div>
-                                            )
-                                        )}
-                                    </div>
+                        <div class="skills-orbit fade-up">
+                            <ul class="orbit-legend" aria-hidden="true">
+                                {skillRings.map((ring) => (
+                                    <li data-level={ring.level}>
+                                        <span class="orbit-dot" />
+                                        {ring.level}
+                                    </li>
+                                ))}
+                            </ul>
+                            <div class="orbit" id="orbit">
+                                <div class="orbit-core" aria-hidden="true">
+                                    <span class="orbit-core-level" id="orbit-level" />
+                                    <span class="orbit-core-name" id="orbit-name">Skills</span>
                                 </div>
-                            ))}
+                                {skillRings.map((ring, ri) => (
+                                    <ol
+                                        class="orbit-ring"
+                                        style={`--ring:${ri}`}
+                                        data-level={ring.level}
+                                        aria-label={`${ring.level}の技能`}
+                                    >
+                                        {ring.items.map((s) => (
+                                            <li
+                                                class="orbit-item"
+                                                style={`--a:${s.angle}deg`}
+                                            >
+                                                <button
+                                                    type="button"
+                                                    class="orbit-chip"
+                                                    data-name={s.name}
+                                                    data-level={ring.level}
+                                                    data-desc={s.description ?? ''}
+                                                >
+                                                    <span class="orbit-dot" aria-hidden="true" />
+                                                    <span class="orbit-name">{s.name}</span>
+                                                    {s.description && (
+                                                        <span class="orbit-desc">{s.description}</span>
+                                                    )}
+                                                </button>
+                                            </li>
+                                        ))}
+                                    </ol>
+                                ))}
+                            </div>
+                            <p class="orbit-caption" id="orbit-caption" aria-live="polite">
+                                内側ほど得意な分野です。気になる項目にカーソルを合わせるか、選んでみてください。
+                            </p>
                         </div>
+                        {skillDomains.length > 0 && (
+                            <div class="skills-domains fade-up">
+                                <h3 class="skills-category-title">Domains</h3>
+                                <dl class="domains-list">
+                                    {skillDomains.map((d) => (
+                                        <div class="domain-row">
+                                            <dt>{d.name}</dt>
+                                            <dd>{d.description}</dd>
+                                        </div>
+                                    ))}
+                                </dl>
+                            </div>
+                        )}
                     </div>
                 </section>
             )
@@ -633,6 +675,38 @@ const textBlocks = Array.isArray(profile.about)
                 }
             });
         });
+
+        // 技能の軌道図: 選択した項目を中央と下の説明欄に表示
+        const orbit = document.getElementById('orbit');
+        if (orbit) {
+            const coreName = document.getElementById('orbit-name');
+            const coreLevel = document.getElementById('orbit-level');
+            const caption = document.getElementById('orbit-caption');
+            const idle = {
+                name: coreName.textContent,
+                caption: caption.textContent,
+            };
+            const show = (chip) => {
+                const { name, level, desc } = chip.dataset;
+                coreName.textContent = name;
+                coreLevel.textContent = level;
+                coreLevel.dataset.level = level;
+                caption.textContent = desc || '';
+            };
+            const reset = () => {
+                coreName.textContent = idle.name;
+                coreLevel.textContent = '';
+                delete coreLevel.dataset.level;
+                caption.textContent = idle.caption;
+            };
+            orbit.querySelectorAll('.orbit-chip').forEach((chip) => {
+                chip.addEventListener('mouseenter', () => show(chip));
+                chip.addEventListener('focus', () => show(chip));
+                chip.addEventListener('click', () => show(chip));
+                chip.addEventListener('mouseleave', reset);
+                chip.addEventListener('blur', reset);
+            });
+        }
 
         setTimeout(observeElements, 120);
     </script>
