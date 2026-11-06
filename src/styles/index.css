@@ -257,14 +257,16 @@
 .orbit-ring {
     --r: 21;
     --hue: var(--lv-main);
-    --spin: 120s;
+    --spin: 90s;
+    --dir: normal;
+    --dir-inv: reverse;
     position: absolute;
     left: calc(50% - var(--r) * 1cqw);
     top: calc(50% - var(--r) * 1cqw);
     box-sizing: border-box;
     width: calc(var(--r) * 2cqw);
     height: calc(var(--r) * 2cqw);
-    animation: orbit-spin var(--spin) linear infinite;
+    animation: orbit-spin var(--spin) linear infinite var(--dir);
     border-radius: 50%;
     border: 1px dashed hsla(var(--hue), 55%, 50%, 0.4);
     pointer-events: none;
@@ -272,13 +274,20 @@
     margin: 0;
     padding: 0;
 }
+.orbit-ring[data-level='メイン'] {
+    --spin: 90s;
+}
 .orbit-ring[data-level='サブ'] {
     --r: 32;
     --hue: var(--lv-sub);
+    --spin: 130s;
+    --dir: reverse;
+    --dir-inv: normal;
 }
 .orbit-ring[data-level='勉強中'] {
     --r: 43;
     --hue: var(--lv-study);
+    --spin: 180s;
 }
 
 .orbit-item {
@@ -297,24 +306,25 @@
     }
 }
 
-/* 輪が回る間、チップは逆回転して文字を水平に保つ。ホバー・フォーカス中は止める */
+/* 輪が回る間、チップは逆回転してアイコンを正立に保つ。ホバー・フォーカス中は止める */
 .orbit-chip {
-    animation: orbit-spin var(--spin, 120s) linear infinite reverse;
+    animation: orbit-spin var(--spin) linear infinite var(--dir-inv);
     pointer-events: auto;
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    height: 32px;
-    padding: 0 12px;
-    border-radius: var(--radius-pill);
-    border: 1px solid hsla(var(--hue), 60%, 50%, 0.4);
-    background: hsla(var(--hue), 80%, 97%, 0.92);
-    color: var(--text);
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border-radius: 50%;
+    border: 1px solid hsla(var(--hue), 60%, 50%, 0.45);
+    background: hsla(var(--hue), 80%, 98%, 0.95);
+    box-shadow: 0 2px 8px hsla(var(--hue), 60%, 40%, 0.12);
+    color: hsl(var(--hue), 55%, 30%);
     font-family: 'Zen Kaku Gothic New', sans-serif;
     font-size: var(--fs-sm);
     font-weight: 700;
     line-height: 1.4;
-    white-space: nowrap;
     cursor: pointer;
     transition:
         transform var(--transition),
@@ -323,9 +333,9 @@
 }
 .orbit-chip:hover,
 .orbit-chip:focus-visible {
-    transform: scale(1.08);
+    transform: scale(1.15);
     border-color: hsl(var(--hue), 60%, 45%);
-    box-shadow: 0 4px 16px hsla(var(--hue), 70%, 50%, 0.3);
+    box-shadow: 0 4px 16px hsla(var(--hue), 70%, 50%, 0.35);
 }
 
 .orbit-dot {
@@ -337,7 +347,18 @@
     background: hsl(var(--hue), 65%, 50%);
 }
 
+.orbit-icon {
+    width: 22px;
+    height: 22px;
+    fill: var(--ic, currentColor);
+}
+.orbit-mono {
+    font-size: var(--fs-xs);
+    letter-spacing: 0.02em;
+}
+
 /* 軌道図では説明を隠し、選択時に中央と下の説明欄へ出す */
+.orbit-name,
 .orbit-desc {
     position: absolute;
     width: 1px;
@@ -465,17 +486,36 @@
     .orbit-chip {
         display: flex;
         flex-wrap: wrap;
-        align-items: baseline;
+        align-items: center;
+        justify-content: flex-start;
         width: 100%;
+        height: auto;
         gap: 2px 12px;
         padding: 8px 2px;
         border: 0;
         border-radius: 0;
         background: none;
+        box-shadow: none;
+        color: var(--text);
         text-align: left;
         cursor: default;
         pointer-events: none;
     }
+    .orbit-icon {
+        width: 20px;
+        height: 20px;
+        margin: 0 2px;
+    }
+    .orbit-mono {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        font-size: 0.625rem;
+        letter-spacing: 0;
+        color: hsl(var(--hue), 55%, 30%);
+    }
+    .orbit-name,
     .orbit-desc {
         position: static;
         width: auto;
@@ -486,6 +526,11 @@
         font-weight: 400;
         font-size: var(--fs-xs);
         color: var(--text-muted);
+    }
+    .orbit-name {
+        font-weight: 700;
+        font-size: var(--fs-base);
+        color: var(--text);
     }
 }
 

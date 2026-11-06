@@ -73,6 +73,7 @@ draft: false # true で非公開 (省略可)
 
 - **データ**: `src/data/works.yaml` または `src/data/univ-extensions.yaml` を編集
 - **画像アセット**: 制作物のサムネイル等の画像は `public/assets/` に配置し、YAML には `assets/ファイル名.png` のように記述
+- **技能のアイコン**: `src/data/skills.yaml` の `icon` に [Simple Icons](https://simpleicons.org/) の slug を書くと、軌道図にそのロゴを表示する(`simple-icons` パッケージ。SVG は CC0、ロゴの商標は各社に帰属)。ロゴがない項目は `monogram`(省略時は名前の先頭2文字)を円の中に表示する
 - **制作物の詳細モーダル**: `works.yaml` の作品に `detail` を書くと、カードをタップしたときに詳細がモーダルで開く(GitHub などのリンクボタンはモーダルを開かず、そのリンクだけが動く)。`detail` がない作品は従来どおり
 
   ```yaml
