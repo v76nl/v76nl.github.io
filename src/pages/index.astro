@@ -95,6 +95,28 @@ const skillRings = SKILL_LEVELS.map((level, ri) => ({
 const skillDomains = allSkillItems.filter((s) => !s.level);
 
 const SHOW_THUMBNAILS = true;
+
+// 制作物の詳細モーダル用データ (detail を持つ作品のみ。キーは works の添字)
+const worksDetail = {};
+works.forEach((w, i) => {
+    if (!w.detail?.text) return;
+    worksDetail[i] = {
+        title: w.title,
+        text: w.detail.text,
+        images: (w.detail.images?.length
+            ? w.detail.images
+            : w.thumbnail
+              ? [w.thumbnail]
+              : []
+        ).map((src) => `/${src}`),
+        tags: (w.tags ?? []).map((name) => ({
+            name,
+            color: getTagColor(name),
+        })),
+        url: w.url ?? '',
+        github: w.github ?? '',
+    };
+});
 const textBlocks = Array.isArray(profile.about)
     ? getTextBlocks(profile.about)
     : profile.about;
@@ -349,6 +371,9 @@ const textBlocks = Array.isArray(profile.about)
                             return (
                                 <article
                                     class="work-card fade-up"
+                                    data-has-detail={
+                                        worksDetail[i] ? '' : undefined
+                                    }
                                     data-tags={tagList}
                                     style={`transition-delay:${delay}ms`}
                                     aria-label={work.title}
@@ -370,6 +395,12 @@ const textBlocks = Array.isArray(profile.about)
                                         </div>
                                     ) : null}
 
+                                    {worksDetail[i] && (
+                                        <span
+                                            class="work-detail-badge"
+                                            aria-hidden="true">詳細</span
+                                        >
+                                    )}
                                     <div class="work-body">
                                         {work.date && (
                                             <time
@@ -379,7 +410,20 @@ const textBlocks = Array.isArray(profile.about)
                                                 {work.date}
                                             </time>
                                         )}
-                                        <h3 class="work-title">{work.title}</h3>
+                                        <h3 class="work-title">
+                                            {worksDetail[i] ? (
+                                                <button
+                                                    type="button"
+                                                    class="work-detail-btn"
+                                                    data-work-index={i}
+                                                    aria-haspopup="dialog"
+                                                >
+                                                    {work.title}
+                                                </button>
+                                            ) : (
+                                                work.title
+                                            )}
+                                        </h3>
                                         <p class="work-description">
                                             {work.description || ''}
                                         </p>
@@ -585,8 +629,9 @@ const textBlocks = Array.isArray(profile.about)
         </div>
     </div>
 
-    <script is:inline define:vars={{ organizations }}>
+    <script is:inline define:vars={{ organizations, worksDetail }}>
         window.organizationsData = organizations;
+        window.worksDetailData = worksDetail;
     </script>
     <script>
         import {
@@ -656,10 +701,25 @@ const textBlocks = Array.isArray(profile.about)
         }
 
         // モーダル処理
-        function openOrgModal(org) {
-            const modal = document.getElementById('org-modal');
+        const modal = document.getElementById('org-modal');
+        let lastTrigger = null;
+        const FOCUSABLE =
+            'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+        function openModal({ title, contentHtml, footerHtml, trigger }) {
             if (!modal) return;
-            document.getElementById('modal-title').textContent = org.name;
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-content').innerHTML = contentHtml;
+            document.getElementById('modal-footer').innerHTML = footerHtml;
+            lastTrigger = trigger ?? null;
+            modal.classList.add('is-open');
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+            modal.querySelector('.modal-container').scrollTop = 0;
+            document.getElementById('modal-close').focus();
+        }
+
+        function openOrgModal(org, trigger) {
             let contentHtml = '';
             if (org.projects && org.projects.length > 0) {
                 contentHtml += `<div class="modal-project-list">`;
@@ -672,7 +732,6 @@ const textBlocks = Array.isArray(profile.about)
                 });
                 contentHtml += `</div>`;
             }
-            document.getElementById('modal-content').innerHTML = contentHtml;
             let footerHtml = '';
             if (org.url) {
                 footerHtml = `
@@ -681,18 +740,46 @@ const textBlocks = Array.isArray(profile.about)
                     </a>
                 `;
             }
-            document.getElementById('modal-footer').innerHTML = footerHtml;
-            modal.classList.add('is-open');
-            modal.setAttribute('aria-hidden', 'false');
-            document.body.style.overflow = 'hidden';
+            openModal({ title: org.name, contentHtml, footerHtml, trigger });
+        }
+
+        function openWorkModal(work, trigger) {
+            const images = (work.images || [])
+                .map(
+                    (src) =>
+                        `<img class="modal-work-image" src="${escHtml(src)}" alt="" loading="lazy" />`
+                )
+                .join('');
+            const tags = (work.tags || [])
+                .map(
+                    (t) =>
+                        `<span class="tag" data-color="${escHtml(String(t.color))}">${escHtml(t.name)}</span>`
+                )
+                .join('');
+            const contentHtml = `
+                ${images ? `<div class="modal-work-images">${images}</div>` : ''}
+                <p class="modal-work-text">${escHtml(work.text)}</p>
+                ${tags ? `<div class="modal-work-tags">${tags}</div>` : ''}
+            `;
+            let footerHtml = '';
+            if (work.url) {
+                footerHtml += `<a href="${escHtml(work.url)}" target="_blank" rel="noopener noreferrer" class="modal-btn">${ICONS.external} Webページ</a>`;
+            }
+            if (work.github) {
+                footerHtml += `<a href="${escHtml(work.github)}" target="_blank" rel="noopener noreferrer" class="modal-btn modal-btn--ghost">${ICONS.github} GitHub</a>`;
+            }
+            openModal({ title: work.title, contentHtml, footerHtml, trigger });
         }
 
         function closeOrgModal() {
-            const modal = document.getElementById('org-modal');
-            if (!modal) return;
+            if (!modal || !modal.classList.contains('is-open')) return;
             modal.classList.remove('is-open');
             modal.setAttribute('aria-hidden', 'true');
             document.body.style.overflow = '';
+            if (lastTrigger && document.contains(lastTrigger)) {
+                lastTrigger.focus();
+            }
+            lastTrigger = null;
         }
 
         const modalClose = document.getElementById('modal-close');
@@ -701,6 +788,26 @@ const textBlocks = Array.isArray(profile.about)
         if (modalOverlay) modalOverlay.addEventListener('click', closeOrgModal);
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeOrgModal();
+            if (e.key !== 'Tab' || !modal?.classList.contains('is-open'))
+                return;
+            const items = [...modal.querySelectorAll(FOCUSABLE)];
+            if (!items.length) return;
+            const first = items[0];
+            const last = items[items.length - 1];
+            if (e.shiftKey && document.activeElement === first) {
+                e.preventDefault();
+                last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+                e.preventDefault();
+                first.focus();
+            }
+        });
+
+        document.querySelectorAll('.work-detail-btn').forEach((btn) => {
+            btn.addEventListener('click', () => {
+                const work = window.worksDetailData[btn.dataset.workIndex];
+                if (work) openWorkModal(work, btn);
+            });
         });
 
         document.querySelectorAll('.org-card-modal').forEach((card) => {
@@ -709,7 +816,7 @@ const textBlocks = Array.isArray(profile.about)
                 e.preventDefault();
                 const index = parseInt(card.dataset.orgIndex, 10);
                 const orgData = window.organizationsData[index];
-                openOrgModal(orgData);
+                openOrgModal(orgData, card);
             });
             card.addEventListener('keydown', (e) => {
                 if (e.target.closest('a')) return;
@@ -717,7 +824,7 @@ const textBlocks = Array.isArray(profile.about)
                     e.preventDefault();
                     const index = parseInt(card.dataset.orgIndex, 10);
                     const orgData = window.organizationsData[index];
-                    openOrgModal(orgData);
+                    openOrgModal(orgData, card);
                 }
             });
         });

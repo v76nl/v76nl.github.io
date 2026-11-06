@@ -73,6 +73,15 @@ draft: false # true で非公開 (省略可)
 
 - **データ**: `src/data/works.yaml` または `src/data/univ-extensions.yaml` を編集
 - **画像アセット**: 制作物のサムネイル等の画像は `public/assets/` に配置し、YAML には `assets/ファイル名.png` のように記述
+- **制作物の詳細モーダル**: `works.yaml` の作品に `detail` を書くと、カードをタップしたときに詳細がモーダルで開く(GitHub などのリンクボタンはモーダルを開かず、そのリンクだけが動く)。`detail` がない作品は従来どおり
+
+  ```yaml
+  detail:
+      text: '4文程度の説明'
+      images: # 省略するとサムネイルを表示
+          - 'assets/画像1.png'
+          - 'assets/画像2.png'
+  ```
 
 ## ディレクトリ構成
 
