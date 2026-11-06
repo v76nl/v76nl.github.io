@@ -29,7 +29,6 @@ works:
       tags:
           - 'Web'
           - '大学'
-          - 'Figma'
       url: 'https://itl-1f-map.vercel.app/'
       github: 'https://github.com/v76nl/itl-1f-map'
       thumbnail: 'assets/iTL_1F_Map.png'
@@ -45,11 +44,10 @@ works:
       date: '2026'
 
     - title: 'Xtrudy'
-      description: 'テキストやSVGファイルをモチーフにしてキーチェーンの3Dモデルを作成するツールです。STECH FES 2026にてブース展示しました。'
+      description: 'テキストやSVGファイルをもとにキーチェーンの3Dモデルを誰でも簡単に作成できる3Dモデリングアプリです。STECH FES 2026や、学園祭 (2026) にてブース展示しました。'
       tags:
           - 'Web'
           - 'Three.js'
-          - '3Dプリント'
       url: 'https://v76nl.github.io/Xtrudy/'
       github: 'https://github.com/v76nl/Xtrudy'
       thumbnail: 'assets/xtrudy.png'
@@ -91,3 +89,23 @@ works:
       github: 'https://github.com/v76nl/file-toss'
       thumbnail: 'assets/file-toss.png'
       date: '2026.09'
+
+    - title: 'teTheiL'
+      description: '2026年度の学園祭にて展示した、学部のキャラクター「イティエル」をモチーフにしたパズルゲームです。'
+      tags:
+          - 'Web'
+          - '大学'
+      url: 'https://ithiel-committee.github.io/tethiel'
+      github: 'https://github.com/ithiel-committee/tethiel'
+      thumbnail: 'assets/tethiel.png'
+      date: '2026.10'
+
+    - title: 'iThiel Chatbot'
+      description: '2026年度の学園祭にて展示した、学部のキャラクター「イティエル」をモチーフにしたチャットボットです。大きな反響を呼びました。'
+      tags:
+          - 'Web'
+          - '大学'
+          - 'オススメ！'
+      github: 'https://github.com/ithiel-committee/chatbot'
+      thumbnail: 'assets/ithiel-chatbot.png'
+      date: '2026.10'
