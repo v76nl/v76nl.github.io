@@ -10,6 +10,8 @@ works:
       url: 'https://play.google.com/store/apps/details?id=com.myml_12.chuinfo&hl=ja'
       github: ''
       thumbnail: 'assets/chuinfo.png'
+      detail:
+          text: '中央大学の学生のための統合アプリ。時間割や課題を確認できます。私が初めてAndroidアプリ開発とKotlinに触れたプロジェクトです。サークル「GDGoC Chuo」で活動し、現在も運用しています。'
       date: '2025 – 現在'
 
     - title: 'University Custom Chrome Extensions'
@@ -108,4 +110,6 @@ works:
           - 'オススメ！'
       github: 'https://github.com/ithiel-committee/chatbot'
       thumbnail: 'assets/ithiel-chatbot.png'
+      detail:
+          text: 'OSS「AITuberKit」をフォークして開発した、学部のキャラクター「イティエル」と会話できるチャットボットです。2026年の学園祭にて展示しました。会場やSNSで大きな反響を呼び、大変好評でした。中でもリアルタイムに学園祭の進行を説明する機能が、没入感を高めていたように感じています。'
       date: '2026.10'
