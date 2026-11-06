@@ -312,6 +312,7 @@
 }
 
 .orbit-dot {
+    forced-color-adjust: none;
     flex: none;
     width: 8px;
     height: 8px;
@@ -398,7 +399,7 @@
 }
 
 /* 狭い画面: 軌道図をやめ、レベル別の索引リストにする */
-@media (max-width: 720px) {
+@media (max-width: 800px) {
     .orbit {
         aspect-ratio: auto;
         container-type: normal;
