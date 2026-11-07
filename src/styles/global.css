@@ -501,16 +501,6 @@ a {
     --tag-bd: hsla(38, 90%, 50%, 0.6);
     font-weight: 700;
 }
-.tag[data-color='featured']::before {
-    content: '★';
-    margin-right: 4px;
-    font-size: 0.9em;
-    color: hsl(38, 95%, 48%);
-}
-.filter-btn[data-tag='オススメ']::before {
-    content: '★';
-    color: hsl(38, 95%, 48%);
-}
 .filter-btn[data-tag='オススメ'] {
     border-color: hsla(38, 90%, 50%, 0.55);
     background: linear-gradient(
@@ -523,9 +513,6 @@ a {
 .filter-btn[data-tag='オススメ'].active {
     border-color: hsl(38, 90%, 48%);
     background: linear-gradient(100deg, hsl(42, 95%, 58%), hsl(34, 92%, 54%));
-    color: #3a2400;
-}
-.filter-btn[data-tag='オススメ'].active::before {
     color: #3a2400;
 }
 .filter-btn[data-tag='オススメ'].active .filter-count {
