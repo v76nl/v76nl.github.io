@@ -4,8 +4,9 @@
     "version": "1.0.0",
     "type": "module",
     "scripts": {
-        "dev": "astro dev",
-        "build": "astro build",
+        "fonts": "node scripts/subset-fonts.mjs",
+        "dev": "node scripts/subset-fonts.mjs && astro dev",
+        "build": "node scripts/subset-fonts.mjs && astro build",
         "preview": "astro preview",
         "format": "prettier --write .",
         "format:check": "prettier --check .",
@@ -14,10 +15,12 @@
     "devDependencies": {
         "@iconify-json/logos": "^1.2.19",
         "@iconify-json/skill-icons": "^1.2.4",
+        "fontkit": "^2.0.4",
         "prettier": "^3.9.9",
         "prettier-plugin-astro": "^0.14.1",
         "sharp": "^0.35.5",
         "simple-icons": "^16.36.0",
+        "subset-font": "^2.9.0",
         "svgo": "^4.1.0"
     },
     "dependencies": {
