@@ -352,6 +352,10 @@
     height: 22px;
     fill: var(--ic, currentColor);
 }
+.orbit-logo {
+    fill: initial;
+    object-fit: contain;
+}
 .orbit-mono {
     font-size: var(--fs-xs);
     letter-spacing: 0.02em;

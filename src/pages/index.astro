@@ -8,6 +8,8 @@ import {
 } from '../utils/data.js';
 import '../styles/index.css';
 import * as simpleIcons from 'simple-icons';
+import logosSet from '@iconify-json/logos/icons.json';
+import skillIconsSet from '@iconify-json/skill-icons/icons.json';
 
 const data = getPortfolioData();
 const profile = data.profile || {};
@@ -35,6 +37,18 @@ const getSkillIcon = (slug) => {
         simpleIcons[`si${slug.charAt(0).toUpperCase()}${slug.slice(1)}`];
     return icon ? { path: icon.path, hex: icon.hex } : null;
 };
+// 多色のロゴは Iconify のセットから使う (logos: CC0 / skill-icons: MIT)
+const ICON_SETS = { logos: logosSet, 'skill-icons': skillIconsSet };
+const getSkillLogo = (key) => {
+    const [setName, name] = key.split(':');
+    const set = ICON_SETS[setName];
+    const icon = set?.icons[name];
+    if (!icon) return null;
+    return {
+        body: icon.body,
+        viewBox: `0 0 ${icon.width ?? set.width ?? 16} ${icon.height ?? set.height ?? 16}`,
+    };
+};
 const allSkillItems = skills.flatMap((g) =>
     (g.items ?? []).map((item) => ({ ...item, category: g.category }))
 );
@@ -46,6 +60,7 @@ const skillRings = SKILL_LEVELS.map((level, ri) => {
             ...s,
             angle: Math.round((RING_PHASES[ri] + (360 / items.length) * i) * 10) / 10,
             iconData: s.icon ? getSkillIcon(s.icon) : null,
+            logoData: s.logo ? getSkillLogo(s.logo) : null,
             mono: s.monogram ?? s.name.slice(0, 2),
         })),
     };
@@ -261,7 +276,23 @@ const textBlocks = Array.isArray(profile.about)
                                                     data-level={ring.level}
                                                     data-desc={s.description ?? ''}
                                                 >
-                                                    {s.iconData ? (
+                                                    {s.logoData ? (
+                                                        <svg
+                                                            class="orbit-icon orbit-logo"
+                                                            viewBox={s.logoData.viewBox}
+                                                            aria-hidden="true"
+                                                            set:html={s.logoData.body}
+                                                        />
+                                                    ) : s.image ? (
+                                                        <img
+                                                            class="orbit-icon orbit-logo"
+                                                            src={`/${s.image}`}
+                                                            alt=""
+                                                            width="22"
+                                                            height="22"
+                                                            loading="lazy"
+                                                        />
+                                                    ) : s.iconData ? (
                                                         <svg
                                                             class="orbit-icon"
                                                             viewBox="0 0 24 24"
