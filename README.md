@@ -26,7 +26,7 @@
 
 - フレームワーク: Astro 7
 - スタイリング: CSS
-- フォント: Fontsource セルフホスト (Zen 角ゴシック, Noto Serif JP)
+- フォント: Fontsource のフォントを、サイトで使う文字だけに絞ったサブセット(woff2)にしてセルフホスト (Zen 角ゴシック, Noto Serif JP)。`src/` 内の文字を走査して `scripts/subset-fonts.mjs` が生成し、`pnpm dev` / `pnpm build` の前と GitHub Actions のデプロイ時に自動で実行される。生成物は `src/generated/` に出力され git 管理しない。文字を追加しても手作業は不要。元のフォントに無い文字は代替フォントで表示され、生成時に注意が出る。手動で実行する場合は `pnpm fonts`
 - フォーマッター: Prettier (`prettier-plugin-astro`)
 - SEO: `@astrojs/sitemap`
 - OGP画像生成: Satori (`satori`, `@resvg/resvg-js`)
