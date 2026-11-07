@@ -276,8 +276,10 @@
 }
 .orbit-ring[data-level='メイン'] {
     --spin: 90s;
+    --chip: 60px;
 }
 .orbit-ring[data-level='サブ'] {
+    --chip: 48px;
     --r: 32;
     --hue: var(--lv-sub);
     --spin: 130s;
@@ -285,6 +287,7 @@
     --dir-inv: normal;
 }
 .orbit-ring[data-level='勉強中'] {
+    --chip: 40px;
     --r: 43;
     --hue: var(--lv-study);
     --spin: 180s;
@@ -313,8 +316,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 44px;
-    height: 44px;
+    width: var(--chip);
+    height: var(--chip);
     padding: 0;
     border-radius: 50%;
     border: 1px solid hsla(var(--hue), 60%, 50%, 0.45);
@@ -348,8 +351,8 @@
 }
 
 .orbit-icon {
-    width: 22px;
-    height: 22px;
+    width: calc(var(--chip) / 2);
+    height: calc(var(--chip) / 2);
     fill: var(--ic, currentColor);
 }
 .orbit-logo {
