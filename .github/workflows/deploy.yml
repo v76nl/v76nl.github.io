@@ -38,6 +38,9 @@ jobs:
             - name: Install dependencies
               run: pnpm install
 
+            - name: Generate font subset
+              run: pnpm run fonts
+
             - name: Build
               run: pnpm run build
 
