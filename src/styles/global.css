@@ -242,7 +242,8 @@ a {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 6px 16px;
+    height: 34px;
+    padding: 0 16px 3px;
     border-radius: var(--radius-pill);
     border: 1px solid var(--glass-border);
     background: var(--glass-bg);
@@ -265,8 +266,13 @@ a {
 }
 
 .filter-count {
+    display: inline-flex;
+    align-items: center;
+    box-sizing: border-box;
+    height: 19px;
+    margin-top: 3px;
     font-size: var(--fs-xs);
-    padding: 1px 6px;
+    padding: 0 6px 3.5px;
     border-radius: var(--radius-pill);
     background: var(--glass-border);
     color: var(--text-muted);
