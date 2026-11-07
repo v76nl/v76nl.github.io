@@ -2,7 +2,12 @@ import fs from 'fs';
 import path from 'path';
 import yaml from 'js-yaml';
 
-export { ICONS, getTagColor, getTextBlocks } from '../scripts/common.js';
+export {
+    ICONS,
+    FEATURED_TAG,
+    getTagColor,
+    getTextBlocks,
+} from '../scripts/common.js';
 
 function loadYamlData(filename) {
     const filePath = path.resolve(process.cwd(), `src/data/${filename}`);

@@ -59,9 +59,12 @@ export function escHtml(str) {
     );
 }
 
+export const FEATURED_TAG = 'オススメ';
+
 const tagColorMap = {};
 let tagColorCounter = 0;
 export function getTagColor(tag) {
+    if (tag === FEATURED_TAG) return 'featured';
     if (!(tag in tagColorMap)) {
         tagColorMap[tag] = tagColorCounter % 5;
         tagColorCounter++;
