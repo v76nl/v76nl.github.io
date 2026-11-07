@@ -8,7 +8,8 @@
         "build": "astro build",
         "preview": "astro preview",
         "format": "prettier --write .",
-        "format:check": "prettier --check ."
+        "format:check": "prettier --check .",
+        "test:alignment": "node scripts/audit-y-alignment.mjs"
     },
     "devDependencies": {
         "@iconify-json/logos": "^1.2.19",
