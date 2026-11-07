@@ -72,7 +72,7 @@ draft: false # true で非公開 (省略可)
 ### データの更新・アセットの追加について
 
 - **データ**: `src/data/works.yaml` または `src/data/univ-extensions.yaml` を編集
-- **画像アセット**: 制作物のサムネイル等の画像は `public/assets/` に配置し、YAML には `assets/ファイル名.png` のように記述
+- **画像アセット**: 制作物のサムネイル等の画像は `public/assets/` に配置し、YAML には `assets/ファイル名.webp` のように記述。PNG は `node scripts/optimize-images.mjs` で WebP(最大幅1200px)に変換できる(元の PNG は削除される)
 - **オススメ**: `works.yaml` の `tags` に `オススメ` を付けた作品は、一覧の先頭に並ぶ。タグは金色で表示され、フィルターバーでも「すべて」の次に強調される
 - **技能の軌道図**: 習熟度(`level`)ごとに輪を分け、内側ほどチップを大きくする。輪はCSSでゆっくり公転し、ホバー・フォーカス中はJSで速度をなめらかに落として止める。項目にカーソルを合わせると中央に名前を表示する(切り替え時は短くフェード)。幅800px以下では索引風のリストに切り替わる
 - **技能のアイコン**: `src/data/skills.yaml` の `icon` に [Simple Icons](https://simpleicons.org/) の slug を書くと、軌道図にそのロゴを表示する(`simple-icons` パッケージ。SVG は CC0、ロゴの商標は各社に帰属)。多色のロゴは `logo: 'logos:visual-studio-code'` のように Iconify のセット(`logos` は CC0、`skill-icons` は MIT)から指定でき、画像ファイルは `image`(`public/` 以下のパス)で指定できる。どれもない項目は `monogram`(省略時は名前の先頭2文字)を円の中に表示する。WSL のアイコンは Microsoft の WSL リポジトリ(MIT)の画像
@@ -82,8 +82,8 @@ draft: false # true で非公開 (省略可)
   detail:
       text: '4文程度の説明'
       images: # 省略するとサムネイルを表示
-          - 'assets/画像1.png'
-          - 'assets/画像2.png'
+          - 'assets/画像1.webp'
+          - 'assets/画像2.webp'
   ```
 
 ## ディレクトリ構成

@@ -9,7 +9,7 @@ works:
           - 'オススメ'
       url: 'https://play.google.com/store/apps/details?id=com.myml_12.chuinfo&hl=ja'
       github: ''
-      thumbnail: 'assets/chuinfo.png'
+      thumbnail: 'assets/chuinfo.webp'
       detail:
           text: '中央大学の学生のための統合アプリ。時間割や課題を確認できます。私が初めてAndroidアプリ開発とKotlinに触れたプロジェクトです。サークル「GDGoC Chuo」で活動し、現在も運用しています。'
       date: '2025 – 現在'
@@ -23,7 +23,7 @@ works:
       url: ''
       github: 'https://github.com/v76nl?tab=repositories&q=manaba'
       detailUrl: './univ-extensions/'
-      thumbnail: 'assets/univ_crx.png'
+      thumbnail: 'assets/univ_crx.webp'
       date: '2025 – 現在'
 
     - title: 'iTL 1F Map'
@@ -33,7 +33,7 @@ works:
           - '大学'
       url: 'https://itl-1f-map.vercel.app/'
       github: 'https://github.com/v76nl/itl-1f-map'
-      thumbnail: 'assets/iTL_1F_Map.png'
+      thumbnail: 'assets/iTL_1F_Map.webp'
       date: '2026.03'
 
     - title: 'ポートフォリオサイト'
@@ -42,7 +42,7 @@ works:
           - 'Web'
       url: 'https://v76nl.github.io'
       github: 'https://github.com/v76nl/v76nl.github.io'
-      thumbnail: 'assets/portfolio.png'
+      thumbnail: 'assets/portfolio.webp'
       date: '2026'
 
     - title: 'Xtrudy'
@@ -52,7 +52,7 @@ works:
           - 'Three.js'
       url: 'https://v76nl.github.io/Xtrudy/'
       github: 'https://github.com/v76nl/Xtrudy'
-      thumbnail: 'assets/xtrudy.png'
+      thumbnail: 'assets/xtrudy.webp'
       date: '2026'
 
     - title: 'Chuo Scholarship'
@@ -63,7 +63,7 @@ works:
           - '大学'
       url: 'https://v76nl.github.io/chuo-scholarship/'
       github: 'https://github.com/v76nl/chuo-scholarship'
-      thumbnail: 'assets/scholarship.png'
+      thumbnail: 'assets/scholarship.webp'
       date: '2026.05'
 
     - title: 'Lined Paper Generator'
@@ -73,7 +73,7 @@ works:
           - '大学'
       url: 'https://v76nl.github.io/lined-paper-generator/'
       github: 'https://github.com/v76nl/lined-paper-generator/'
-      thumbnail: 'assets/lined-paper-generator.png'
+      thumbnail: 'assets/lined-paper-generator.webp'
       date: '2026.06'
 
     - title: 'English Vocabulary Quiz'
@@ -81,7 +81,7 @@ works:
       tags:
           - 'Web'
           - '大学'
-      thumbnail: 'assets/info-eng-vocab-quiz.png'
+      thumbnail: 'assets/info-eng-vocab-quiz.webp'
       date: '2026.06'
 
     - title: 'file-toss'
@@ -89,7 +89,7 @@ works:
       tags:
           - 'Kotlin'
       github: 'https://github.com/v76nl/file-toss'
-      thumbnail: 'assets/file-toss.png'
+      thumbnail: 'assets/file-toss.webp'
       date: '2026.09'
 
     - title: 'teTheiL'
@@ -99,7 +99,7 @@ works:
           - '大学'
       url: 'https://ithiel-committee.github.io/tethiel'
       github: 'https://github.com/ithiel-committee/tethiel'
-      thumbnail: 'assets/tethiel.png'
+      thumbnail: 'assets/tethiel.webp'
       date: '2026.10'
 
     - title: 'iThiel Chatbot'
@@ -109,7 +109,7 @@ works:
           - '大学'
           - 'オススメ'
       github: 'https://github.com/ithiel-committee/chatbot'
-      thumbnail: 'assets/ithiel-chatbot.png'
+      thumbnail: 'assets/ithiel-chatbot.webp'
       detail:
           text: 'OSS「AITuberKit」をフォークして開発した、学部のキャラクター「イティエル」と会話できるチャットボットです。2026年の学園祭にて展示しました。会場やSNSで大きな反響を呼び、大変好評でした。中でもリアルタイムに学園祭の進行を説明する機能が、没入感を高めていたように感じています。'
       date: '2026.10'
