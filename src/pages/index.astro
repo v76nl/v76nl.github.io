@@ -897,6 +897,48 @@ const textBlocks = Array.isArray(profile.about)
                 chip.addEventListener('blur', scheduleReset);
                 chip.addEventListener('click', () => showNow(chip));
             });
+
+            // ホバー・フォーカス中は公転をなめらかに減速して止め、離れたら加速して再開する
+            orbit.classList.add('is-eased');
+            let hovering = false;
+            let focused = false;
+            let rate = 1;
+            let frame = 0;
+            let last = 0;
+            const spins = () =>
+                orbit
+                    .getAnimations({ subtree: true })
+                    .filter((a) => a.animationName === 'orbit-spin');
+            const step = (now) => {
+                const dt = Math.min((now - last) / 1000, 0.05);
+                last = now;
+                const target = hovering || focused ? 0 : 1;
+                rate += (target - rate) * (1 - Math.exp(-dt / 0.2));
+                if (Math.abs(target - rate) < 0.003) rate = target;
+                spins().forEach((a) => (a.playbackRate = rate));
+                frame = rate === target ? 0 : requestAnimationFrame(step);
+            };
+            const ease = () => {
+                if (frame) return;
+                last = performance.now();
+                frame = requestAnimationFrame(step);
+            };
+            orbit.addEventListener('mouseenter', () => {
+                hovering = true;
+                ease();
+            });
+            orbit.addEventListener('mouseleave', () => {
+                hovering = false;
+                ease();
+            });
+            orbit.addEventListener('focusin', () => {
+                focused = true;
+                ease();
+            });
+            orbit.addEventListener('focusout', () => {
+                focused = false;
+                ease();
+            });
         }
 
         setTimeout(observeElements, 120);

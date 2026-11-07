@@ -375,10 +375,11 @@
     white-space: nowrap;
 }
 
-.orbit:hover .orbit-ring,
-.orbit:hover .orbit-chip,
-.orbit:focus-within .orbit-ring,
-.orbit:focus-within .orbit-chip {
+/* JS が使えるときは、減速・再開をなめらかにするため JS 側で速度を制御する */
+.orbit:not(.is-eased):hover .orbit-ring,
+.orbit:not(.is-eased):hover .orbit-chip,
+.orbit:not(.is-eased):focus-within .orbit-ring,
+.orbit:not(.is-eased):focus-within .orbit-chip {
     animation-play-state: paused;
 }
 
