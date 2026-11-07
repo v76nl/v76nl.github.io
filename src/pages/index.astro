@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import {
     getPortfolioData,
     getTagColor,
+    FEATURED_TAG,
     ICONS,
     getTextBlocks,
 } from '../utils/data.js';
@@ -14,7 +15,16 @@ import skillIconsSet from '@iconify-json/skill-icons/icons.json';
 const data = getPortfolioData();
 const profile = data.profile || {};
 const organizations = data.organizations || [];
-const works = data.works || [];
+// オススメ作品を先頭にし(同順位は元の並びを保つ)、各作品のタグもオススメを先頭にする
+const isFeatured = (w) => (w.tags ?? []).includes(FEATURED_TAG);
+const works = (data.works || [])
+    .map((w) => ({
+        ...w,
+        tags: [...(w.tags ?? [])].sort(
+            (a, b) => (b === FEATURED_TAG) - (a === FEATURED_TAG)
+        ),
+    }))
+    .sort((a, b) => isFeatured(b) - isFeatured(a));
 const skills = data.skills || [];
 const activities = data.activities || [];
 
