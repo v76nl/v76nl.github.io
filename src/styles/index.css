@@ -382,6 +382,15 @@
     animation-play-state: paused;
 }
 
+.orbit-core-name,
+.orbit-core-level {
+    transition: opacity 0.12s ease;
+}
+.orbit-core.is-swapping .orbit-core-name,
+.orbit-core.is-swapping .orbit-core-level {
+    opacity: 0;
+}
+
 .orbit-legend {
     display: flex;
     justify-content: center;

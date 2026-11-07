@@ -840,19 +840,43 @@ const textBlocks = Array.isArray(profile.about)
                 name: coreName.textContent,
                 caption: caption.textContent,
             };
+            const core = orbit.querySelector('.orbit-core');
+            const calm = window.matchMedia('(prefers-reduced-motion: reduce)');
+            // 中央の文字は、いったん薄くしてから差し替えて戻す
+            let current = null;
+            let swapTimer = 0;
+            const render = (state) => {
+                coreName.textContent = state.name;
+                coreLevel.textContent = state.level;
+                if (state.level) coreLevel.dataset.level = state.level;
+                else delete coreLevel.dataset.level;
+                caption.textContent = state.caption;
+            };
+            const setState = (state) => {
+                if (current === state.key) return;
+                current = state.key;
+                clearTimeout(swapTimer);
+                if (calm.matches) {
+                    render(state);
+                    return;
+                }
+                core.classList.add('is-swapping');
+                swapTimer = setTimeout(() => {
+                    render(state);
+                    core.classList.remove('is-swapping');
+                }, 120);
+            };
             const show = (chip) => {
                 const { name, level, desc } = chip.dataset;
-                coreName.textContent = name;
-                coreLevel.textContent = level;
-                coreLevel.dataset.level = level;
-                caption.textContent = desc || '';
+                setState({ key: name, name, level, caption: desc || '' });
             };
-            const reset = () => {
-                coreName.textContent = idle.name;
-                coreLevel.textContent = '';
-                delete coreLevel.dataset.level;
-                caption.textContent = idle.caption;
-            };
+            const reset = () =>
+                setState({
+                    key: null,
+                    name: idle.name,
+                    level: '',
+                    caption: idle.caption,
+                });
             // 項目の間や拡大時の縁で mouseleave と mouseenter が連続しても
             // 表示が戻らないよう、リセットは少し遅らせる
             let resetTimer = 0;
