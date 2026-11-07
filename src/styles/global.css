@@ -766,11 +766,14 @@ a {
     width: 40%;
     min-width: max-content;
     gap: 8px;
-    padding: 12px 20px;
+    height: 44px;
+    padding: 0 20px 2px;
     border-radius: var(--radius-sm);
     text-decoration: none;
     font-size: var(--fs-sm);
+    font-family: 'Zen Kaku Gothic New', sans-serif;
     font-weight: 500;
+    line-height: 1;
     white-space: nowrap;
     background: var(--primary);
     color: #fff;
@@ -783,6 +786,10 @@ a {
     flex-shrink: 0;
 }
 
+.modal-btn svg:not([fill='none']) {
+    fill: currentColor;
+}
+
 .modal-btn--ghost {
     background: transparent;
     color: var(--primary);
@@ -791,6 +798,7 @@ a {
 
 .modal-btn:hover {
     background: var(--primary-muted);
+    color: #fff;
     transform: translateY(-2px);
     box-shadow: 0 6px 16px var(--primary-glow);
 }
