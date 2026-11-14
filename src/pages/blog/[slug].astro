@@ -18,6 +18,7 @@ const profile = getPortfolioData().profile || {};
 <Layout
     title={`${post.data.title} | ${profile.name}`}
     description={post.data.description || undefined}
+    ogImage={`/blog/${post.id}/og.png`}
 >
     <header class="page-header" role="banner">
         <div class="page-header-inner">
