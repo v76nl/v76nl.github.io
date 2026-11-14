@@ -29,7 +29,7 @@
 - フォント: Fontsource のフォントを、サイトで使う文字だけに絞ったサブセット(woff2)にしてセルフホスト (Zen 角ゴシック, Noto Serif JP)。`src/` 内の文字を走査して `scripts/subset-fonts.mjs` が生成し、`pnpm dev` / `pnpm build` の前と GitHub Actions のデプロイ時に自動で実行される。生成物は `src/generated/` に出力され git 管理しない。文字を追加しても手作業は不要。元のフォントに無い文字は代替フォントで表示され、生成時に注意が出る。手動で実行する場合は `pnpm fonts`
 - フォーマッター: Prettier (`prettier-plugin-astro`)
 - SEO: `@astrojs/sitemap`
-- OGP画像生成: Satori (`satori`, `@resvg/resvg-js`)
+- OGP画像生成: Satori (`satori`, `@resvg/resvg-js`)。描画処理は `src/utils/og.ts` にまとめている。トップ用は `/og-image.png`、ブログ記事用は記事ごとに `/blog/<slug>/og.png` をビルド時に生成する
 - ライブラリ: qrcode (ビルド時インラインSVG生成)
 - パッケージマネージャー: pnpm
 
@@ -45,6 +45,8 @@
 ### ブログ記事の追加
 
 `src/content/blog/` に Markdown ファイルを追加する。ファイル名がそのまま URL になる (`hoge-fuga.md` → `/blog/hoge-fuga/`)。
+
+OGP画像はタイトル・日付・タグから自動で生成される (`/blog/hoge-fuga/og.png`、下書きの記事は生成しない)。見出しは語句の切れ目で折り返し、長いタイトルは3行に収まるまで文字を小さくする。画像内のアイコンは `src/assets/avatar.jpg` (GitHub のアイコンを保存したもの) なので、アイコンを変えたらこのファイルも差し替える。
 
 ```md
 ---
