@@ -19,6 +19,8 @@ const profile = getPortfolioData().profile || {};
     title={`${post.data.title} | ${profile.name}`}
     description={post.data.description || undefined}
     ogImage={`/blog/${post.id}/og.png`}
+    ogType="article"
+    publishedTime={post.data.date}
 >
     <header class="page-header" role="banner">
         <div class="page-header-inner">
