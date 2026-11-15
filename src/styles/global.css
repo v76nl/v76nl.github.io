@@ -71,6 +71,8 @@
 
 html {
     scroll-behavior: smooth;
+    /* モーダルでスクロールを止めたときにスクロールバーの分だけ横にずれないよう、幅を常に確保する */
+    scrollbar-gutter: stable;
 }
 
 body {
