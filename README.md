@@ -58,6 +58,12 @@ draft: false # true で非公開 (省略可)
 ---
 ```
 
+記事の画像は `src/assets/blog/<slug>/` に置き、記事から相対パスで参照する。ビルド時に画面幅ごとのサイズ (srcset) が自動で作られる。写真は EXIF などのメタデータを消し、長辺 1440px 程度の WebP にしてから置く。処理は `src/utils/markdown-images.mjs`。
+
+```md
+![代替テキスト](../../assets/blog/hoge-fuga/photo.webp)
+```
+
 ### 文字サイズ
 
 文字サイズは `src/styles/global.css` の `:root` にある変数 (`--fs-xs` 〜 `--fs-2xl`, `--fs-page-title`) を使う。値を直接書かない。12px 未満は使わない。
@@ -98,6 +104,7 @@ draft: false # true で非公開 (省略可)
 ├── public/                      - 静的配信ファイル
 │   └── assets/                  - サムネイル等の画像アセット
 └── src/
+    ├── assets/                  - ビルド時に最適化する画像 (アイコン, 記事の画像)
     ├── data/                    - YAML形式のデータソース
     │   ├── works.yaml           - 制作物・人物データ
     │   └── univ-extensions.yaml - 開発した拡張機能データ
@@ -126,5 +133,7 @@ draft: false # true で非公開 (省略可)
     │   └── univ-extensions.css  - 拡張機能一覧ページ専用スタイル
     └── utils/
         ├── blog.js              - ブログ記事取得ユーティリティ
-        └── data.js              - ビルド用YAML読み込みユーティリティ
+        ├── data.js              - ビルド用YAML読み込みユーティリティ
+        ├── markdown-images.mjs  - 記事画像の sizes 付与
+        └── og.ts                - OGP画像の描画 (Satori)
 ```
