@@ -5,6 +5,7 @@ import { Resvg } from '@resvg/resvg-js';
 import * as fontkit from 'fontkit';
 import fs from 'node:fs';
 import path from 'node:path';
+import { phrases, type Phrase } from './phrases';
 
 export const OG_WIDTH = 1200;
 export const OG_HEIGHT = 630;
@@ -116,31 +117,9 @@ const span = (style: Style, children: string) => ({
 });
 
 // ---- 見出しの折り返し ----
-// Satori は日本語を文字単位で折り返し「レポー/ト」のような改行になるため、
-// 語句に分けたうえで、各行の幅が揃う位置で改行する (text-wrap: balance 相当)
-type Phrase = { text: string; space: boolean };
+// Satori は日本語を文字単位で折り返すため、語句に分けたうえで、
+// 各行の幅が揃う位置で改行する (text-wrap: balance 相当)
 const SPACE_EM = 0.28;
-
-function phrases(str: string): Phrase[] {
-    const seg = new Intl.Segmenter('ja', { granularity: 'word' });
-    const out: Phrase[] = [];
-    for (const { segment } of seg.segment(str)) {
-        const prev = out[out.length - 1];
-        if (/^\s+$/.test(segment)) {
-            if (prev) prev.space = true;
-            continue;
-        }
-        // 短いひらがな (助詞など) と句読点は前の語句にくっつける
-        const attach =
-            prev &&
-            !prev.space &&
-            (/^[\u3041-\u3096ー]{1,3}$/.test(segment) ||
-                /^[、。！？」』）・：,.!?)]+$/.test(segment));
-        if (attach) prev.text += segment;
-        else out.push({ text: segment, space: false });
-    }
-    return out;
-}
 
 /** 語句を maxWidth に収まる最少の行数に分け、そのうえで最長の行ができるだけ短くなるようにする */
 function balanceLines(

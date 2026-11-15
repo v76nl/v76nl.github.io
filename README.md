@@ -136,5 +136,6 @@ draft: false # true で非公開 (省略可)
         ├── blog.js              - ブログ記事取得ユーティリティ
         ├── data.js              - ビルド用YAML読み込みユーティリティ
         ├── markdown-images.mjs  - 記事画像の sizes 付与とキャプション
-        └── og.ts                - OGP画像の描画 (Satori)
+        ├── og.ts                - OGP画像の描画 (Satori)
+        └── phrases.ts           - 見出しを語句の切れ目で分ける (OGP画像)
 ```
