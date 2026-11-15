@@ -182,8 +182,12 @@
     color: var(--text-muted);
 }
 .prose img {
+    display: block;
+    width: auto;
     max-width: 100%;
     height: auto;
+    max-height: 80vh;
+    margin-inline: auto;
     border-radius: var(--radius-sm);
 }
 .prose code {
