@@ -676,6 +676,8 @@ a {
     font-family: 'Noto Serif JP', serif;
     font-size: var(--fs-xl);
     font-weight: 700;
+    word-break: auto-phrase;
+    text-wrap: balance;
 }
 
 .modal-close {
