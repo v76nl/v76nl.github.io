@@ -106,6 +106,8 @@ draft: false # true で非公開 (省略可)
 │   └── assets/                  - サムネイル等の画像アセット
 └── src/
     ├── assets/                  - ビルド時に最適化する画像 (アイコン, 記事の画像)
+    ├── components/
+    │   └── PhraseText.astro     - 見出しを語句の切れ目でだけ折り返すように出力
     ├── data/                    - YAML形式のデータソース
     │   ├── works.yaml           - 制作物・人物データ
     │   └── univ-extensions.yaml - 開発した拡張機能データ
@@ -137,5 +139,5 @@ draft: false # true で非公開 (省略可)
         ├── data.js              - ビルド用YAML読み込みユーティリティ
         ├── markdown-images.mjs  - 記事画像の sizes 付与とキャプション
         ├── og.ts                - OGP画像の描画 (Satori)
-        └── phrases.ts           - 見出しを語句の切れ目で分ける (OGP画像)
+        └── phrases.ts           - 見出しを語句の切れ目で分ける (OGP画像・記事タイトル)
 ```

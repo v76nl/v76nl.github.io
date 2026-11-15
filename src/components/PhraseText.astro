@@ -1,0 +1,20 @@
+---
+// 見出しの文字列を語句の切れ目でだけ折り返せるように出力する。
+// 語句の間に <wbr> を入れ、CSS の word-break: keep-all と組み合わせて使う。
+import { phrases } from '../utils/phrases';
+
+interface Props {
+    text: string;
+}
+
+const list = phrases(Astro.props.text);
+---
+
+{
+    list.map((p, i) => (
+        <>
+            {p.text}
+            {i < list.length - 1 && (p.space ? ' ' : <wbr />)}
+        </>
+    ))
+}

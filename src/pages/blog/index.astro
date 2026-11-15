@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import { getPortfolioData, getTagColor } from '../../utils/data.js';
 import { getPublishedPosts, formatDate } from '../../utils/blog.js';
+import PhraseText from '../../components/PhraseText.astro';
 import '../../styles/blog.css';
 
 const profile = getPortfolioData().profile || {};
@@ -51,7 +52,7 @@ const posts = await getPublishedPosts();
                                         {formatDate(post.data.date)}
                                     </time>
                                     <h2 class="post-title">
-                                        {post.data.title}
+                                        <PhraseText text={post.data.title} />
                                     </h2>
                                     {post.data.description && (
                                         <p class="post-desc">

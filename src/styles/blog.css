@@ -115,6 +115,9 @@
     font-weight: 700;
     line-height: 1.5;
     margin: 0;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
 }
 .post-desc {
     margin: 8px 0 0;
@@ -146,6 +149,9 @@
     font-weight: 900;
     line-height: 1.4;
     margin: 0;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
 }
 
 .prose {
@@ -165,6 +171,11 @@
 .prose h3 {
     font-size: var(--fs-lg);
     margin-top: 2em;
+}
+.prose h2,
+.prose h3 {
+    word-break: auto-phrase;
+    text-wrap: balance;
 }
 .prose a {
     color: var(--primary);

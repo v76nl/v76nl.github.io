@@ -3,6 +3,7 @@ import { render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import { getPortfolioData, getTagColor } from '../../utils/data.js';
 import { getPublishedPosts, formatDate } from '../../utils/blog.js';
+import PhraseText from '../../components/PhraseText.astro';
 import '../../styles/blog.css';
 
 export async function getStaticPaths() {
@@ -44,7 +45,9 @@ const profile = getPortfolioData().profile || {};
                 >
                     {formatDate(post.data.date)}
                 </time>
-                <h1 class="article-title">{post.data.title}</h1>
+                <h1 class="article-title">
+                    <PhraseText text={post.data.title} />
+                </h1>
                 {
                     post.data.tags.length > 0 && (
                         <div class="post-tags">
