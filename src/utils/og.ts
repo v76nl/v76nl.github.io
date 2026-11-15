@@ -134,7 +134,7 @@ function phrases(str: string): Phrase[] {
         const attach =
             prev &&
             !prev.space &&
-            (/^[ぁ-ゖー]{1,3}$/.test(segment) ||
+            (/^[\u3041-\u3096ー]{1,3}$/.test(segment) ||
                 /^[、。！？」』）・：,.!?)]+$/.test(segment));
         if (attach) prev.text += segment;
         else out.push({ text: segment, space: false });
