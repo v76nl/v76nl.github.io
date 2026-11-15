@@ -610,32 +610,10 @@
 .activity-link {
     color: var(--text);
     text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
     transition: color 0.2s ease;
 }
 .activity-link:hover {
     color: var(--primary);
-}
-
-.activity-icon {
-    display: inline-flex;
-    align-items: center;
-    color: var(--text-muted);
-    transition: color 0.2s ease;
-}
-.activity-link:hover .activity-icon {
-    color: var(--primary);
-}
-
-.activity-icon svg {
-    width: 14px;
-    height: 14px;
-    flex-shrink: 0;
-}
-.activity-icon svg:not([fill='none']) {
-    fill: currentColor;
 }
 
 .activity-description {

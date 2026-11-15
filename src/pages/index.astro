@@ -564,17 +564,13 @@ const textBlocks = Array.isArray(profile.about)
                                                                 : undefined
                                                         }
                                                         class="activity-link"
+                                                        data-external={
+                                                            isExternal
+                                                                ? ''
+                                                                : undefined
+                                                        }
                                                     >
                                                         {act.title}
-                                                        {isExternal && (
-                                                            <span class="activity-icon">
-                                                                <Fragment
-                                                                    set:html={
-                                                                        ICONS.external
-                                                                    }
-                                                                />
-                                                            </span>
-                                                        )}
                                                     </a>
                                                 ) : (
                                                     act.title
@@ -824,6 +820,50 @@ const textBlocks = Array.isArray(profile.about)
                 first.focus();
             }
         });
+
+        // 活動記録の外部リンクは、開く前に行き先を確認する
+        function openExternalConfirm(link) {
+            const url = link.href;
+            const contentHtml = `
+                <p class="modal-confirm-text">外部サイトを新しいタブで開きます</p>
+                <p class="modal-url">${escHtml(url)}</p>
+            `;
+            const footerHtml = `
+                <button type="button" class="modal-btn modal-btn--ghost" data-modal-cancel>キャンセル</button>
+                <a href="${escHtml(url)}" target="_blank" rel="noopener noreferrer" class="modal-btn" data-modal-confirm>${ICONS.external} 開く</a>
+            `;
+            openModal({
+                title: link.textContent.trim(),
+                contentHtml,
+                footerHtml,
+                trigger: link,
+            });
+            const footer = document.getElementById('modal-footer');
+            footer
+                .querySelector('[data-modal-cancel]')
+                .addEventListener('click', closeOrgModal);
+            const confirm = footer.querySelector('[data-modal-confirm]');
+            confirm.addEventListener('click', closeOrgModal);
+            confirm.focus();
+        }
+
+        document
+            .querySelectorAll('.activity-link[data-external]')
+            .forEach((link) => {
+                link.addEventListener('click', (e) => {
+                    // Ctrl/Cmd/Shift クリックや中クリックはブラウザの動作に任せる
+                    if (
+                        e.button !== 0 ||
+                        e.ctrlKey ||
+                        e.metaKey ||
+                        e.shiftKey ||
+                        e.altKey
+                    )
+                        return;
+                    e.preventDefault();
+                    openExternalConfirm(link);
+                });
+            });
 
         document.querySelectorAll('.work-detail-btn').forEach((btn) => {
             btn.addEventListener('click', () => {
