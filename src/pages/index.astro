@@ -7,6 +7,7 @@ import {
     ICONS,
     getTextBlocks,
 } from '../utils/data.js';
+import { getPublishedPosts, formatDate } from '../utils/blog.js';
 import '../styles/index.css';
 import * as simpleIcons from 'simple-icons';
 import logosSet from '@iconify-json/logos/icons.json';
@@ -26,7 +27,17 @@ const works = (data.works || [])
     }))
     .sort((a, b) => isFeatured(b) - isFeatured(a));
 const skills = data.skills || [];
-const activities = data.activities || [];
+// 活動記録: activities.yaml の項目に、公開済みのブログ記事を加えて新しい順に並べる
+// 日付は 'YYYY.MM' の文字列なので文字列比較で並べられる (同じ月は記事を先にする)
+const posts = await getPublishedPosts();
+const postActivities = posts.map((post) => ({
+    date: formatDate(post.data.date).slice(0, 7),
+    title: post.data.title,
+    url: `/blog/${post.id}/`,
+}));
+const activities = [...postActivities, ...(data.activities || [])].sort(
+    (a, b) => (b.date ?? '').localeCompare(a.date ?? '')
+);
 
 const tagCounts = {};
 works.forEach((w) => {
