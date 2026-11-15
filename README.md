@@ -58,10 +58,10 @@ draft: false # true で非公開 (省略可)
 ---
 ```
 
-記事の画像は `src/assets/blog/<slug>/` に置き、記事から相対パスで参照する。ビルド時に画面幅ごとのサイズ (srcset) が自動で作られる。写真は EXIF などのメタデータを消し、長辺 1440px 程度の WebP にしてから置く。処理は `src/utils/markdown-images.mjs`。
+記事の画像は `src/assets/blog/<slug>/` に置き、記事から相対パスで参照する。ビルド時に画面幅ごとのサイズ (srcset) が自動で作られる。写真は EXIF などのメタデータを消し、長辺 1440px 程度の WebP にしてから置く。画像のタイトルに書いた文は、画像の下に小さくキャプションとして表示される (処理は `src/utils/markdown-images.mjs`)。
 
 ```md
-![代替テキスト](../../assets/blog/hoge-fuga/photo.webp)
+![代替テキスト](../../assets/blog/hoge-fuga/photo.webp 'キャプション (省略可)')
 ```
 
 ### 文字サイズ
@@ -134,6 +134,6 @@ draft: false # true で非公開 (省略可)
     └── utils/
         ├── blog.js              - ブログ記事取得ユーティリティ
         ├── data.js              - ビルド用YAML読み込みユーティリティ
-        ├── markdown-images.mjs  - 記事画像の sizes 付与
+        ├── markdown-images.mjs  - 記事画像の sizes 付与とキャプション
         └── og.ts                - OGP画像の描画 (Satori)
 ```
