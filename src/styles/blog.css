@@ -67,6 +67,9 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    /* 文字の塗りは要素の箱で切られるため、g などの下に伸びる部分の分だけ箱を下に広げる */
+    padding-bottom: 0.12em;
+    margin-bottom: -0.12em;
 }
 .blog-empty {
     color: var(--text-muted);
