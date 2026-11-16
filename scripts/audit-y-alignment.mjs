@@ -253,7 +253,9 @@ async function runAudit() {
     if (hasFailures) {
         console.log('⚠️ 一部の要素で Y 軸中心線のズレが検出されました。');
     } else {
-        console.log('✨ すべての要素の Y 軸中心線が許容範囲（±1px）に収まっています。');
+        console.log(
+            '✨ すべての要素の Y 軸中心線が許容範囲（±1px）に収まっています。'
+        );
     }
 }
 

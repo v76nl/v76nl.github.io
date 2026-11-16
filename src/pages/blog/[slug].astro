@@ -8,7 +8,10 @@ import '../../styles/blog.css';
 
 export async function getStaticPaths() {
     const posts = await getPublishedPosts();
-    return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+    return posts.map((post) => ({
+        params: { slug: post.id },
+        props: { post },
+    }));
 }
 
 const { post } = Astro.props;
@@ -21,7 +24,8 @@ const toc: TocItem[] = [];
 for (const h of headings) {
     const item = { slug: h.slug, text: h.text, children: [] };
     if (h.depth === 2) toc.push(item);
-    else if (h.depth === 3 && toc.length > 0) toc[toc.length - 1].children.push(item);
+    else if (h.depth === 3 && toc.length > 0)
+        toc[toc.length - 1].children.push(item);
 }
 ---
 
@@ -48,10 +52,7 @@ for (const h of headings) {
     <main id="main-content">
         <article class="container article">
             <header class="article-header">
-                <time
-                    class="post-date"
-                    datetime={post.data.date.toISOString()}
-                >
+                <time class="post-date" datetime={post.data.date.toISOString()}>
                     {formatDate(post.data.date)}
                 </time>
                 <h1 class="article-title">
@@ -89,7 +90,9 @@ for (const h of headings) {
                                             <ol>
                                                 {item.children.map((child) => (
                                                     <li>
-                                                        <a href={`#${child.slug}`}>
+                                                        <a
+                                                            href={`#${child.slug}`}
+                                                        >
                                                             {child.text}
                                                         </a>
                                                     </li>
@@ -122,7 +125,8 @@ for (const h of headings) {
         applyTheme(ACTIVE_THEME);
 
         // 広い画面では目次を横に常に開いておき、読んでいる見出しを示す
-        const details = document.querySelector<HTMLDetailsElement>('.toc-details');
+        const details =
+            document.querySelector<HTMLDetailsElement>('.toc-details');
         if (details) {
             const wide = matchMedia('(min-width: 1240px)');
             const sync = () => {
@@ -145,7 +149,8 @@ for (const h of headings) {
                     if (el && el.getBoundingClientRect().top < 120) current = i;
                 });
                 links.forEach((a, i) => {
-                    if (i === current) a.setAttribute('aria-current', 'location');
+                    if (i === current)
+                        a.setAttribute('aria-current', 'location');
                     else a.removeAttribute('aria-current');
                 });
             };

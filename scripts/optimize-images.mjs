@@ -28,7 +28,9 @@ for (const f of files) {
     before += fs.statSync(src).size;
     after += out.length;
     fs.rmSync(src);
-    console.log(`${f} -> ${path.basename(dest)} (${Math.round(out.length / 1000)}KB)`);
+    console.log(
+        `${f} -> ${path.basename(dest)} (${Math.round(out.length / 1000)}KB)`
+    );
 }
 console.log(
     `合計 ${Math.round(before / 1000)}KB -> ${Math.round(after / 1000)}KB`

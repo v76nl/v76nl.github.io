@@ -89,13 +89,13 @@ draft: false # true で非公開 (省略可)
 - **技能のアイコン**: `src/data/skills.yaml` の `icon` に [Simple Icons](https://simpleicons.org/) の slug を書くと、軌道図にそのロゴを表示する(`simple-icons` パッケージ。SVG は CC0、ロゴの商標は各社に帰属)。多色のロゴは `logo: 'logos:visual-studio-code'` のように Iconify のセット(`logos` は CC0、`skill-icons` は MIT)から指定でき、画像ファイルは `image`(`public/` 以下のパス)で指定できる。どれもない項目は `monogram`(省略時は名前の先頭2文字)を円の中に表示する。WSL のアイコンは Microsoft の WSL リポジトリ(MIT)の画像
 - **制作物の詳細モーダル**: `works.yaml` の作品に `detail` を書くと、カードをタップしたときに詳細がモーダルで開く(GitHub などのリンクボタンはモーダルを開かず、そのリンクだけが動く)。`detail` がない作品は従来どおり
 
-  ```yaml
-  detail:
-      text: '4文程度の説明'
-      images: # 省略するとサムネイルを表示
-          - 'assets/画像1.webp'
-          - 'assets/画像2.webp'
-  ```
+    ```yaml
+    detail:
+        text: '4文程度の説明'
+        images: # 省略するとサムネイルを表示
+            - 'assets/画像1.webp'
+            - 'assets/画像2.webp'
+    ```
 
 ## ディレクトリ構成
 

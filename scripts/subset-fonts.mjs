@@ -53,7 +53,8 @@ const BASE_RANGES = [
 function walk(dir, files = []) {
     for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
         if (entry.isDirectory()) {
-            if (!SCAN_SKIP.has(entry.name)) walk(path.join(dir, entry.name), files);
+            if (!SCAN_SKIP.has(entry.name))
+                walk(path.join(dir, entry.name), files);
         } else if (SCAN_EXT.has(path.extname(entry.name))) {
             files.push(path.join(dir, entry.name));
         }
@@ -85,7 +86,9 @@ const hash = crypto
     .update(fs.readFileSync(new URL(import.meta.url)))
     .update(
         FAMILIES.flatMap((f) =>
-            f.weights.map((w) => fs.statSync(fontFile(f.pkg, 'japanese', w)).size)
+            f.weights.map(
+                (w) => fs.statSync(fontFile(f.pkg, 'japanese', w)).size
+            )
         ).join(',')
     )
     .digest('hex');

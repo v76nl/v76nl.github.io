@@ -79,7 +79,9 @@ const skillRings = SKILL_LEVELS.map((level, ri) => {
         level,
         items: items.map((s, i) => ({
             ...s,
-            angle: Math.round((RING_PHASES[ri] + (360 / items.length) * i) * 10) / 10,
+            angle:
+                Math.round((RING_PHASES[ri] + (360 / items.length) * i) * 10) /
+                10,
             iconData: s.icon ? getSkillIcon(s.icon) : null,
             logoData: s.logo ? getSkillLogo(s.logo) : null,
             mono: s.monogram ?? s.name.slice(0, 2),
@@ -275,8 +277,16 @@ const textBlocks = Array.isArray(profile.about)
                             </ul>
                             <div class="orbit" id="orbit">
                                 <div class="orbit-core" aria-hidden="true">
-                                    <span class="orbit-core-level" id="orbit-level" />
-                                    <span class="orbit-core-name" id="orbit-name">Skills</span>
+                                    <span
+                                        class="orbit-core-level"
+                                        id="orbit-level"
+                                    />
+                                    <span
+                                        class="orbit-core-name"
+                                        id="orbit-name"
+                                    >
+                                        Skills
+                                    </span>
                                 </div>
                                 {skillRings.map((ring, ri) => (
                                     <ol
@@ -295,14 +305,21 @@ const textBlocks = Array.isArray(profile.about)
                                                     class="orbit-chip"
                                                     data-name={s.name}
                                                     data-level={ring.level}
-                                                    data-desc={s.description ?? ''}
+                                                    data-desc={
+                                                        s.description ?? ''
+                                                    }
                                                 >
                                                     {s.logoData ? (
                                                         <svg
                                                             class="orbit-icon orbit-logo"
-                                                            viewBox={s.logoData.viewBox}
+                                                            viewBox={
+                                                                s.logoData
+                                                                    .viewBox
+                                                            }
                                                             aria-hidden="true"
-                                                            set:html={s.logoData.body}
+                                                            set:html={
+                                                                s.logoData.body
+                                                            }
                                                         />
                                                     ) : s.image ? (
                                                         <img
@@ -320,14 +337,28 @@ const textBlocks = Array.isArray(profile.about)
                                                             aria-hidden="true"
                                                             style={`--ic:#${s.iconData.hex}`}
                                                         >
-                                                            <path d={s.iconData.path} />
+                                                            <path
+                                                                d={
+                                                                    s.iconData
+                                                                        .path
+                                                                }
+                                                            />
                                                         </svg>
                                                     ) : (
-                                                        <span class="orbit-mono" aria-hidden="true">{s.mono}</span>
+                                                        <span
+                                                            class="orbit-mono"
+                                                            aria-hidden="true"
+                                                        >
+                                                            {s.mono}
+                                                        </span>
                                                     )}
-                                                    <span class="orbit-name">{s.name}</span>
+                                                    <span class="orbit-name">
+                                                        {s.name}
+                                                    </span>
                                                     {s.description && (
-                                                        <span class="orbit-desc">{s.description}</span>
+                                                        <span class="orbit-desc">
+                                                            {s.description}
+                                                        </span>
                                                     )}
                                                 </button>
                                             </li>
@@ -335,7 +366,11 @@ const textBlocks = Array.isArray(profile.about)
                                     </ol>
                                 ))}
                             </div>
-                            <p class="orbit-caption" id="orbit-caption" aria-live="polite"></p>
+                            <p
+                                class="orbit-caption"
+                                id="orbit-caption"
+                                aria-live="polite"
+                            />
                         </div>
                         {skillDomains.length > 0 && (
                             <div class="skills-domains fade-up">
@@ -420,8 +455,10 @@ const textBlocks = Array.isArray(profile.about)
                                     {worksDetail[i] && (
                                         <span
                                             class="work-detail-badge"
-                                            aria-hidden="true">詳細</span
+                                            aria-hidden="true"
                                         >
+                                            詳細
+                                        </span>
                                     )}
                                     <div class="work-body">
                                         {work.date && (
