@@ -134,6 +134,7 @@
 
 /* 記事 */
 .article {
+    position: relative;
     max-width: 720px;
     padding-top: 56px;
     padding-bottom: 96px;
@@ -152,6 +153,96 @@
     word-break: keep-all;
     overflow-wrap: anywhere;
     text-wrap: balance;
+}
+
+/* 目次: 狭い画面では本文の前に折りたたみ、広い画面では本文の右に固定する */
+.toc {
+    margin-bottom: 40px;
+    font-size: var(--fs-sm);
+}
+.toc-summary {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 44px;
+    font-weight: 700;
+    color: var(--text-muted);
+    cursor: pointer;
+    list-style: none;
+}
+.toc-summary::-webkit-details-marker {
+    display: none;
+}
+.toc-summary svg {
+    width: 14px;
+    height: 14px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: transform var(--transition);
+}
+.toc-details[open] .toc-summary svg {
+    transform: rotate(180deg);
+}
+.toc-list,
+.toc-list ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.toc-list {
+    border-left: 1px solid var(--glass-border);
+}
+.toc-list a {
+    display: block;
+    margin-left: -1px;
+    padding: 6px 0 6px 16px;
+    border-left: 2px solid transparent;
+    line-height: 1.6;
+    color: var(--text-muted);
+    text-decoration: none;
+    word-break: auto-phrase;
+    transition:
+        color 0.2s,
+        border-color 0.2s;
+}
+.toc-list ol a {
+    padding-left: 32px;
+    font-size: var(--fs-xs);
+}
+.toc-list a:hover {
+    color: var(--primary);
+}
+.toc-list a[aria-current] {
+    color: var(--primary);
+    border-left-color: var(--primary);
+    font-weight: 700;
+}
+
+@media (min-width: 1240px) {
+    .toc {
+        position: absolute;
+        top: 56px;
+        bottom: 96px;
+        left: 100%;
+        width: 220px;
+        margin: 0 0 0 20px;
+    }
+    .toc-details {
+        position: sticky;
+        top: 88px;
+        max-height: calc(100vh - 120px);
+        overflow-y: auto;
+    }
+    /* スクリプトで開く前から中身を見せ、読み込み時のちらつきを防ぐ */
+    .toc-details::details-content {
+        content-visibility: visible;
+    }
+    .toc-summary {
+        display: none;
+    }
 }
 
 .prose {
@@ -174,6 +265,7 @@
 }
 .prose h2,
 .prose h3 {
+    scroll-margin-top: 88px;
     word-break: auto-phrase;
     text-wrap: balance;
 }

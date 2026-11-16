@@ -12,8 +12,17 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-const { Content } = await render(post);
+const { Content, headings } = await render(post);
 const profile = getPortfolioData().profile || {};
+
+// h2 を親、h3 をその子にした目次
+type TocItem = { slug: string; text: string; children: TocItem[] };
+const toc: TocItem[] = [];
+for (const h of headings) {
+    const item = { slug: h.slug, text: h.text, children: [] };
+    if (h.depth === 2) toc.push(item);
+    else if (h.depth === 3 && toc.length > 0) toc[toc.length - 1].children.push(item);
+}
 ---
 
 <Layout
@@ -60,6 +69,40 @@ const profile = getPortfolioData().profile || {};
                     )
                 }
             </header>
+            {
+                toc.length > 1 && (
+                    <nav class="toc" aria-label="目次">
+                        <details class="toc-details">
+                            <summary class="toc-summary">
+                                目次
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <polyline points="6 9 12 15 18 9" />
+                                </svg>
+                            </summary>
+                            <ol class="toc-list">
+                                {toc.map((item) => (
+                                    <li>
+                                        <a href={`#${item.slug}`}>
+                                            {item.text}
+                                        </a>
+                                        {item.children.length > 0 && (
+                                            <ol>
+                                                {item.children.map((child) => (
+                                                    <li>
+                                                        <a href={`#${child.slug}`}>
+                                                            {child.text}
+                                                        </a>
+                                                    </li>
+                                                ))}
+                                            </ol>
+                                        )}
+                                    </li>
+                                ))}
+                            </ol>
+                        </details>
+                    </nav>
+                )
+            }
             <div class="prose">
                 <Content />
             </div>
@@ -77,5 +120,46 @@ const profile = getPortfolioData().profile || {};
     <script>
         import { ACTIVE_THEME, applyTheme } from '../../scripts/common.js';
         applyTheme(ACTIVE_THEME);
+
+        // 広い画面では目次を横に常に開いておき、読んでいる見出しを示す
+        const details = document.querySelector<HTMLDetailsElement>('.toc-details');
+        if (details) {
+            const wide = matchMedia('(min-width: 1240px)');
+            const sync = () => {
+                details.open = wide.matches;
+            };
+            sync();
+            wide.addEventListener('change', sync);
+
+            const links = [
+                ...details.querySelectorAll<HTMLAnchorElement>('.toc-list a'),
+            ];
+            const targets = links.map((a) =>
+                document.getElementById(decodeURIComponent(a.hash.slice(1)))
+            );
+            let ticking = false;
+            const update = () => {
+                ticking = false;
+                let current = -1;
+                targets.forEach((el, i) => {
+                    if (el && el.getBoundingClientRect().top < 120) current = i;
+                });
+                links.forEach((a, i) => {
+                    if (i === current) a.setAttribute('aria-current', 'location');
+                    else a.removeAttribute('aria-current');
+                });
+            };
+            addEventListener(
+                'scroll',
+                () => {
+                    if (!ticking) {
+                        ticking = true;
+                        requestAnimationFrame(update);
+                    }
+                },
+                { passive: true }
+            );
+            update();
+        }
     </script>
 </Layout>
