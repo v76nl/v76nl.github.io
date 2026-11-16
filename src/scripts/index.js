@@ -37,14 +37,14 @@ function renderHero(profile) {
     if (profile.github) {
         buttons.push(`
       <a id="btn-github" href="${profile.github}" target="_blank" rel="noopener noreferrer"
-         class="btn-social btn-github" role="listitem" aria-label="GitHub">
+         class="btn-social btn-github" aria-label="GitHub">
         ${ICONS.github} GitHub
       </a>`);
     }
     if (profile.x) {
         buttons.push(`
       <a id="btn-x" href="${profile.x}" target="_blank" rel="noopener noreferrer"
-         class="btn-social btn-x" role="listitem" aria-label="X">
+         class="btn-social btn-x" aria-label="X">
         ${ICONS.x} X
       </a>`);
     }

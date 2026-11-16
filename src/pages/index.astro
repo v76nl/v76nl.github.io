@@ -126,7 +126,7 @@ const textBlocks = Array.isArray(profile.about)
                     {profile.name}
                 </h1>
                 <p class="hero-tagline" id="hero-tagline">{profile.tagline}</p>
-                <div class="hero-links" id="hero-links" role="list">
+                <div class="hero-links" id="hero-links">
                     {
                         profile.github && (
                             <a
@@ -135,7 +135,6 @@ const textBlocks = Array.isArray(profile.about)
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 class="btn-social btn-github"
-                                role="listitem"
                                 aria-label="GitHub"
                             >
                                 <Fragment set:html={ICONS.github} /> GitHub
@@ -150,7 +149,6 @@ const textBlocks = Array.isArray(profile.about)
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 class="btn-social btn-x"
-                                role="listitem"
                                 aria-label="X"
                             >
                                 <Fragment set:html={ICONS.x} /> X
